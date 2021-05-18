@@ -273,97 +273,7 @@
         }
         /* 페이징 */
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            document.querySelectorAll('.jss1002').forEach(a => {
-                a.addEventListener('mousedown', function (e) {
-                    
-                    const ripple = document.createElement("div")
-                    const rect = a.getBoundingClientRect()
-                    
-                    ripple.className = "animate",
-                    ripple.style.left = `${e.x - rect.left}px`,
-                    ripple.style.top = `${e.y - rect.top}px`,
-                    
-                    ripple.style.background = `#${a.dataset.color !== undefined ? a.dataset.color : "bdc3c7"}`,
-                    ripple.style.setProperty("--material-scale", a.offsetWidth),
-                    a.append(ripple),
-                    setTimeout(function () {
-                        ripple.parentNode.removeChild(ripple)
-                    }, 500)
-                })
-            })
-        
-            document.querySelectorAll('.jss1007').forEach((button) => {
-               button.addEventListener('mouseover', () => {
-                let buttonChild = button.children
-                
-                buttonChild[0].style.color = 'rgba(162, 0, 199, 0.7)'
-               })
-        
-               button.addEventListener('mouseout', () => {
-                let buttonChild = button.children
-                
-                buttonChild[0].style.color = 'rgba(60, 60, 67, 0.6)'
-               })
-            })
-        
-            document.querySelectorAll('.jss1023').forEach((button) => {
-        
-                button.addEventListener('mouseover', () => {
-                    button.style.backgroundColor = 'rgba(138, 138, 142, 0.3)'
-                })
-                button.addEventListener('mouseout', () => {
-                    button.style.backgroundColor = 'rgba(244, 244, 245, 1)'
-                })
-        
-                button.addEventListener('mousedown', function (e) {
-                    
-                    const ripple = document.createElement("div")
-                    const rect = button.getBoundingClientRect()
-                    
-                    ripple.className = "animate",
-                    ripple.style.left = `${e.x - rect.left}px`,
-                    ripple.style.top = `${e.y - rect.top}px`,
-                    
-                    ripple.style.background = `#${button.dataset.color !== undefined ? button.dataset.color : "8a8a8e"}`,
-                    ripple.style.setProperty("--material-scale", button.offsetWidth),
-                    button.append(ripple),
-                    setTimeout(function () {
-                        ripple.parentNode.removeChild(ripple)
-                    }, 500)
-                })
-            })
-        
-            document.querySelectorAll('.jss1024').forEach((button) => {
-        
-                button.addEventListener('mouseover', () => {
-                    button.style.backgroundColor = 'rgba(162, 0, 199, 0.2)'
-                })
-                button.addEventListener('mouseout', () => {
-                    button.style.backgroundColor = 'rgba(248, 235, 251, 1)'
-                })
-                
-                button.addEventListener('mousedown', function (e) {
-                    
-                    const ripple = document.createElement("div")
-                    const rect = button.getBoundingClientRect()
-                    
-                    ripple.className = "animate",
-                    ripple.style.left = `${e.x - rect.left}px`,
-                    ripple.style.top = `${e.y - rect.top}px`,
-                    
-                    ripple.style.background = `#${button.dataset.color !== undefined ? button.dataset.color : "a200c7"}`,
-                    ripple.style.setProperty("--material-scale", button.offsetWidth),
-                    button.append(ripple),
-                    setTimeout(function () {
-                        ripple.parentNode.removeChild(ripple)
-                    }, 500)
-                })
-            })
-        })
-    </script>
+    
 </head>
 <body>
     <div>
@@ -456,11 +366,11 @@
                             </div>
                             <!-- 별점 끝 -->
                             <div class="jss1022">
-                                <button class="jss1023" tabindex="0" type="button">
+                                <button class="jss1023 buttonG" tabindex="0" type="button">
                                     <span class="MuiButton-label">삭제</span>
                                     <span class="MuiTouchRipple-root"></span>
                                 </button>
-                                <button class="jss1024" tabindex="0" type="button" id="cartBtn">
+                                <button class="jss1024 buttonP" tabindex="0" type="button" id="cartBtn">
                                     <span class="MuiButton-label">장바구니 담기</span>
                                     <span class="MuiTouchRipple-root"></span>
                                 </button>

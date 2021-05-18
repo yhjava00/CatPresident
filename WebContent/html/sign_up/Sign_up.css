@@ -1,18 +1,19 @@
 .a4001{
-    padding: 48px 16px 120px;
+    padding: 0 16px 10px;
     flex: none;
     max-width: 550px;
     word-wrap: break-word;
     box-sizing: border-box;
     width: 100%;
     display: block;
+    margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
 }
 .a4002{
     color: #3a3a3a;
     margin: 0;
-    padding: 0 0 40px 0;
+    padding: 0;
     font-size: 1.5rem;
     text-align: center;
     font-weight: 700;
@@ -63,7 +64,7 @@
 }
 
 .a4006{
-    top: -1px;
+    top: 4px;
     color: rgba(162, 0, 199, 1);
     position: relative;
     font-size: 1.2rem;
@@ -140,7 +141,7 @@
     line-height: 1;
 }
 .a4011{
-    top: -1px;
+    top: 4px;
     color: rgba(162, 0, 199, 1);
     position: relative;
     font-size: 1.2rem;
@@ -217,7 +218,7 @@
     line-height: 1;
 }
 .a4016{
-    top: -1px;
+    top: 4px;
     color: rgba(162, 0, 199, 1);
     position: relative;
     font-size: 1.2rem;
@@ -294,7 +295,7 @@
     line-height: 1;
 }
 .a4021{
-    top: -1px;
+    top: 4px;
     color: rgba(162, 0, 199, 1);
     position: relative;
     font-size: 1.2rem;

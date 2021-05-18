@@ -392,9 +392,10 @@ font-weight: 400;
     min-height: 64px;
 }
 .a2032 {
-    top: 83px;
+    top: 80px;
     width: 100%;
     position: fixed;
+    z-index: 1;
     background: #fff;
     border-bottom: 1px solid rgba(235, 235, 235, 1);
     transition: all .3s
@@ -448,9 +449,10 @@ font-weight: 400;
 
 .a2039 {
     position: fixed;
+    width: 100%;
     top: 0px;
     background: #fff;
-    z-index: 1;
+    z-index: 2;
 }
 
 .a2040 {

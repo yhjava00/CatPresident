@@ -3,7 +3,7 @@
     var n=0;
     var scrollValue;
     $(window).scroll(function () {
-        scrollValue = $(document).scrollTop(); console.log(scrollValue);
+        scrollValue = $(document).scrollTop(); 
         });
         $(document).ready(function() {
             $('#category').hover(function() {
@@ -40,7 +40,7 @@
             }, function() {
                 if(scrollValue > 0){
               $(".a2032").css("top", "-10px");
-              $(".a2032").css("z-index", "0");
+              $(".a2032").css("z-index", "1");
             }
             });
         });
@@ -50,7 +50,7 @@
             }, function() {
                 if(scrollValue > 0){
               $(".a2032").css("top", "-10px");
-              $(".a2032").css("z-index", "0");
+              $(".a2032").css("z-index", "1");
                 }
             });
         });
@@ -68,7 +68,7 @@
             if ((scrollTop > lastScrollTop) && (lastScrollTop > 0)) {
                 if(n==0){
                 $(".a2032").css("top", "-10px");
-                $(".a2032").css("z-index", "0");
+                $(".a2032").css("z-index", "1");
 
                 }else{
                 
