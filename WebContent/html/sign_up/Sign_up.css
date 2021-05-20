@@ -1,7 +1,7 @@
 .a4001{
     padding: 0 16px 10px;
     flex: none;
-    max-width: 550px;
+    max-width: 476px;
     word-wrap: break-word;
     box-sizing: border-box;
     width: 100%;
@@ -433,7 +433,7 @@
     padding: 13px 16px;
     font-size: 1.0rem;
     box-shadow: none !important;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: capitalize;
     width: 100%;
     color: #fff;
