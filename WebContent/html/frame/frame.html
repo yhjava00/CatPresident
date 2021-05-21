@@ -14,13 +14,8 @@
     <meta charset="utf-8">
     <title>index2</title>
     <link rel="stylesheet" href="header/header.css">
-
-    <style>
-    </style>
     <script src="https://code.jquery.com/jquery-1.11.3.js" type="text/javascript"></script>
     <script src="header/header.js"></script>
-
-    
 </head>
 
 <body style="overflow-x: hidden;">
@@ -176,355 +171,444 @@
         <div class="a2038"></div>
         <div style="position: relative; top: 168px;">
         <!-- main -->
-       
         <!DOCTYPE html>
-        <html lang="ko">
-        <head>
-            <meta charset="UTF-8">
-            <link rel="stylesheet" href="myPage_css/myPage_headBox.css">
-            <link rel="stylesheet" href="myPage_css/myPage_sideBox.css">
-            <link rel="stylesheet" href="myPage_css/myPage_contentBox.css">
-            <link rel="stylesheet" href="myPage_css/myPage_buttonAnimation.css">
-            <script src="myPage_js/myPage_event.js"></script>
-            <title>Document</title>
+        <html>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <link rel="stylesheet" href="payment.css">
+                <title>Document</title>
+                <body>
+                    <div class="a4001">
+                        <div class="a4002">
+                            <h2 class="a4003">주문결제</h2>
+                        </div>
+                        <div class="a4004">
+                            <div class="a4005">
+                                <div class="a4006">
+                                    <span class="a4007">
+                                        <span class="a4008">
+                                            <svg class="a4009" focusable="false" viewBox= "0 0 24 24" aria-hidden="true" role="img">
+                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="a4010">
+                                            <span class="a4011">01장바구니</span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="a4012">
+                                    <span class="a4013"></span>
+                                </div>
+                                <div class="a4014">
+                                    <span class="a4015">
+                                        <span class="a4016"> 
+                                            <svg class="a4017" focusable="false" viewBox= "0 0 24 24" aria-hidden="true" role="img">
+                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="a4018">
+                                            <span class="a4019">02주문결제</span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="a4020">
+                                    <span class="a4021"></span>
+                                </div>
+                                <div class="a4022">
+                                    <span class="a4023">
+                                        <span class="a4024"> 
+                                            <svg class="a4025" focusable="false" viewBox= "0 0 24 24" aria-hidden="true" role="img">
+                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="a4026">
+                                            <span class="a4027">03결제완료</span>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="a4028">
+                            <div class="a4029">
+                                <div class="a4030">
+                                    <div class="a4031">배송정보</div>
+                                    <div></div>
+                                </div>
+                                <div class="a4032">
+                                    <div class="a4033">
+                                        <div class="a4034" style="overflow: hidden;">
+                                            <div aria-label="available-review-tabs" class="a4035" role = "tablist">
+                                                <button class="a4036" tabindex="-1" type="button" role="tab" aria-selected="false" id="tab-recent" aria-controls="tabpanel-recent">
+                                                    <span class="a4037">최근 배송지</span>
+                                                </button>
+                                                <button class="a4038" tabindex="0" type="button" role="tab" aria-selected="true" id="tab-new" aria-controls="tabpanel-new">
+                                                    <span class="a4039">신규배송지</span>
+                                                </button>
+                                                <button class="a4040" tabindex="-1" type="button" role="tab" aria-selected="false" id="tab-choice" aria-controls="tabpanel-choice">
+                                                    <span class="a4041">배송지 선택</span>
+                                                </button>                                       
+                                            </div>
+                                            <span class="a4043"></span>
+                                        </div>
+                                    </div>
+                                    <div class="a4044" role="tabpanel" id="tabpanel-recent" aria-labelledby="tab-recent" hidden></div>
+                                    <div class="a4045" role="tabpanel" id="tabpanel-new" aria-labelledby="tab-new">
+                                        <div class="a4046">
+                                            <div data-testid="finder" style="display: none; position: fixed; overflow: hidden; z-index: 1;">
+                                                <img data-testid="close" src="https://t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" alt="닫기 버튼" style="cursor: pointer; position: absolute; right: 8px; top: 8px; border-radius: 10px; z-index: 1;">
+                                            </div>
+                                            <div class="a4047">
+                                                <div class="a4048">
+                                                    <div class="a4049">
+                                                        <label class="a4050">받는사람</label>
+                                                        <div class="a4051">
+                                                            <input aria-invalid="false" placeholder="받으시는 분의 성함을 입력하세요." data-testid="name" class="a4052" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="a4053">
+                                                    <div class="a4054">
+                                                        <label class="a4055">휴대전화</label>
+                                                        <div class="a4056">
+                                                            <input aria-invalid="false" placeholder="휴대전화 번호를 입력하세요." class="a4057" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="a4058">
+                                                    <div class="a4059">
+                                                        <div class="a4060">
+                                                            <label class="a4061" data-shrink="true">배송지 주소</label>
+                                                            <div class="a4062">
+                                                                <input aria-invalid="false" disabled="" placeholder="우편번호를 입력하세요." class="a4063" value>
+                                                            </div>
+                                                        </div>
+                                                        <button class="a4064" tabindex="0" type="button"><span class="a4065">우편번호</span><span class="a4066"></span></button>
+                                                    </div>
+                                                    <div class="a4067">
+                                                        <div class="a4068">
+                                                            <div class="a4069">
+                                                                <input aria-invalid="false" disabled="" placeholder="주소를 입력하세요." class="a4070" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="a4071">
+                                                        <div class="a4072">
+                                                            <div class="a4073">
+                                                                <input aria-invalid="false" placeholder="상세주소를 입력하세요." class="a4074" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="a4058">
+                                                <div class="a4059">
+                                                    <div class="a4060">
+                                                        <label class="a4061" data-shrink="true">배송요청 사항</label>
+                                                        <div class="a4062">
+                                                            <input aria-invalid="false" placeholder="배송시 요청 사항을 입력하세요." class="a4063" value>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="a4079">
+                                            <div class="a4080">
+                                                <div class="a4081">주문상품</div>
+                                            </div>
+                                            <div class="a4082">
+                                                <div class="a4083">
+                                                    <div class="a4084">
+                                                        <div class="a4085">대통령발송 상품</div>
+                                                        <div class="a4086">발송일 : 오늘</div>
+                                                </div>
+                                                <ul class="a4087">
+                                                    <li class="a4088">
+                                                        <div class="a4089">
+                                                            <div class="a4090">
+                                                                <picture class="a4091">
+                                                                    <img class="a4092" src="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" alt="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" sizes="auto">
+                                                                </picture>
+                                                            </div>
+                                                            <div class="a4093">
+                                                                <div class="a4094">
+                                                                    <div class="a4095">
+                                                                        <h3 class="a4096">츄통령 바삭츄 동결건조 연어 45g</h3>
+                                                                        <div class="a4097">수량 : 1개</div>
+                                                                    </div>
+                                                                    <div class="a4098">
+                                                                        <strong class="a4099">7,500원</strong>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="a4088">
+                                                        <div class="a4089">
+                                                            <div class="a4090">
+                                                                <picture class="a4091">
+                                                                    <img class="a4092" src="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" alt="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" sizes="auto">
+                                                                </picture>
+                                                            </div>
+                                                            <div class="a4093">
+                                                                <div class="a4094">
+                                                                    <div class="a4095">
+                                                                        <h3 class="a4096">츄통령 바삭츄 동결건조 연어 45g</h3>
+                                                                        <div class="a4097">수량 : 1개</div>
+                                                                    </div>
+                                                                    <div class="a4098">
+                                                                        <strong class="a4099">7,500원</strong>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="a4088">
+                                                        <div class="a4089">
+                                                            <div class="a4090">
+                                                                <picture class="a4091">
+                                                                    <img class="a4092" src="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" alt="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" sizes="auto">
+                                                                </picture>
+                                                            </div>
+                                                            <div class="a4093">
+                                                                <div class="a4094">
+                                                                    <div class="a4095">
+                                                                        <h3 class="a4096">츄통령 바삭츄 동결건조 연어 45g</h3>
+                                                                        <div class="a4097">수량 : 1개</div>
+                                                                    </div>
+                                                                    <div class="a4098">
+                                                                        <strong class="a4099">7,500원</strong>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="a4088">
+                                                        <div class="a4089">
+                                                            <div class="a4090">
+                                                                <picture class="a4091">
+                                                                    <img class="a4092" src="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" alt="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" sizes="auto">
+                                                                </picture>
+                                                            </div>
+                                                            <div class="a4093">
+                                                                <div class="a4094">
+                                                                    <div class="a4095">
+                                                                        <h3 class="a4096">츄통령 바삭츄 동결건조 연어 45g</h3>
+                                                                        <div class="a4097">수량 : 1개</div>
+                                                                    </div>
+                                                                    <div class="a4098">
+                                                                        <strong class="a4099">7,500원</strong>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="a4088">
+                                                        <div class="a4089">
+                                                            <div class="a4090">
+                                                                <picture class="a4091">
+                                                                    <img class="a4092" src="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" alt="https://img.catpre.com/web/catpre/product/38/37592_detail_01136325.jpg" sizes="auto">
+                                                                </picture>
+                                                            </div>
+                                                            <div class="a4093">
+                                                                <div class="a4094">
+                                                                    <div class="a4095">
+                                                                        <h3 class="a4096">츄통령 바삭츄 동결건조 연어 45g</h3>
+                                                                        <div class="a4097">수량 : 1개</div>
+                                                                    </div>
+                                                                    <div class="a4098">
+                                                                        <strong class="a4099">7,500원</strong>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        <div class="a4108">
+                            <div class="a4109">
+                                <div class="a4110">보유현금</div>
+                            </div>
+                        </div>
+                        <div class="a4111">
+                            <div class="a4112">
+                                <div class="a4113">
+                                    <div>
+                                        <span>현재 보유현금 : 0원</span>
+                                    </div>
+                                    <label class="a4114" data-testid="checkbox">
+                                        <span class="a4115" tabindex="-1" aria-disabled="true">
+                                            <span class="a4116">
+                                                <input class="a4117" disabled="" name="" type="checkbox" data-indeterminate="false" value="">
+                                                <svg class="a4118" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+                                                    <g fill="none" fill-rule="evenodd">
+                                                        <path fill="#c4c4c6" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"></path>
+                                                        <path stroke="#c4c4c6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11.882L10.503 15 16 9"></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                        </span>
+                                        <span class="a4119">전액사용</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <div class="a4120">
+                                        <div class="a4121">
+                                            <input aria-invalid="false" type="number" class="a4122" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="a4123">
+                            <div class="a4124">
+                                <div class="a4125">
+                                    <div class="a4126">최종 결제금액</div>
+                                </div>
+                            </div>
+                            <div class="a4127">
+                                <div class="a4128">
+                                    <dl class="a4129">
+                                        <dt>총 상품 금액</dt>
+                                        <dd>7,500원</dd>
+                                    </dl>
+                                    <dl class="a4129">
+                                        <dt>배송비</dt>
+                                        <dd>+3,000</dd>
+                                    </dl>
+                                    <dl class="a4129">
+                                        <dt>쿠폰</dt>
+                                        <dd>0원</dd>
+                                    </dl>
+                                    <dl class="a4129">
+                                        <dt>보유 현금</dt>
+                                        <dd>0원</dd>
+                                    </dl>
+                                    <dl class="a4130">
+                                        <dt>총 결제금액</dt>
+                                        <dd>10,500원</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="a4131">
+                            <div class="a4132">
+                                <div class="a4133">결제방법</div>
+                            </div>
+                            <div class="a4134">
+                                <div class="a4135">
+                                    <div class="a4136" role="radiogroup" aria-label="paymentMethods">
+                                        <div class="a4137">
+                                            <label class="a4138">
+                                                <span class="a4139" aria-disabled="false">
+                                                    <span class="a4140">
+                                                        <input class="a4141" name="paymentMethods" type="radio" value="WPAY">
+                                                        <div class="a4142">
+                                                            <svg class="a4143" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path>
+                                                            </svg>
+                                                            <svg class="a4144" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </span>
+                                                    <span class="a4145"></span>
+                                                </span>
+                                                <span class="a4146">
+                                                    <div class="a4147">
+                                                        <svg class="a4148" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24">
+                                                            <defs>
+                                                                <filter id="b">
+                                                                    <feColorMatrix in="SourceGraphic" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0">
+                                                                    </feColorMatrix>
+                                                                </filter>
+                                                                <path id="a" d="M0 0h20v20H0z"></path>
+                                                            </defs>
+                                                            <g fill="none" fill-rule="evenodd">
+                                                                <path fill="#FFF" d="m0 0 6.367 4.766L12.734 0v9.531l-6.367 4.766L0 9.531z" transform="translate(5.633 5.086)" style="mix-blend-mode: overlay;"></path>
+                                                                <path fill="#FFF" fill-opacity=".7" d="m0 9.531 6.367-4.765 6.367 4.765-6.367 4.766z" transform="translate(5.633 5.086)" style="mix-blend-mode: overlay;"></path>
+                                                                <path fill="#FFF" d="m0 0 6.367 14.297L12.734 0 6.367 4.766z" transform="translate(5.633 5.086)" style="mix-blend-mode: soft-light;"></path>
+                                                                <path fill="#000" fill-opacity=".25" d="m0 0 6.367 14.297L0 2.324V0zm12.734 0v2.324L6.367 14.297 12.734 0z" transform="translate(5.633 5.086)" style="mix-blend-mode: overlay;">
+                                                                </path><path fill="#000" d="M22 2v20H12c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10H2V2h20z"></path>
+                                                                <g>
+                                                                    <use fill="#A200C7" xlink:href="#a" transform="translate(2 2)"></use>
+                                                                    <g filter="url(#b)" transform="translate(2 2)">
+                                                                        <g fill="#A200C7">
+                                                                            <path d="M7.33 6.516h2.913c.598 0 1.292.694 1.292 1.292v2.382a.779.779 0 0 0 1.556 0V5.74a.78.78 0 0 0-.778-.78H7.33a.78.78 0 0 0-.778.778c0 .208.082.404.23.55a.735.735 0 0 0 .549.228"></path>
+                                                                            <path d="M14.532 13.227h-3.13c-.598 0-1.292-.695-1.292-1.293v-2.25a.778.778 0 1 0-1.556-.001v2.251c0 .598-.694 1.293-1.291 1.293H4.918a.774.774 0 0 0-.778.777c0 .43.349.779.778.779h9.613a.78.78 0 0 0 0-1.556"></path>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                                <path d="M0 0h24v24H0z"></path>
+                                                            </g>
+                                                        </svg>
+                                                        <img src="img/pay_bi.svg" alt="고대페이" class="a4149">
+                                                    </div>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="a4150">
+                                            <label class="a4151">
+                                                <span class="a4152" aria-desabled="false">
+                                                    <span class="a4153">
+                                                        <input class="a4154" name="paymentMethods" type="radio" value="NPAY">
+                                                        <div class="a4155">
+                                                            <svg class="a4156" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path>
+                                                            </svg>
+                                                            <svg class="a4157" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                                                                <path d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </span>
+                                                    <span class="a4158"></span>
+                                                </span>
+                                                <span class="a4159">
+                                                    <div class="a4160">
+                                                        <svg class="a4161" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+                                                            <g fill="none" fill-rule ="evenodd">
+                                                                <g>
+                                                                    <g>
+                                                                        <g>
+                                                                            <g>
+                                                                                <path fill="#00C73C" d="M0 19.946L19.945 19.946 19.945 0 0 0z" transform="translate(-56 -2472) translate(20 2472) translate(36) translate(2 2)"></path>
+                                                                                <path fill="#FFF" d="M11.559 14.538L8.341 9.812 8.341 14.538 4.986 14.538 4.986 5.407 8.388 5.407 11.606 10.133 11.606 5.407 14.959 5.407 14.959 14.538z" transform="translate(-56 -2472) translate(20 2472) translate(36) translate(2 2)"></path>
+                                                                            </g>
+                                                                            <path d="M0 0H24V24H0z" transform="translate(-56 -2472) translate(20 2472) translate(36)"></path>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </svg>
+                                                        <span class="a4162">네이버페이</span>
+                                                    </div>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="a4163">
+                        <p class="a4164">위 주문 내용을 확인하였으며 결제에 동의합니다.</p>
+                        <div>
+                            <button class="a4165" tabindex="0" type="button" data-testid="pay">
+                                <span class="a4166">결제하기</span>
+                                <span class="a4167"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </body>
         </head>
-        <body>
-            
-            <div class="headBox">
-                <div class="box1">
-                    <a href="#" style="display: flex;">
-                        <div class="jss1027">
-                            <img src="img/cat1.jpg">
-                            <span>편집</span>
-                        </div>
-                        <div style="float: left; margin: auto; margin-left: 10px;">
-                            <span class="jss1001">
-                                name
-                                <svg class="gearImg" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M2 12c0-.865.11-1.703.316-2.504 1.126.06 2.191-.518 2.755-1.495.564-.977.533-2.188-.081-3.134 1.209-1.19 2.7-2.052 4.335-2.505.512 1.006 1.545 1.64 2.674 1.64s2.162-.634 2.674-1.64c1.634.453 3.126 1.316 4.335 2.505-.615.946-.646 2.158-.082 3.135.565.977 1.63 1.555 2.757 1.495.206.8.316 1.638.316 2.503 0 .865-.11 1.703-.316 2.504-1.127-.06-2.191.518-2.756 1.495-.565.977-.533 2.188.081 3.134-1.209 1.19-2.7 2.052-4.335 2.505-.512-1.006-1.545-1.64-2.674-1.64s-2.162.634-2.674 1.64c-1.634-.453-3.126-1.316-4.335-2.505.615-.946.646-2.158.082-3.135-.565-.977-1.63-1.555-2.757-1.495C2.11 13.704 2 12.866 2 12zm4.804 3c.63 1.091.81 2.346.564 3.524.408.29.842.541 1.297.75.917-.821 2.104-1.275 3.335-1.274 1.26 0 2.438.471 3.335 1.274.455-.209.889-.46 1.297-.75-.253-1.204-.052-2.459.564-3.524.615-1.066 1.601-1.867 2.77-2.25.046-.499.046-1.001 0-1.5-1.17-.383-2.156-1.184-2.771-2.25-.616-1.065-.817-2.32-.564-3.524-.408-.29-.842-.541-1.297-.75C14.418 5.546 13.23 6.001 12 6c-1.23 0-2.418-.453-3.335-1.274-.455.209-.89.46-1.297.75C7.621 6.68 7.42 7.935 6.804 9c-.615 1.066-1.601 1.867-2.77 2.25-.046.499-.046 1.001 0 1.5 1.17.383 2.156 1.184 2.771 2.25h-.001zM12 15c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3zm0-2c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"></path></svg>
-                            </span>
-                            <p style="margin: 5px 0;">email@naver.com</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="box1">
-                    <a href="#">
-                        <div class="boxInA">
-                            <svg class="itemImg" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M6.5 2h11c.315 0 .611.148.8.4L21 6v15c0 .552-.448 1-1 1H4c-.552 0-1-.448-1-1V6l2.7-3.6c.189-.252.485-.4.8-.4zM19 8H5v12h14V8zm-.5-2L17 4H7L5.5 6h13zM9 10v2c0 1.657 1.343 3 3 3s3-1.343 3-3v-2h2v2c0 2.761-2.239 5-5 5s-5-2.239-5-5v-2h2z"></path></svg>
-                            <span class="spanInBox">자주구매</span>
-                            <strong class="numInBox">0</strong>
-                            <svg class="arrowImg" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                        </div>
-                    </a>
-                </div>
-                <div class="box1">
-                    <a href="#">
-                        <div class="boxInA">
-                            <svg class="itemImg" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path stroke="#38383A" stroke-width="2" fill="#fff" fill-rule="evenodd" d="M21.179 12.794l.013.014L12 22l-9.192-9.192.013-.014C.607 10.213.757 6.361 3.165 3.96 5.573 1.558 9.425 1.419 12 3.64c2.575-2.221 6.427-2.082 8.835.32 2.408 2.401 2.558 6.253.344 8.834z"></path></svg>
-                            <span class="spanInBox">관심</span>
-                            <strong class="numInBox">0</strong>
-                            <svg class="arrowImg" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                        </div>
-                    </a>
-                </div>
-                <div class="box1">
-                    <a href="#">
-                        <div class="boxInA">
-                            <svg class="itemImg" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M17.618 5.968l1.453-1.453 1.414 1.414-1.453 1.453c2.981 3.731 2.528 9.142-1.032 12.326-3.56 3.184-8.986 3.033-12.364-.344C2.26 15.986 2.108 10.559 5.292 7c3.184-3.56 8.595-4.013 12.326-1.032zM12 20c2.5 0 4.812-1.334 6.062-3.5s1.25-4.834 0-7C16.812 7.334 14.501 6 12 6c-3.866 0-7 3.134-7 7s3.134 7 7 7zM11 8h2v6h-2V8zM8 1h8v2H8V1z"></path></svg>
-                            <span class="spanInBox">최근본</span>
-                            <strong class="numInBox">0</strong>
-                            <svg class="arrowImg" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        
-            <div class="mainBox">
-        
-                <div class="sideBox">
-                    <div class="reviewBox">
-                        <h3>구매후기</h3>
-                        <div class="reviewBtnBox">
-                            <button class="MuiButtonBase-root jss1002" tabindex="0" type="button">
-                                <span class="jss1003">작성 가능한</span> 
-                                <span class="jss1004">0</span>
-                                <span class="MuiTouchRipple-root"></span>
-                            </button>
-                            <button class="MuiButtonBase-root jss1002" tabindex="0" type="button">
-                                <span class="jss1003">이미 작성한</span> 
-                                <span class="jss1005">0</span>
-                                <span class="MuiTouchRipple-root"></span>
-                            </button>
-                        </div>
-                        <div>
-                            <h3 class="jss1006">나의 쇼핑</h3>
-                        </div>
-                        <div class="jss283">
-                            <a class="jss1007" href="#">
-                                <span class="jss288">주문 · 배송</span>
-                                <svg class="jss1008" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                            </a>
-                        </div>
-                        <div class="jss283">
-                            <a class="jss1007" href="#">
-                                <span class="jss288">주문취소</span>
-                                <svg class="jss1008" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                            </a>
-                        </div>
-                        <div class="jss283">
-                            <a class="jss1007" href="#">
-                                <span class="jss288">교확하기</span>
-                                <svg class="jss1008" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                            </a>
-                        </div>
-                        <div class="jss283">
-                            <a class="jss1007" href="#">
-                                <span class="jss288">반품하기</span>
-                                <svg class="jss1008" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                            </a>
-                        </div>
-                        <div class="jss283">
-                            <a class="jss1007" href="#">
-                                <span class="jss288">고객센터</span>
-                                <svg class="jss1008" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                            </a>
-                        </div>
-                        <div>
-                            <h3 class="jss1006">나의 지갑</h3>
-                        </div>
-                        <div class="jss283">
-                            <a class="jss1007" href="#">
-                                <span class="jss288">스티커</span>
-                                <svg class="jss1008" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                            </a>
-                        </div>
-                        <div class="jss283">
-                            <a class="jss1007" href="#">
-                                <span class="jss288">할인쿠폰</span>
-                                <svg class="jss1008" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                            </a>
-                        </div>
-                        <div class="jss283">
-                            <a class="jss1007" href="#">
-                                <span class="jss288">보유현금</span>
-                                <svg class="jss1008" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                            </a>
-                        </div>
-                        <div class="jss283">
-                            <a class="jss1007" href="#">
-                                <span class="jss288">고대페이</span>
-                                <svg class="jss1008" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contentBox">
-                    <main>
-                       
-                        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <style>
-        .a1120 {
-            margin: 0 0 30px 0;
-            font-size: 1.7rem;
-        }
-        .a1121 {
-            border: 1px solid rgba(207, 204, 204, 1);
-            overflow: hidden;
-            border-radius: 4px;
-        }
-        .a1122 {
-            font-size: .9rem;
-            font-weight: 400;
-            border-bottom: 0 none;
-            margin-bottom: 0;
-            justify-content: center;
-            background-color: rgba(244, 244, 245, 1);
-            display: flex;
-            padding: 22px 16px;
-            position: relative;
-        }
-        .a1123 {
-            border-top: 0 none;
-            border-bottom: 0 none;
-            margin-bottom: 0;
-            padding: 0;
-        }
-        .a1124 {
-            padding: 40px 232px;
-            border-top: 1px solid rgba(235, 235, 235, 1);
-            margin-top: -1px;
-        }
-        .a1125 {
-            margin-bottom: 20px;
-            width: 100%;
-            border: 0;
-            margin: 0;
-            display: inline-flex;
-            padding: 0;
-            position: relative;
-            min-width: 0;
-            flex-direction: column;
-            vertical-align: top;
-        }
-        .a1126 {
-            font-size: 1.0rem;
-            padding-bottom: 10px;
-            color: rgba(0, 0, 0, 1);
-            position: relative;
-            transform: none !important;
-            font-weight: 700;
-            pointer-events: none;
-            z-index: 1;
-            transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-            transform-origin: top left;
-            top: 0;
-            left: 0;
-            display: block;
-            padding: 0;
-            font-family: Noto Sans KR,sans-serif;
-            line-height: 1;
-
-        }
-        .a1127 {
-            z-index: 1;
-            margin: 10px 0;
-            border: 1px solid rgba(196, 196, 198, 1);
-            padding: 0;
-            background: #fff;
-            border-radius: 4px;
-            position: relative;
-            transition: background-color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-            width: 100%;
-            color: rgba(0, 0, 0, 1);
-            cursor: text;
-            display: inline-flex;
-            font-size: 1.1rem;
-            box-sizing: border-box;
-            align-items: center;
-            font-family: Noto Sans KR,sans-serif;
-            font-weight: 400;
-            line-height: 1.1876em;
-            
-        }
-        .a1128 {
-            height: 52px;
-            padding: 15px 15px;
-            z-index: 10;
-            position: relative;
-            box-sizing: border-box;
-            border-radius: 4px;
-            background-color: transparent;
-            -webkit-appearance: none;
-            font: inherit;
-            color: currentColor;
-            width: 100%;
-            border: 0;
-            margin: 0;
-            display: block;
-            min-width: 0;
-            background: none;
-            animation-name: mui-auto-fill-cancel;
-            letter-spacing: inherit;
-            animation-duration: 10ms;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .a1129 {
-            width: calc(100% + 20px);
-            margin-left: -10px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .a1130 {
-            margin: 0 10px;
-            padding: 13px 16px;
-            font-size: 1.0rem;
-            box-shadow: none !important;
-            font-weight: 500;
-            text-transform: capitalize;
-            width: 100%;
-            color: #fff;
-            background-color: rgba(162, 0, 199, 1);
-            min-width: 64px;
-            box-sizing: border-box;
-            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-            font-family: Noto Sans KR,sans-serif;
-            line-height: 1.75;
-            border-radius: 4px;
-            border: 0;
-            cursor: pointer;
-            display: inline-flex;
-            outline: 0;
-            position: relative;
-            align-items: center;
-            user-select: none;
-            vertical-align: middle;
-            justify-content: center;
-            text-decoration: none;
-            -webkit-appearance: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .a1131 {
-            width: 100%;
-            display: inherit;
-            align-items: inherit;
-            justify-content: inherit;
-        }
-        .a1132 {
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
-            overflow: hidden;
-            position: absolute;
-            border-radius: inherit;
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body>
-    <h2 class="a1120">회원정보</h2>
-    <form>
-        <div class="a1121">
-            <div class="a1122">정보를 안전하게 보호하기 위해 비밀번호를 다시 입력해주세요.</div>
-            <div class="a1123">
-                <div class="a1124">
-                    <div class="a1125">
-                        <label class="a1126" data-shrink="true">yhjava00@naver.com</label>
-                        <div class="a1127">
-                            <input aria-invalid="false" name="confirmPassword" placeholder="비밀번호를 입력하세요." type="password" class="a1128" value="">
-                        </div>
-                    </div>
-                    <div class="a1129">
-                        <button class="a1130" tabindex="0" type="submit" data-testid="submit">
-                            <span class="a1131">확인</span>
-                            <span class="a1132"></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-</body>
-</html>
-                        
-                    </main>
-                </div>
-            </div>
-            <style>
-            </style>
-            <!-- last 1052 -->
-            
-        </body>
-        </html>
-
         <!-- main -->
         <!-- footer -->
         <link rel="stylesheet" href="footer/footer.css">
+        <script src="footer/footer.js"></script>
         <footer class="jss1030">
             <div class="jss1031">
                 <ul class="jss1032">
@@ -584,7 +668,7 @@
                         <div class="a1045">
                             <svg class="b1042 jss208" focusable="false" viewBox="0 0 22 22" aria-hidden="true" role="img"><path d="M18.276 7.333h.974c1.013 0 1.833.821 1.833 1.834v3.666c0 1.013-.82 1.834-1.833 1.834h-.974c-.462 3.666-3.58 6.416-7.276 6.416V19.25c3.038 0 5.5-2.462 5.5-5.5v-5.5c0-3.038-2.462-5.5-5.5-5.5s-5.5 2.462-5.5 5.5v6.417H2.75c-1.013 0-1.833-.821-1.833-1.834V9.167c0-1.013.82-1.834 1.833-1.834h.974C4.186 3.667 7.303.918 11 .918c3.695 0 6.814 2.749 7.276 6.415zM2.75 9.167v3.666h.917V9.167H2.75zm15.583 0v3.666h.917V9.167h-.917zM7.113 14.47l.972-1.555c.874.547 1.884.837 2.915.835 1.03.002 2.041-.288 2.915-.835l.972 1.555c-1.165.73-2.512 1.115-3.887 1.113-1.375.002-2.722-.384-3.887-1.113z"></path></svg>
                             1588-2469
-                            <button tabindex="0" type="button"><span class="MuiButton-label">채팅문의</span></button>
+                            <button tabindex="0" type="button" onclick="openChat();"><span class="MuiButton-label">채팅문의</span></button>
                         </div>
                         <div class="a1046">평일: 09:00 ~ 18:00 / 주말 · 공휴일: 휴무</div>
                     </div>
@@ -643,200 +727,748 @@
             overflow: hidden !important;
             animation: 0.25s ease-out 0s 1 normal none running jZyQVL !important;
             font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, system-ui, sans-serif !important;
+            display: none;
         }
     </style>
 
     <div class="c1001">
         <!-- chat -->
         <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        .c1002 {
-            height: 100%;
-            opacity: 1;
-            background: white;
-        }
-        .c1003 {
-            height: 35px;
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
-            font-size: 16px;
-            font-weight: 600;
-            color: white;
-            background: linear-gradient(103deg, rgb(162, 0, 199) 0%, rgb(162, 0, 199) 50%, rgb(199, 0, 190)) 100% center;
-            box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px 0px;
-            overflow: hidden;
-            z-index: 1;
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            left: 0px;
-            padding: 14px 80px 14px 60px;
-            transform: translateZ(0px);
-        }
-        .c1003-1 {
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            position: absolute;
-            top: 0px;
-            left: 8px;
-            height: 60px;
-            cursor: pointer;
-        }
-        .c1003-2 {
-            width: auto;
-            height: auto;
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-            cursor: pointer;
-            visibility: visible;
-        }
-        .c1003-2::before {
-            content: "";
-            display: block;
-            width: 18px;
-            height: 18px;
-            background-image: url(https://cdn.channel.io/plugin/images/back3-white.png);
-            background-size: cover;
-            opacity: 0.6;
-        }
-        .c1004 {
-            height: 100%;
-            max-width: 180px;
-        }
-        .c1005 {
-            height: 22px;
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-        }
-        .c1006 {
-            flex: 0 1 auto;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .c1007 {
-            width: 22px;
-            height: 22px;
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-            cursor: pointer;
-            visibility: visible;
-        }
-        .c1007::before {
-            content: "";
-            display: block;
-            width: 22px;
-            height: 22px;
-            background-image: url(https://cdn.channel.io/plugin/images/instant-white.png);
-            background-size: cover;
-            opacity: 1;
-        }
-        .c1008 {
-            font-size: 11px;
-            line-height: 13px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            margin-top: 1px;
-            opacity: 0.7;
-            color: white;
-            font-weight: normal;
-        }
-        .c1009 {
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            position: absolute;
-            top: 0px;
-            right: 12px;
-            height: 60px;
-        }
-        .c1010 {
-            display: inline-block;
-            color: white;
-        }
-        .c1011 {
-            width: 30px;
-            height: 30px;
-            display: inline-flex;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-            cursor: pointer;
-            visibility: visible;
-        }
-        .c1011::before {
-            content: "";
-            display: block;
-            width: 18px;
-            height: 18px;
-            background-image: url(https://cf.channel.io/asset/plugin/images/more-white.svg);
-            background-size: cover;
-            opacity: 0.6;
-        }
-        .c1012 {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-            cursor: pointer;
-            visibility: visible;
-        }
-        .c1012::before {
-            content: "";
-            display: block;
-            width: 18px;
-            height: 18px;
-            background-image: url(https://cdn.channel.io/plugin/images/close2-white.png);
-            background-size: cover;
-            opacity: 0.6;
-        }
-    </style>
-    <title>Document</title>
-</head>
-<body>
-    <div class="c1002">
-        <div class="c1003">
-            <div class="c1003-1">
-                <div class="c1003-2"></div>
-            </div>
-            <div class="c1004">
-                <div class="c1005">
-                    <div class="c1006">고양이대통령</div>
-                    <div class="c1007"></div>
+        <html lang="ko">
+        <head>
+            <meta charset="UTF-8">
+            <style>
+                .c1002 {
+                    height: 100%;
+                    opacity: 1;
+                    background: white;
+                }
+                .c1003 {
+                    height: 35px;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    border-top-left-radius: 0px;
+                    border-top-right-radius: 0px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: white;
+                    background: linear-gradient(103deg, rgb(162, 0, 199) 0%, rgb(162, 0, 199) 50%, rgb(199, 0, 190)) 100% center;
+                    box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px 0px;
+                    overflow: hidden;
+                    z-index: 1;
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    left: 0px;
+                    padding: 14px 80px 14px 60px;
+                    transform: translateZ(0px);
+                }
+                .c1003-1 {
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    position: absolute;
+                    top: 0px;
+                    left: 8px;
+                    height: 60px;
+                    cursor: pointer;
+                }
+                .c1003-2 {
+                    width: auto;
+                    height: auto;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    visibility: visible;
+                }
+                .c1003-2::before {
+                    content: "";
+                    display: block;
+                    width: 18px;
+                    height: 18px;
+                    background-image: url(https://cdn.channel.io/plugin/images/back3-white.png);
+                    background-size: cover;
+                    opacity: 0.6;
+                }
+                .c1004 {
+                    height: 100%;
+                    max-width: 180px;
+                }
+                .c1005 {
+                    height: 22px;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                }
+                .c1006 {
+                    flex: 0 1 auto;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                }
+                .c1007 {
+                    width: 22px;
+                    height: 22px;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    justify-content: center;
+                    cursor: pointer;
+                }
+                .c1007::before {
+                    content: "";
+                    display: block;
+                    width: 22px;
+                    height: 22px;
+                    background-image: url(https://cdn.channel.io/plugin/images/instant-white.png);
+                    background-size: cover;
+                    opacity: 1;
+                }
+                .c1008 {
+                    font-size: 11px;
+                    line-height: 13px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    margin-top: 1px;
+                    opacity: 0.7;
+                    color: white;
+                    font-weight: normal;
+                }
+                .c1009 {
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    position: absolute;
+                    top: 0px;
+                    right: 12px;
+                    height: 60px;
+                }
+                .c1010 {
+                    display: inline-block;
+                    color: white;
+                }
+                .c1011 {
+                    width: 30px;
+                    height: 30px;
+                    display: inline-flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    visibility: visible;
+                }
+                .c1011::before {
+                    content: "";
+                    display: block;
+                    width: 18px;
+                    height: 18px;
+                    background-image: url(https://cf.channel.io/asset/plugin/images/more-white.svg);
+                    background-size: cover;
+                    opacity: 0.6;
+                }
+                .c1012 {
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    visibility: visible;
+                }
+                .c1012::before {
+                    content: "";
+                    display: block;
+                    width: 18px;
+                    height: 18px;
+                    background-image: url(https://cdn.channel.io/plugin/images/close2-white.png);
+                    background-size: cover;
+                    opacity: 0.6;
+                }
+                .c1013 {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    margin-top: 0px;
+                }
+                .c1014{
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: rgb(255, 255, 255);
+                }
+                .c1015 {
+                    -webkit-box-flex: 1;
+                    flex: 1 1 0px;
+                    position: relative;
+                }
+                .c1016 {
+                    position: absolute;
+                    inset: 0px;
+                    display: flex;
+                    flex-direction: column;
+                    overflow-x: hidden;
+                }
+                .c1017 {
+                    position: relative;
+                    -webkit-box-flex: 1;
+                    flex: 1 1 0px;
+                    height: auto;
+                }
+                .c1018 {
+                    z-index: 0;
+                    padding-top: 60px;
+                    position: absolute;
+                    inset: 0px;
+                    overflow: hidden auto;
+                }
+                .c1018-1 {
+                    overflow-y: hidden !important;
+                }
+                .c1018-2 {
+                    overflow-y: visible !important;
+                }
+                .c1019 {
+                    display: inline-block;
+                    width: 100%;
+                }
+                .c1019-1 {
+                    width: calc(100%-12px);
+                }
+                .c1020 {
+                    margin: 16px 14px 0px;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    justify-content: center;
+                    text-align: center;
+                    font-size: 11px;
+                    font-weight: 600;
+                    color: rgb(167, 167, 170);   
+                }
+                .c1021 {
+                    animation: 0.25s ease-in-out 0s 1 normal none running ixNmz;
+                    margin-top: 13px;
+                    display: flex;
+                }
+                .c1022 {
+                    width: 40px;
+                    padding-left: 10px;
+                }
+                .c1023 {
+                    position: relative;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    background-image: url("https://cf.channel.io/thumb/200x200/file/14328/5f3c6b9c6ca07dcf71b9/catpre_icon.png");
+                    background-size: cover;
+                    background-position: center center;
+                    background-color: rgb(255, 255, 255);
+                    box-shadow: none;
+                }
+                .c1024 {
+                    -webkit-box-flex: 1;
+                    flex: 1 1 0px;
+                    overflow: hidden;
+                }
+                .c1025 {
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    font-size: 12px;
+                    margin: 4px 20% 4px 0px;
+                    color: rgb(36, 36, 40);
+                }
+                .c1026 {
+                    flex: 0 1 auto;
+                    font-size: 13px;
+                    font-weight: 700;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .c1027 {
+                    margin-left: 7px;
+                    font-size: 11px;
+                    color: rgb(167, 167, 170);
+                }
+                .c1028 {
+                    display: flex;
+                    margin-bottom: 4px;
+                }
+                .c1029 {
+                    max-width: 280px;
+                    padding: 10px;
+                    border-radius: 12px;
+                    background-color: rgb(240, 240, 241);
+                    color: rgb(36, 36, 40);
+                }
+                .c1030 {
+                    display: flex;
+                }
+                .c1031 {
+                    max-width: 260px;
+                    line-height: 20px !important;
+                    font-size: 15px !important;
+                    display: inline-block !important;
+                    text-align: left !important;
+                    letter-spacing: -0.1px !important;
+                    white-space: pre-line !important;
+                    word-break: break-word !important;
+                    overflow-wrap: break-word !important;
+                    border-radius: 15px !important;
+                }
+                .c1032 {
+                    padding-right: 12px;
+                    text-align: right;
+                    color: rgb(36, 36, 40);
+                }
+                .c1033 {
+                    display: block;
+                    font-size: 11px;
+                    margin: 10px 0px 4px;
+                    color: rgb(167, 167, 170);
+                }
+                .c1034 {
+                    display: flex;
+                    align-items: flex-end;
+                    -webkit-box-pack: end;
+                    justify-content: flex-end;
+                    margin-bottom: 4px;
+                }
+                .c1035 {
+                    max-width: 280px;
+                    padding: 10px;
+                    border-radius: 12px;
+                    background-color: rgb(162, 0, 199);
+                    color: white;
+                }
+                .c1036 {
+                    display: flex;
+                }
+                .c1037 {
+                    max-width: 260px;
+                    line-height: 20px !important;
+                    font-size: 15px !important;
+                    display: inline-block !important;
+                    text-align: left !important;
+                    letter-spacing: -0.1px !important;
+                    white-space: pre-line !important;
+                    word-break: break-word !important;
+                    overflow-wrap: break-word !important;
+                    border-radius: 15px !important;
+                }
+                .c1038 {
+                    position: static;
+                    bottom: 0px;
+                    right: 0px;
+                    left: 0px;
+                    z-index: 1;
+                    transform: translateZ(0px);
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    min-height: 54px;
+                    border-top: 1px solid rgb(228, 228, 229);
+                    background-color: rgb(255, 255, 255);
+                    box-shadow: rgb(0 0 0 / 5%) 0px 2px 6px 0px;
+                }
+                .c1039 {
+                    position: relative;
+                    display: inline-block;
+                    width: 24px;
+                    height: 24px;
+                    background-image: url(https://cdn.channel.io/plugin/images/clip.png);
+                    background-size: cover;
+                    cursor: pointer;
+                    margin-left: 13px;
+                }
+                .c1038 input, textarea {
+                    font-family: "NotoSansKR", "NotoSansJP", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", "Roboto", "system-ui", "sans-serif";
+                }
+                .c1038 textarea {
+                    overflow: hidden;
+                }
+                .c1039-1 {
+                    -webkit-box-flex: 1;
+                    flex: 1 1 0px;
+                    display: flex;
+                }
+                .c1040 {
+                    width: 100%;
+                    min-height: 56px;
+                    max-height: 200px;
+                    line-height: 20px;
+                    font-size: 15px;
+                    letter-spacing: -0.1px;
+                    min-width: 0px;
+                    border: none;
+                    resize: none;
+                    margin: auto;
+                    padding: 18px 10px;
+                    white-space: pre-wrap;
+                    overflow: hidden scroll;
+                    background-color: transparent;
+                }
+                .c1041 {
+                    width: 46px;
+                    display: flex;
+                    align-self: stretch;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-box-pack: center;
+                    justify-content: center;
+                    cursor: not-allowed;
+                }
+                .c1041-1 {
+                    cursor: pointer !important;
+                }
+                .c1041::after {
+                    content: "";
+                    display: inline-block;
+                    width: 24px;
+                    height: 24px;
+                    background-size: cover;
+                    background-image: url(https://cdn.channel.io/plugin/images/send-disabled.png);
+                }
+                .c1041::after {
+                    background-image: url(https://cdn.channel.io/plugin/images/send.png) !important;
+                }
+            </style>
+            <script>
+                var openCloseBox = false
+        
+                function closeBox() {
+                    if(openCloseBox) {
+                        openCloseBox = false;
+                        $('.c1042-1').css('visibility', 'hidden')
+                    }
+                    else {
+                        openCloseBox = true;
+                        $('.c1042-1').css('visibility', 'visible')
+                    }
+                }
+        
+            </script>
+            <title>Document</title>
+        </head>
+        <body>
+            <div class="c1002">
+                <div class="c1003">
+                    <div class="c1003-1">
+                        <div class="c1003-2"></div>
+                    </div>
+                    <div class="c1004">
+                        <div class="c1005">
+                            <div class="c1006">고양이대통령</div>
+                            <div class="c1007"></div>
+                        </div>
+                        <div class="c1008">보통 몇 분 내에 응답합니다.</div>
+                    </div>
+                    <div class="c1009">
+                        <div class="c1010" onclick="closeBox()">
+                            <div class="c1011"></div>
+                        </div>
+                        <div class="c1010" onclick="closeChat()">
+                            <div class="c1012"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="c1008">보통 몇 분 내에 응답합니다.</div>
-            </div>
-            <div class="c1009">
-                <div class="c1010">
-                    <div class="c1011"></div>
+        
+                <div class="c1013">
+                    <div class="c1014">
+                        <div class="c1015">
+                            <div class="c1016">
+                                <div class="c1017">
+                                    <div class="c1018 c1018-2">
+                                        <div class="c1019 c1019-1">
+                                            <div class="c1020">오늘</div>
+                                            <!-- 상대방 시작 -->
+                                            <div class="c1021">
+                                                <div class="c1022">
+                                                    <div size="24" class="c1023"></div>
+                                                </div>
+                                                <div class="c1024">
+                                                    <div class="c1025">
+                                                        <div class="c1026">고양이대통령</div>
+                                                        <div class="c1027">9:02 AM</div>
+                                                    </div>
+                                                    <div class="c1028">
+                                                        <div class="c1029">
+                                                            <div class="c1030">
+                                                                <div>
+                                                                    <div class="c1031">안녕하세요! 
+                                                                        고양이대통령입니다.
+                                                                        궁금하신 내용을 <b>선택</b>해주세요.
+                                                                        
+                                                                        #고객센터 운영 안내
+                                                                        -9시-18시 (주말/공휴일 제외)<br></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 상대방 끝 -->
+        
+                                            <!-- 보내는 이 시작 -->
+                                            <div class="c1032">
+                                                <div class="c1033">9:02 AM</div>
+                                                <div class="c1034">
+                                                    <div class="c1035">
+                                                        <div class="c1036">
+                                                            <div>
+                                                                <div class="c1037">주문<br></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 보내는 이 끝 -->
+                                            <!-- del -->
+                                            <!-- 상대방 시작 -->
+                                            <div class="c1021">
+                                                <div class="c1022">
+                                                    <div size="24" class="c1023"></div>
+                                                </div>
+                                                <div class="c1024">
+                                                    <div class="c1025">
+                                                        <div class="c1026">고양이대통령</div>
+                                                        <div class="c1027">9:02 AM</div>
+                                                    </div>
+                                                    <div class="c1028">
+                                                        <div class="c1029">
+                                                            <div class="c1030">
+                                                                <div>
+                                                                    <div class="c1031">안녕하세요! 
+                                                                        고양이대통령입니다.
+                                                                        궁금하신 내용을 <b>선택</b>해주세요.
+                                                                        
+                                                                        #고객센터 운영 안내
+                                                                        -9시-18시 (주말/공휴일 제외)<br></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 상대방 끝 --><!-- 상대방 시작 -->
+                                            <div class="c1021">
+                                                <div class="c1022">
+                                                    <div size="24" class="c1023"></div>
+                                                </div>
+                                                <div class="c1024">
+                                                    <div class="c1025">
+                                                        <div class="c1026">고양이대통령</div>
+                                                        <div class="c1027">9:02 AM</div>
+                                                    </div>
+                                                    <div class="c1028">
+                                                        <div class="c1029">
+                                                            <div class="c1030">
+                                                                <div>
+                                                                    <div class="c1031">안녕하세요! 
+                                                                        고양이대통령입니다.
+                                                                        궁금하신 내용을 <b>선택</b>해주세요.
+                                                                        
+                                                                        #고객센터 운영 안내
+                                                                        -9시-18시 (주말/공휴일 제외)<br></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 상대방 끝 --><!-- 상대방 시작 -->
+                                            <div class="c1021">
+                                                <div class="c1022">
+                                                    <div size="24" class="c1023"></div>
+                                                </div>
+                                                <div class="c1024">
+                                                    <div class="c1025">
+                                                        <div class="c1026">고양이대통령</div>
+                                                        <div class="c1027">9:02 AM</div>
+                                                    </div>
+                                                    <div class="c1028">
+                                                        <div class="c1029">
+                                                            <div class="c1030">
+                                                                <div>
+                                                                    <div class="c1031">안녕하세요! 
+                                                                        고양이대통령입니다.
+                                                                        궁금하신 내용을 <b>선택</b>해주세요.
+                                                                        
+                                                                        #고객센터 운영 안내
+                                                                        -9시-18시 (주말/공휴일 제외)<br></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 상대방 끝 --><!-- 상대방 시작 -->
+                                            <div class="c1021">
+                                                <div class="c1022">
+                                                    <div size="24" class="c1023"></div>
+                                                </div>
+                                                <div class="c1024">
+                                                    <div class="c1025">
+                                                        <div class="c1026">고양이대통령</div>
+                                                        <div class="c1027">9:02 AM</div>
+                                                    </div>
+                                                    <div class="c1028">
+                                                        <div class="c1029">
+                                                            <div class="c1030">
+                                                                <div>
+                                                                    <div class="c1031">안녕하세요! 
+                                                                        고양이대통령입니다.
+                                                                        궁금하신 내용을 <b>선택</b>해주세요.
+                                                                        
+                                                                        #고객센터 운영 안내
+                                                                        -9시-18시 (주말/공휴일 제외)<br></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 상대방 끝 --><!-- 상대방 시작 -->
+                                            <div class="c1021">
+                                                <div class="c1022">
+                                                    <div size="24" class="c1023"></div>
+                                                </div>
+                                                <div class="c1024">
+                                                    <div class="c1025">
+                                                        <div class="c1026">고양이대통령</div>
+                                                        <div class="c1027">9:02 AM</div>
+                                                    </div>
+                                                    <div class="c1028">
+                                                        <div class="c1029">
+                                                            <div class="c1030">
+                                                                <div>
+                                                                    <div class="c1031">안녕하세요! 
+                                                                        고양이대통령입니다.
+                                                                        궁금하신 내용을 <b>선택</b>해주세요.
+                                                                        
+                                                                        #고객센터 운영 안내
+                                                                        -9시-18시 (주말/공휴일 제외)<br></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 상대방 끝 --><!-- 상대방 시작 -->
+                                            <div class="c1021">
+                                                <div class="c1022">
+                                                    <div size="24" class="c1023"></div>
+                                                </div>
+                                                <div class="c1024">
+                                                    <div class="c1025">
+                                                        <div class="c1026">고양이대통령</div>
+                                                        <div class="c1027">9:02 AM</div>
+                                                    </div>
+                                                    <div class="c1028">
+                                                        <div class="c1029">
+                                                            <div class="c1030">
+                                                                <div>
+                                                                    <div class="c1031">안녕하세요! 
+                                                                        고양이대통령입니다.
+                                                                        궁금하신 내용을 <b>선택</b>해주세요.
+                                                                        
+                                                                        #고객센터 운영 안내
+                                                                        -9시-18시 (주말/공휴일 제외)<br></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 상대방 끝 --><!-- 상대방 시작 -->
+                                            <div class="c1021">
+                                                <div class="c1022">
+                                                    <div size="24" class="c1023"></div>
+                                                </div>
+                                                <div class="c1024">
+                                                    <div class="c1025">
+                                                        <div class="c1026">고양이대통령</div>
+                                                        <div class="c1027">9:02 AM</div>
+                                                    </div>
+                                                    <div class="c1028">
+                                                        <div class="c1029">
+                                                            <div class="c1030">
+                                                                <div>
+                                                                    <div class="c1031">안녕하세요! 
+                                                                        고양이대통령입니다.
+                                                                        궁금하신 내용을 <b>선택</b>해주세요.
+                                                                        
+                                                                        #고객센터 운영 안내
+                                                                        -9시-18시 (주말/공휴일 제외)<br></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 상대방 끝 -->
+                                            <!-- del -->
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="c1038">
+                                    <div class="c1039-1">
+                                        <textarea data-ch-testid="messenger-footer-text-area" placeholder="메시지를 입력해주세요." class="c1040" style="height: 56px;"></textarea>
+                                    </div>
+                                    <div data-ch-testid="messenger-footer-send-button" disabled="" class="c1041 c1041-1"></div>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="c1010">
-                    <div class="c1012"></div>
+        
+            </div>
+            <style>
+                .c1042-1 {
+                    visibility: hidden;
+                }
+                .c1042 {
+                    width: 180px;
+                    padding: 8px 0px;
+                    font-size: 13px;
+                    background-color: rgb(255, 255, 255);
+                    border: 1px solid rgba(0, 0, 0, 0.05);
+                    border-radius: 6px;
+                    box-shadow: rgb(0 0 0 / 20%) 0px 4px 12px 0px;
+                }
+                .c1043 {
+                    height: 36px;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    padding: 0px 15px;
+                    font-weight: 600;
+                    color: rgb(255, 74, 74);
+                    cursor: pointer;
+                }
+            </style>
+            <div class="c1042-1" style="z-index: 1; position: absolute; top: 15px; left: 288px; transform: translateX(30px) translateX(-100%) translateY(30px);">
+                <div class="c1042">
+                    <div class="c1043">상담 삭제하기</div>
                 </div>
             </div>
-        </div>
-    </div>
-</body>
-</html>
+        </body>
+        </html>
         <!-- chat -->
     </div>
 
