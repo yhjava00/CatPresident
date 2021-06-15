@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .b3000{
     margin: 0 auto;
     width: 70%;
@@ -91,7 +92,7 @@
     display: block;
 }
 .b3012{
-    padding: 0 30px 80px;
+    padding: 0 30px 0px;
     margin-top: 68px;
     position: relative;
     max-width: 1432px;
@@ -369,13 +370,13 @@
     font-weight: 700;
     font-family: Noto Sans KR,sans-serif;
     line-height: 1.2;
-    margin: 0;
 }
 .b3032{
     position: relative;
+    margin-left: 140px;
 }
 .b3033{
-    column-gap: 40px;
+    margin: 0;
     column-count: 3;
 }
 .b3034{
@@ -409,6 +410,7 @@
     overflow: hidden;
     text-indent: -1000em;
     background-size: 32px 32px;
+    margin-left: -140px;
 }
 .b3036b{
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3e%3cg fill='none' fill-rule='evenodd'%3e%3cpath fill='%23D8D8D8' fill-opacity='0' d='M0 0H34V34H0z' transform='translate(-1 -1)'/%3e%3cpath fill='%23BABABA' d='M4.274 8.66l5.81 3.55 5.79-7.429c.26-.333.679-.531 1.126-.531.447 0 .866.198 1.126.531l5.79 7.428 5.81-3.549c.448-.274 1.03-.283 1.49-.025.46.259.713.738.65 1.23l-4.398 17.703c-.082.638-.673 1.12-1.374 1.12H7.906c-.702 0-1.292-.482-1.374-1.12L2.134 9.863c-.062-.49.192-.97.651-1.228.46-.258 1.04-.248 1.49.025z' transform='translate(-1 -1)'/%3e%3cpath fill='white' fill-rule='nonzero' d='M20.117 23.375v-1.581h-2.052c-.434 0-1.059.051-1.53.102 1.72-1.683 3.136-3.519 3.136-5.227 0-1.76-1.186-2.908-2.97-2.908-1.288 0-2.13.51-2.997 1.429l1.02 1.02c.472-.523 1.046-.97 1.734-.97.893 0 1.415.574 1.415 1.53 0 1.454-1.517 3.226-4.08 5.521v1.084h6.324z' transform='translate(-1 -1)'/%3e%3c/g%3e%3c/svg%3e");
@@ -418,6 +420,7 @@
     overflow: hidden;
     text-indent: -1000em;
     background-size: 32px 32px;
+    margin-left: -140px;
 }
 .b3036c{
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3e%3cg fill='none' fill-rule='evenodd'%3e%3cpath fill='%23D8D8D8' fill-opacity='0' d='M0 0H34V34H0z' transform='translate(-1 -1)'/%3e%3cpath fill='%23D59644' d='M4.274 8.66l5.81 3.55 5.79-7.429c.26-.333.679-.531 1.126-.531.447 0 .866.198 1.126.531l5.79 7.428 5.81-3.549c.448-.274 1.03-.283 1.49-.025.46.259.713.738.65 1.23l-4.398 17.703c-.082.638-.673 1.12-1.374 1.12H7.906c-.702 0-1.292-.482-1.374-1.12L2.134 9.863c-.062-.49.192-.97.651-1.228.46-.258 1.04-.248 1.49.025z' transform='translate(-1 -1)'/%3e%3cpath fill='white' fill-rule='nonzero' d='M16.739 23.553c1.797 0 3.315-1.007 3.315-2.74 0-1.237-.816-2.028-1.887-2.321v-.064c1.007-.395 1.58-1.135 1.58-2.155 0-1.619-1.236-2.511-3.06-2.511-1.109 0-2.014.446-2.83 1.16l.956 1.147c.561-.51 1.11-.828 1.785-.841.804.013 1.263.446 1.263 1.185 0 .842-.561 1.441-2.295 1.441v1.352c2.052 0 2.6.573 2.6 1.504 0 .842-.65 1.313-1.606 1.313-.854 0-1.543-.42-2.104-.968l-.88 1.185c.664.753 1.67 1.314 3.163 1.314z' transform='translate(-1 -1)'/%3e%3c/g%3e%3c/svg%3e");
@@ -427,6 +430,7 @@
     overflow: hidden;
     text-indent: -1000em;
     background-size: 32px 32px;
+     margin-left: -140px;
 }
 
 
@@ -460,6 +464,7 @@
     background-color: transparent;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
+    margin-left: -140px;
 }
 .b3039{
     overflow: visible;
@@ -620,9 +625,10 @@
     line-height: 1.2;
 }
 .b3057{
-    width: 70%;
+    width: 100%;
     margin-left: 0;
     position: relative;
+    margin-bottom: 50px;
 }
 .b3058{
     padding-bottom: 50px;
@@ -829,7 +835,6 @@
     display: inline;
 }
 .b3074{
-    image-rendering: "file:///C:/Users/ITSC/Desktop/profile-empty.svg";
     width: 30px;
     border: 1px solid rgba(207, 204, 204, 1);
     height: 30px;
@@ -837,6 +842,8 @@
     box-shadow: 1px 2px 4px 0 rgb(68 68 68 / 20%);
     box-sizing: border-box;
     border-radius: 50%;
+    display: block;
+    max-width: 100%;
 }
 .b3075{
     margin: 0 4px 0 0;
