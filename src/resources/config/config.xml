@@ -5,7 +5,9 @@
  
 <configuration>
     <typeAliases>
-        <!-- <typeAlias alias="MemberVO" type="test.MemberVO"/> -->        
+        <!-- <typeAlias alias="MemberVO" type="test.MemberVO"/> -->
+        <typeAlias alias="goodsList" type="vo.GoodsVO"/>
+        <typeAlias alias="goodsDetails" type="vo.GoodsDetailsVO"/>            
     </typeAliases>
  
     <environments default="development">

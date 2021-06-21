@@ -357,7 +357,7 @@ font-weight: 400;
     opacity: 1;
     padding: 0 22px;
     position: relative;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     min-width: 0 !important;
     min-height: 52px;
     font-weight: 700;
@@ -391,10 +391,10 @@ font-weight: 400;
 .a2031-regular {
     min-height: 64px;
 }
-.a2032 {
+.p_a2032 {
     top: 80px;
     width: 100%;
-    position: fixed;
+    position: absolute;
     z-index: 1;
     background: #fff;
     border-bottom: 1px solid rgba(235, 235, 235, 1);
@@ -444,15 +444,14 @@ font-weight: 400;
 
 .a2038 {
     height: 50px;
-
 }
 
 .a2039 {
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: 0px;
     background: #fff;
-    z-index: 11;
+    z-index: 2;
 }
 
 .a2040 {

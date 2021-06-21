@@ -396,7 +396,6 @@
 	            -webkit-tap-highlight-color: transparent;
 	        }
 	    </style>
-	    <script src="http://code.jquery.com/jquery-latest.js"></script>
 	    <script>
 	        $(document).ready(function(){
 	    

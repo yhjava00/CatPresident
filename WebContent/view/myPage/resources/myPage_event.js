@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-            
+$(document).ready(function() {
+
     document.querySelectorAll('.jss1002').forEach(a => {
         a.addEventListener('mousedown', function (e) {
             

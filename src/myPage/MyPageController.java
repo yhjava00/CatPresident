@@ -25,17 +25,25 @@ public class MyPageController extends HttpServlet {
 		
 		String path = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));
 		
-//		String nextPage = "myPage/myPage.jsp";
-		String nextPage = "main.jsp";
+		String nextPage = "myPage/myPage.jsp";
 		
 		switch (path) {
+		case "/available_reviews":
+			nextPage = "myPage/myPage_available_reviews.jsp";
+			break;
+		case "/often_seen":
+			nextPage = "myPage/myPage_often_seen.jsp";
+			break;
+		case "/orders":
+			nextPage = "myPage/myPage_orders.jsp";
+			break;
 		case "/review":
 			nextPage = "myPage/myPage_review.jsp";
 			break;
-		case "/test":
-			
-			System.out.println(request.getParameter("test"));
-			
+		case "/update":
+			nextPage = "myPage/myPage_update.jsp";
+			break;
+		default:
 			break;
 		}
 		

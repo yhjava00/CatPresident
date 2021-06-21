@@ -36,27 +36,28 @@
 								<div class="b3015">
 									<div class="b3016"
 										style="transform: translate3d(0px, 0px, 0px);">
-										<c:forEach begin="1" end="6">
+										<c:set var = "goodsList" value = "${goodsListMap.goodsList1}" /> <!-- 이 상품 어때요? forEach 시작 -->
+										  <c:forEach var = "list" items = "${goodsList}">  
 											<div class="b3017"
 												style="width: 206.5px; margin-right: 24px;">
 												<div data-testid="root">
 													<div class="b3018">
 														<a class="b3019" tabindex="0" aria-disabled="false"
-															href="/product/37593">
+															onclick="inProduct(${list.idx})">
 															<div class="b3020">
 																<picture class="b3021">
 																<source media="(max-width: 1199px)"
-																	srcset="https://img.catpre.com/mobile/catpre/product/38/37593_list_L1_01006481.jpg">
+																	srcset="${list.img}">
 																<source media="(min-width: 1200px)"
-																	srcset="https://img.catpre.com/mobile/catpre/product/38/37593_list_L1_01006481.jpg">
+																	srcset="${list.img}">
 																<img class="b3022"
-																	src="https://img.catpre.com/mobile/catpre/product/38/37593_list_L1_01006481.jpg"
-																	alt="츄통령 바삭츄 동결건조 닭가슴살 55g" sizes="auto"> </picture>
+																	src="${list.img}"
+																	alt="${list.name}" sizes="auto"> </picture>
 															</div>
 															<div class="b3022">
-																<h3 class="b3023">츄통령 바삭츄 동결건조 닭가슴살 55g</h3>
+																<h3 class="b3023">${list.name}</h3>
 																<div class="b3024">
-																	<strong class="3025"> 7,500원 </strong>
+																	<strong class="3025"> ${list.price}원 </strong>
 																</div>
 																<div class="jss1017">
 																	<div class="jss1017">
@@ -182,14 +183,15 @@
 																		</span>
 																		</span>
 																	</div class="jss1017">
-																	<span class="b3999">(4)</span>
+																	<span class="b3999">(0)</span>
 																</div>
 															</div> 
 														</a>
 													</div>
 												</div>
 											</div>
-										</c:forEach>
+										</c:forEach> 
+									 <!-- 이 상품 어때요? forEach 끝 -->
 									</div>
 								</div>
 							</div>
@@ -198,33 +200,34 @@
 				</div>
 				</div>
 			</div>
-		</div>
+	<div style = "margin-top : 50px;"></div>	
 	<hr class="b3029">
 	<div class="b3012">
 		<h2 class="b3013">오늘의 딜</h2>
 		<div class="b3014">
 			<div class="b3015">
 				<div class="b3016" style="transform: translate3d(0px, 0px, 0px);">
-					<c:forEach begin="1" end="6">
+					<c:set var = "goodsList" value = "${goodsListMap.goodsList2}" />
+					<c:forEach var = "list" items = "${goodsList}"> <!-- 오늘의 딜 forEach 시작 -->
 						<div class="b3017" style="width: 206.5px; margin-right: 24px;">
 							<div data-testid="root">
 								<div class="b3018">
 									<a class="b3019" tabindex="0" aria-disabled="false"
-										href="/product/37593">
+										onclick="inProduct(${list.idx})">
 										<div class="b3020">
 											<picture class="b3021">
 											<source media="(max-width: 1199px)"
-												srcset="https://img.catpre.com/mobile/catpre/product/39/38826_list_L1_01772784.jpg">
+												srcset="${list.img}">
 											<source media="(min-width: 1200px)"
-												srcset="https://img.catpre.com/mobile/catpre/product/39/38826_list_L1_01772784.jpg">
+												srcset="${list.img}">
 											<img class="b3022"
-												src="https://img.catpre.com/mobile/catpre/product/39/38826_list_L1_01772784.jpg"
-												alt="반려양품 벤토나이트 모래 무향 7kg x 2개입" sizes="auto"> </picture>
+												src="${list.img}"
+												alt="${list.name}" sizes="auto"> </picture>
 										</div>
 										<div class="b3022">
-											<h3 class="b3023">츄통령 바삭츄 동결건조 닭가슴살 55g</h3>
+											<h3 class="b3023">${list.name}</h3>
 											<div class="b3024">
-												<strong class="3025"> 7,500원 </strong>
+												<strong class="3025"> ${list.price}원</strong>
 											</div>
 											<div class="jss1017">
 												<div class="jss1017">
@@ -352,12 +355,15 @@
 				</div>
 			</div>
 		</div>
+		<div style = "margin-top : 50px"></div>
 		<hr class="b3029">
 	<div class="b3030">
 		<h2 class="b3031">랭킹</h2>
 		<div class="b3032">
 			<div class="b3033">
-				<c:forEach var="i" begin="1" end="9">
+				<c:set var = "goodsList" value = "${goodsListMap.goodsList3}" />
+				<c:set var = "i" value="1"/>
+				<c:forEach var = "list" items = "${goodsList}"> <!-- 상품랭킹 forEach 시작 -->
 			<div class="b3034">
 				<div class="b3035">
 					<c:choose>
@@ -377,23 +383,23 @@
 				</div>
 				<div class="b3037">
 					<a class="b3038" tabindex="0" aria-disabled="false"
-						href="/product/25281">
+						onclick="inProduct(${list.idx})">
 						<div class="b3039">
 							::before
 							<picture class="b3040">
 								<source media="(max-width: 1199px)"
-									srcset="https://img.catpre.com/web/catpre/product/26/25281_list_L1_01076249.jpg">
+									srcset="${list.img}">
 								<source media="(min-width: 1200px)"
-									srcset="https://img.catpre.com/mobile/catpre/product/26/25281_list_M1_01076249.jpg">
+									srcset="${list.img}">
 								<img class="b3041b"
-									src="https://img.catpre.com/mobile/catpre/product/26/25281_list_M1_01076249.jpg"
-									alt="에버크린 ES UN 19kg" sizes="auto"> 
+									src="${list.img}"
+									alt="${list.name}" sizes="auto"> 
 							</picture>
 						</div>
 						<div class="b3042">
-							<h3 class="b3043">에버크린 ES UN 19kg</h3>
+							<h3 class="b3043">${list.name}</h3>
 							<div class="b3044">
-								<strong class="b3045">19,000원</strong>
+								<strong class="b3045">${list.price}원</strong>
 							</div>
 							<div class="b3046">
 								<span class="b3047"> <span class="b3048" role="img"
@@ -503,12 +509,13 @@
 											</span>
 										</span>
 									</span> </span>
-								</span> <span class="b3999">(1,454)</span>
+								</span> <span class="b3999">(0)</span>
 							</div>
 						</div> <span class="b3052"></span>
 					</a>
 				</div>
 			</div>
+			<c:set var = "i" value = "${i+1}"/>
 			</c:forEach>
 		</div>
 		</div>
@@ -525,7 +532,8 @@
 								<a class="b3061" tabindex="0" aria-disabled="false"
 									href="/reviews?no=143800">
 									<div class="b3062">
-										<span class="b3063"> <!-- 별점 시작 -->
+										<span class="b3063"> 
+										<!-- 별점 시작 -->
 											<div class="jss1017b">
 												<span class="jss1018b"> <span
 													class="MuiRating-root jss1020b MuiRating-readOnlyb"
@@ -627,7 +635,7 @@
 										<p class="b3071">고양이 대통령 칭찬해</p>
 									</div>
 									<div class="b3072">
-										<img class="b3074" src="/resoures/img/후기회원사진.png" sizes="auto"> <span
+										<img class="b3074" src="resources/img/프로필.svg" sizes="auto"> <span
 											class="b3075">김*호</span>
 									</div>
 								</a>

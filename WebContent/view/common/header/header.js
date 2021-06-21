@@ -5,6 +5,7 @@
     $(window).scroll(function () {
         scrollValue = $(document).scrollTop(); 
         });
+    
         $(document).ready(function() {
             $('#category').hover(function() {
                 $(this).css("background-color", "rgba(162, 0, 199, 1)");

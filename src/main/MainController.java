@@ -25,18 +25,25 @@ public class MainController extends HttpServlet {
 		
 		String path = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));
 		
-//		String nextPage = "myPage/myPage.jsp";
 		String nextPage = "main.jsp";
 		
 		switch (path) {
-		case "/review":
-			nextPage = "myPage/myPage_review.jsp";
+		case "/header":
+			nextPage = "common/header.jsp";
 			break;
-		case "/test":
-			
-			System.out.println(request.getParameter("test"));
-			
+		case "/product":
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			request.setAttribute("detailsMap", mainService.details(idx));
+			nextPage = "product.jsp";
 			break;
+		case "/search":
+			nextPage = "search.jsp";
+			break;
+		case "/chat":
+			nextPage = "common/chat.jsp";
+			break;
+		default :
+			request.setAttribute("goodsListMap", mainService.main());
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/" + nextPage);
