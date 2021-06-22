@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
+
+import vo.ChattingVO;
 
 @WebServlet("*.main")
 public class MainController extends HttpServlet {
@@ -41,6 +45,12 @@ public class MainController extends HttpServlet {
 			break;
 		case "/chat":
 			nextPage = "common/chat.jsp";
+			
+			String id = (String) request.getSession().getAttribute("loginUser");
+			
+			List<ChattingVO> chatList = mainService.getChattingList(id);
+			
+			request.setAttribute("chatList", chatList);
 			break;
 		default :
 			request.setAttribute("goodsListMap", mainService.main());

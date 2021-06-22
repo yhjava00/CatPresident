@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -238,7 +240,7 @@
 	            width: 24px;
 	            height: 24px;
 	            border-radius: 50%;
-	            background-image: url("https://cf.channel.io/thumb/200x200/file/14328/5f3c6b9c6ca07dcf71b9/catpre_icon.png");
+	            background-image: url("http://localhost:8801/CatPresident/resources/img/catpre_icon.png");
 	            background-size: cover;
 	            background-position: center center;
 	            background-color: rgb(255, 255, 255);
@@ -417,17 +419,73 @@
 			}
 	    </style>
 	    <script>
-	        var openCloseBox = false
-	
-	        function closeBox() {
-	            if(openCloseBox) {
-	                openCloseBox = false;
-	                $('.c1042-1').css('visibility', 'hidden')
-	            }
-	            else {
-	                openCloseBox = true;
-	                $('.c1042-1').css('visibility', 'visible')
-	            }
+	        
+	    	$(document).ready(function() {
+	    		$('.c1018').scrollTop($('.c1018').prop("scrollHeight"))
+	    	})
+	    
+	    	var webSocket = new WebSocket("ws://localhost:8801/CatPresident/chtting.do")
+	    	webSocket.onopen = function(message) {
+    		}
+	    		
+    		webSocket.onclose = function(message) {
+    		}
+
+	    	webSocket.onmessage = function(message) {
+	    		var data = message.data
+	    		var sender = data.substring(0, data.indexOf('/'))
+	    		var msg = data.substring(data.indexOf('/')+1)
+	    		
+	    		var item = ''
+	    		
+	    		item += '<div class="c1021">'
+	    		item += '<div class="c1022">'
+	    		item += '<div size="24" class="c1023"></div>'
+	    		item += '</div>'
+	    		item += '<div class="c1024">'
+	    		item += '<div class="c1025">'
+	    		item += ' <div class="c1026">고양이대통령</div>'
+	    		item += '</div>'
+	    		item += '<div class="c1028">'
+	    		item += '<div class="c1029">'
+	    		item += '<div class="c1030">'
+	    		item += '<div>'
+	    		item += ' <div class="c1031">' + msg + '</div>'
+	    		item += '</div></div></div></div></div></div>'
+
+				$('.c1019').append(item)
+				
+				if($('.c1018').scrollTop() > $('.c1018').prop("scrollHeight") - 1500)
+					$('.c1018').scrollTop($('.c1018').prop("scrollHeight"))
+	    	}
+	    	
+	    	function sendMessage() {
+				
+	    		var msg = $('.c1040').val()
+	    		
+	    		var item = ''
+	    		
+	    		item += '<div class="c1032">'
+	    		item += '<div class="c1034">'
+	    		item += '<div class="c1035">'
+	    		item += '<div class="c1036">'
+	    		item += '<div>'
+	    		item += '<div class="c1037">' + msg + '</div>'
+	    		item += '</div></div></div></div></div>'
+	    		
+	    		$('.c1019').append(item)
+	    		
+	    		webSocket.send(msg)
+	    		$('.c1040').val('')
+	    		
+	    		if($('.c1018').scrollTop() > $('.c1018').prop("scrollHeight") - 1500)
+					$('.c1018').scrollTop($('.c1018').prop("scrollHeight"))
+	    	}
+
+	        function closeChat() {
+	    		webSocket.close()
+	    		$('.c1001').css('display', 'none')
+	    		$('.c1001').children().remove()
 	        }
 	
 	    </script>
@@ -447,9 +505,6 @@
 	                <div class="c1008">보통 몇 분 내에 응답합니다.</div>
 	            </div>
 	            <div class="c1009">
-	                <div class="c1010" onclick="closeBox()">
-	                    <div class="c1011"></div>
-	                </div>
 	                <div class="c1010" onclick="closeChat()">
 	                    <div class="c1012"></div>
 	                </div>
@@ -463,234 +518,46 @@
 	                        <div class="c1017">
 	                            <div class="c1018 c1018-2">
 	                                <div class="c1019 c1019-1">
-	                                    <div class="c1020">오늘</div>
-	                                    <!-- 상대방 시작 -->
-	                                    <div class="c1021">
-	                                        <div class="c1022">
-	                                            <div size="24" class="c1023"></div>
-	                                        </div>
-	                                        <div class="c1024">
-	                                            <div class="c1025">
-	                                                <div class="c1026">고양이대통령</div>
-	                                                <div class="c1027">9:02 AM</div>
-	                                            </div>
-	                                            <div class="c1028">
-	                                                <div class="c1029">
-	                                                    <div class="c1030">
-	                                                        <div>
-	                                                            <div class="c1031">안녕하세요! 
-	                                                                고양이대통령입니다.
-	                                                                궁금하신 내용을 <b>선택</b>해주세요.
-	                                                                
-	                                                                #고객센터 운영 안내
-	                                                                -9시-18시 (주말/공휴일 제외)<br></div>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <!-- 상대방 끝 -->
-	
-	                                    <!-- 보내는 이 시작 -->
-	                                    <div class="c1032">
-	                                        <div class="c1033">9:02 AM</div>
-	                                        <div class="c1034">
-	                                            <div class="c1035">
-	                                                <div class="c1036">
-	                                                    <div>
-	                                                        <div class="c1037">주문<br></div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <!-- 보내는 이 끝 -->
-	                                    <!-- del -->
-	                                    <!-- 상대방 시작 -->
-	                                    <div class="c1021">
-	                                        <div class="c1022">
-	                                            <div size="24" class="c1023"></div>
-	                                        </div>
-	                                        <div class="c1024">
-	                                            <div class="c1025">
-	                                                <div class="c1026">고양이대통령</div>
-	                                                <div class="c1027">9:02 AM</div>
-	                                            </div>
-	                                            <div class="c1028">
-	                                                <div class="c1029">
-	                                                    <div class="c1030">
-	                                                        <div>
-	                                                            <div class="c1031">안녕하세요! 
-	                                                                고양이대통령입니다.
-	                                                                궁금하신 내용을 <b>선택</b>해주세요.
-	                                                                
-	                                                                #고객센터 운영 안내
-	                                                                -9시-18시 (주말/공휴일 제외)<br></div>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <!-- 상대방 끝 --><!-- 상대방 시작 -->
-	                                    <div class="c1021">
-	                                        <div class="c1022">
-	                                            <div size="24" class="c1023"></div>
-	                                        </div>
-	                                        <div class="c1024">
-	                                            <div class="c1025">
-	                                                <div class="c1026">고양이대통령</div>
-	                                                <div class="c1027">9:02 AM</div>
-	                                            </div>
-	                                            <div class="c1028">
-	                                                <div class="c1029">
-	                                                    <div class="c1030">
-	                                                        <div>
-	                                                            <div class="c1031">안녕하세요! 
-	                                                                고양이대통령입니다.
-	                                                                궁금하신 내용을 <b>선택</b>해주세요.
-	                                                                
-	                                                                #고객센터 운영 안내
-	                                                                -9시-18시 (주말/공휴일 제외)<br></div>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <!-- 상대방 끝 --><!-- 상대방 시작 -->
-	                                    <div class="c1021">
-	                                        <div class="c1022">
-	                                            <div size="24" class="c1023"></div>
-	                                        </div>
-	                                        <div class="c1024">
-	                                            <div class="c1025">
-	                                                <div class="c1026">고양이대통령</div>
-	                                                <div class="c1027">9:02 AM</div>
-	                                            </div>
-	                                            <div class="c1028">
-	                                                <div class="c1029">
-	                                                    <div class="c1030">
-	                                                        <div>
-	                                                            <div class="c1031">안녕하세요! 
-	                                                                고양이대통령입니다.
-	                                                                궁금하신 내용을 <b>선택</b>해주세요.
-	                                                                
-	                                                                #고객센터 운영 안내
-	                                                                -9시-18시 (주말/공휴일 제외)<br></div>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <!-- 상대방 끝 --><!-- 상대방 시작 -->
-	                                    <div class="c1021">
-	                                        <div class="c1022">
-	                                            <div size="24" class="c1023"></div>
-	                                        </div>
-	                                        <div class="c1024">
-	                                            <div class="c1025">
-	                                                <div class="c1026">고양이대통령</div>
-	                                                <div class="c1027">9:02 AM</div>
-	                                            </div>
-	                                            <div class="c1028">
-	                                                <div class="c1029">
-	                                                    <div class="c1030">
-	                                                        <div>
-	                                                            <div class="c1031">안녕하세요! 
-	                                                                고양이대통령입니다.
-	                                                                궁금하신 내용을 <b>선택</b>해주세요.
-	                                                                
-	                                                                #고객센터 운영 안내
-	                                                                -9시-18시 (주말/공휴일 제외)<br></div>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <!-- 상대방 끝 --><!-- 상대방 시작 -->
-	                                    <div class="c1021">
-	                                        <div class="c1022">
-	                                            <div size="24" class="c1023"></div>
-	                                        </div>
-	                                        <div class="c1024">
-	                                            <div class="c1025">
-	                                                <div class="c1026">고양이대통령</div>
-	                                                <div class="c1027">9:02 AM</div>
-	                                            </div>
-	                                            <div class="c1028">
-	                                                <div class="c1029">
-	                                                    <div class="c1030">
-	                                                        <div>
-	                                                            <div class="c1031">안녕하세요! 
-	                                                                고양이대통령입니다.
-	                                                                궁금하신 내용을 <b>선택</b>해주세요.
-	                                                                
-	                                                                #고객센터 운영 안내
-	                                                                -9시-18시 (주말/공휴일 제외)<br></div>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <!-- 상대방 끝 --><!-- 상대방 시작 -->
-	                                    <div class="c1021">
-	                                        <div class="c1022">
-	                                            <div size="24" class="c1023"></div>
-	                                        </div>
-	                                        <div class="c1024">
-	                                            <div class="c1025">
-	                                                <div class="c1026">고양이대통령</div>
-	                                                <div class="c1027">9:02 AM</div>
-	                                            </div>
-	                                            <div class="c1028">
-	                                                <div class="c1029">
-	                                                    <div class="c1030">
-	                                                        <div>
-	                                                            <div class="c1031">안녕하세요! 
-	                                                                고양이대통령입니다.
-	                                                                궁금하신 내용을 <b>선택</b>해주세요.
-	                                                                
-	                                                                #고객센터 운영 안내
-	                                                                -9시-18시 (주말/공휴일 제외)<br></div>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <!-- 상대방 끝 --><!-- 상대방 시작 -->
-	                                    <div class="c1021">
-	                                        <div class="c1022">
-	                                            <div size="24" class="c1023"></div>
-	                                        </div>
-	                                        <div class="c1024">
-	                                            <div class="c1025">
-	                                                <div class="c1026">고양이대통령</div>
-	                                                <div class="c1027">9:02 AM</div>
-	                                            </div>
-	                                            <div class="c1028">
-	                                                <div class="c1029">
-	                                                    <div class="c1030">
-	                                                        <div>
-	                                                            <div class="c1031">안녕하세요! 
-	                                                                고양이대통령입니다.
-	                                                                궁금하신 내용을 <b>선택</b>해주세요.
-	                                                                
-	                                                                #고객센터 운영 안내
-	                                                                -9시-18시 (주말/공휴일 제외)<br></div>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <!-- 상대방 끝 -->
-	                                    <!-- del -->
+	                                    <div class="c1020"></div>
+	                                	<c:forEach var="chat" items="${chatList}">
+	                                		<c:choose>
+	                                			<c:when test="${chat.sender == loginUser}">
+		                                			<div class="c1032">
+				                                        <div class="c1034">
+				                                            <div class="c1035">
+				                                                <div class="c1036">
+				                                                    <div>
+				                                                        <div class="c1037">${chat.content}</div>
+				                                                    </div>
+				                                                </div>
+				                                            </div>
+				                                        </div>
+				                                    </div>
+	                                			</c:when>
+	                                			<c:otherwise>
+	                                			<div class="c1021">
+			                                        <div class="c1022">
+			                                            <div size="24" class="c1023"></div>
+			                                        </div>
+			                                        <div class="c1024">
+			                                            <div class="c1025">
+			                                                <div class="c1026">고양이대통령</div>
+			                                            </div>
+			                                            <div class="c1028">
+			                                                <div class="c1029">
+			                                                    <div class="c1030">
+			                                                        <div>
+			                                                            <div class="c1031">${chat.content}</div>
+			                                                        </div>
+			                                                    </div>
+			                                                </div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+	                                			</c:otherwise>
+	                                		</c:choose>
+	                                	</c:forEach>
+	                                    
 	                                </div>
 	                            </div>
 	                        </div>
@@ -699,7 +566,7 @@
 	                            <div class="c1039-1">
 	                                <textarea data-ch-testid="messenger-footer-text-area" placeholder="메시지를 입력해주세요." class="c1040" style="height: 56px;"></textarea>
 	                            </div>
-	                            <div data-ch-testid="messenger-footer-send-button" disabled="" class="c1041 c1041-1"></div>
+	                            <div onclick="sendMessage()" data-ch-testid="messenger-footer-send-button" disabled="" class="c1041 c1041-1"></div>
 	                        </div>
 	
 	                    </div>
@@ -708,34 +575,6 @@
 	        </div>
 	
 	    </div>
-	    <style>
-	        .c1042-1 {
-	            visibility: hidden;
-	        }
-	        .c1042 {
-	            width: 180px;
-	            padding: 8px 0px;
-	            font-size: 13px;
-	            background-color: rgb(255, 255, 255);
-	            border: 1px solid rgba(0, 0, 0, 0.05);
-	            border-radius: 6px;
-	            box-shadow: rgb(0 0 0 / 20%) 0px 4px 12px 0px;
-	        }
-	        .c1043 {
-	            height: 36px;
-	            display: flex;
-	            -webkit-box-align: center;
-	            align-items: center;
-	            padding: 0px 15px;
-	            font-weight: 600;
-	            color: rgb(255, 74, 74);
-	            cursor: pointer;
-	        }
-	    </style>
-	    <div class="c1042-1" style="z-index: 1; position: absolute; top: 15px; left: 288px; transform: translateX(30px) translateX(-100%) translateY(30px);">
-	        <div class="c1042">
-	            <div class="c1043">상담 삭제하기</div>
-	        </div>
-	    </div>
+
 	</body>
 </html>

@@ -59,6 +59,19 @@
 					changeContent(path)
 				})
 			}
+
+	        function logout() {
+	        	$.ajax({
+					type: 'post', 
+					url: 'logout.member',
+					success:function (data) {
+						outProduct('main.main')
+					},
+					error:function () {
+						alert('에러가 발생했습니다.')
+					}
+				})
+	        }
 		</script>
 	</head>
 	<body>

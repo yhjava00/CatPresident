@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import vo.ChattingVO;
 import vo.GoodsDetailsVO;
 import vo.GoodsVO;
 
@@ -55,5 +56,20 @@ public class MainService {
 		info.put("result", resultList);
 		
 		return info;
+	}
+	
+	public int insertChatting(String sender, String recipient, String content) {
+		
+		Map<String, Object> info = new HashMap<>();
+		
+		info.put("sender", sender);
+		info.put("recipient", recipient);
+		info.put("content", content);
+		
+		return mainDAO.insertChatting(info);
+	}
+	
+	public List<ChattingVO> getChattingList(String id) {
+		return mainDAO.selectChattingList(id);
 	}
 }

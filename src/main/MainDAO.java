@@ -3,12 +3,14 @@ package main;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import vo.ChattingVO;
 import vo.GoodsDetailsVO;
 import vo.GoodsVO;
 
@@ -95,5 +97,31 @@ public class MainDAO {
 		return list;
 	}
 	
+	public int insertChatting(Map<String, Object> info){
+		int state = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try {
+			state = session.insert("main.insertChatting", info);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		
+		return state;
+	}
+	
+	public List<ChattingVO> selectChattingList(String id){
+		List<ChattingVO> list = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try {
+			list = session.selectList("main.selectChattingList", id);
+		}finally {
+			session.close();
+		}
+		
+		return list;
+	}
 	
 }

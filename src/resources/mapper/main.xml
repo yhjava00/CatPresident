@@ -24,5 +24,14 @@
  	<select id="searchResult" parameterType="String" resultType="goodsList">
  		select g2.idx, g2.img, g2.name , g2.price from (select rownum rnum, g.* from goods g where name like '%${name}%') g2 where rnum between 1 and 10
  	</select>
+ 	
+ 	<insert id="insertChatting" parameterType="map">
+ 		insert into chat (idx, sender, recipient, content, sendDate) values
+ 		(chat_seq.nextval, #{sender}, #{recipient}, #{content}, sysdate)
+ 	</insert>
+ 	
+ 	<select id="selectChattingList" parameterType="String" resultType="chattingVO">
+ 		select * from chat where sender = #{id} or recipient = #{id} order by sendDate
+ 	</select>
  
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +13,7 @@
 	<body style="overflow-x: hidden;">
 	 	<div class="a2039">
             <div class=" a2030 a2031-root" id = "header1">
-                <div><a onclick="" href="header.html" style="font-size: 0;"><svg class="a2001" focusable="false" viewBox="0 0 140 30" aria-hidden="true" role="img">
+                <div><a onclick="changeContent('main.main')" style="cursor:pointer; font-size: 0;"><svg class="a2001" focusable="false" viewBox="0 0 140 30" aria-hidden="true" role="img">
                             <g fill="#A200C7" fill-rule="evenodd">
                                 <path d="M64.104 0c-.768 0-1.393.626-1.393 1.395v15.44c0 .768.625 1.393 1.393 1.393.769 0 1.395-.625 1.395-1.394V1.394C65.499.627 64.873 0 64.104 0M33.834 15.883c-2.9 0-5.26 2.36-5.26 5.262 0 2.902 2.36 5.263 5.26 5.263 2.902 0 5.263-2.36 5.263-5.263 0-2.901-2.36-5.262-5.263-5.262m2.308 5.262c0 1.273-1.035 2.308-2.308 2.308-1.272 0-2.306-1.035-2.306-2.308 0-1.272 1.034-2.307 2.306-2.307 1.273 0 2.308 1.035 2.308 2.307M33.401 8.46c0-2.902-2.36-5.263-5.262-5.263-2.901 0-5.261 2.36-5.261 5.263 0 2.9 2.36 5.261 5.261 5.261 2.902 0 5.262-2.36 5.262-5.261m-2.954 0c0 1.272-1.035 2.307-2.308 2.307-1.271 0-2.306-1.035-2.306-2.307 0-1.273 1.035-2.309 2.306-2.309 1.273 0 2.308 1.036 2.308 2.309M54.105 3.383c-2.901 0-5.261 2.361-5.261 5.262 0 2.902 2.36 5.262 5.261 5.262 2.902 0 5.262-2.36 5.262-5.262 0-2.9-2.36-5.262-5.262-5.262m2.308 5.262c0 1.273-1.035 2.307-2.308 2.307-1.272 0-2.307-1.034-2.307-2.307 0-1.272 1.035-2.307 2.307-2.307 1.273 0 2.308 1.035 2.308 2.307M5.718 4.956h5.219c1.071 0 2.315 1.244 2.315 2.315v4.267c0 .769.626 1.394 1.395 1.394.768 0 1.393-.625 1.393-1.394V3.562c0-.769-.626-1.395-1.394-1.395H5.717c-.769 0-1.394.626-1.394 1.395 0 .373.146.723.41.987.264.263.605.417.985.407M44.21 6.688h-2.904c-1.071 0-1.942-.871-1.942-1.942v-.015c0-1.071.871-1.943 1.942-1.943h2.558c.37 0 .72-.145.983-.408.264-.263.41-.613.41-.986C45.256.625 44.63 0 43.861 0H37.97c-.095 0-.19.01-.28.028-.523.107-.943.514-1.065 1.015l-.02.072c-.008.035-.011.072-.014.109l-.004.046c-.006.04-.01.081-.01.124v13.628c0 .77.625 1.395 1.393 1.395.769 0 1.395-.626 1.395-1.395v-3.23c0-1.072 1.243-2.316 2.314-2.316h2.534c.371 0 .72-.145.983-.408.264-.263.41-.613.41-.985 0-.77-.626-1.395-1.394-1.395"></path>
                                 <path d="M18.622 16.981h-5.606c-1.072 0-2.315-1.244-2.315-2.315V10.63c0-.768-.625-1.394-1.395-1.394-.768 0-1.394.626-1.394 1.394v4.035c0 1.07-1.243 2.315-2.315 2.315H1.394c-.372 0-.721.145-.985.408-.264.264-.409.614-.409.986 0 .77.625 1.395 1.394 1.395h17.227c.769 0 1.394-.626 1.394-1.395 0-.372-.145-.722-.409-.986-.263-.263-.613-.408-.984-.408M133.822 15.76c-2.901 0-5.26 2.36-5.26 5.261 0 2.902 2.359 5.263 5.26 5.263 2.902 0 5.262-2.36 5.262-5.263 0-2.9-2.36-5.261-5.262-5.261m2.308 5.261c0 1.273-1.036 2.307-2.308 2.307-1.272 0-2.307-1.034-2.307-2.307 0-1.272 1.035-2.307 2.307-2.307s2.308 1.035 2.308 2.307M139.861 1.262c-.003-.051-.008-.102-.014-.13l-.016-.067c-.127-.523-.546-.929-1.073-1.037-.092-.018-.186-.028-.28-.028h-5.783c-.769 0-1.394.626-1.394 1.394 0 .373.146.723.41.987.263.263.612.407.982.407h2.449c1.07 0 1.942.872 1.942 1.943v.016c0 1.07-.871 1.942-1.942 1.942h-2.447c-.769 0-1.394.626-1.394 1.395 0 .371.145.722.409.985.263.263.613.408.984.408H134.769c1.071 0 2.315 1.244 2.315 2.315v3.106c0 .77.625 1.395 1.395 1.395.768 0 1.393-.626 1.393-1.395V1.394c0-.033-.004-.066-.01-.132M121.486 8.483c-.828 0-1.484.656-1.484 1.484v5.764c0 .828.656 1.484 1.484 1.484h6.68c.8 0 1.399-.542 1.399-1.37 0-.828-.656-1.37-1.398-1.37h-3.4c-1.055 0-1.797-.684-1.797-1.712 0-1.027.742-1.712 1.798-1.712h3.645c.827 0 1.484-.656 1.484-1.484V3.802c0-.827-.657-1.483-1.484-1.483H121.4c-.799 0-1.398.542-1.398 1.37 0 .827.656 1.37 1.398 1.37h3.796c1.056 0 1.798.684 1.798 1.711 0 1.028-.742 1.713-1.798 1.713h-3.71zM91.632 0c-.768 0-1.393.626-1.393 1.394v5.091h-3.434v-5.09c0-.769-.624-1.394-1.393-1.394s-1.395.625-1.395 1.394v15.44c0 .767.625 1.393 1.394 1.393.769 0 1.394-.626 1.394-1.394v-5.617c0-1.071.872-1.943 1.944-1.943h1.49v7.56c0 .768.625 1.394 1.393 1.394.77 0 1.395-.626 1.395-1.394V1.394C93.027.626 92.401 0 91.632 0M76.83 5.65h3.859c.372 0 .722-.146.985-.41.264-.264.41-.614.41-.985 0-.77-.626-1.395-1.395-1.395h-7.195c-.15 0-.298.027-.461.082-.028.008-.056.017-.077.026l-.05.025c-.49.229-.807.724-.807 1.262v7.743c0 .769.625 1.395 1.395 1.395h7.371c.769 0 1.395-.626 1.395-1.394 0-.769-.626-1.394-1.395-1.394H76.83c-1.071 0-1.943-.872-1.943-1.943V7.58c.007-1.065.878-1.93 1.943-1.93M106.547 18.802c-2.901 0-5.262 2.361-5.262 5.263 0 2.902 2.36 5.262 5.262 5.262 2.901 0 5.262-2.36 5.262-5.262 0-2.902-2.36-5.263-5.262-5.263m2.308 5.263c0 1.272-1.036 2.307-2.308 2.307-1.272 0-2.308-1.035-2.308-2.307s1.036-2.308 2.308-2.308c1.272 0 2.308 1.036 2.308 2.308M115.243 14.708h-5.212c-1.07 0-2.09-1.068-2.09-2.139v-.662h3.017c.37 0 .72-.145.983-.408.264-.264.41-.614.41-.987 0-.769-.626-1.394-1.395-1.394h-5.366c-.937 0-1.611-.71-1.706-1.738h6.76c.372 0 .722-.145.985-.408.264-.263.409-.614.409-.986 0-.768-.626-1.394-1.394-1.394h-6.76c.092-.988.696-1.703 1.706-1.703H110.958c.37 0 .72-.145.983-.408.265-.264.41-.614.41-.986 0-.769-.626-1.395-1.395-1.395h-8.483c-.77 0-1.395.626-1.395 1.395v9.017c0 .716.71 1.394 1.393 1.394h2.682v.662c0 1.072-1.099 2.14-2.17 2.14h-5.091c-.769 0-1.394.625-1.394 1.393 0 .77.625 1.396 1.394 1.396h17.351c.77 0 1.395-.626 1.395-1.394 0-.77-.626-1.395-1.395-1.395"></path>
@@ -38,29 +39,34 @@
                                     </svg></span></span></span></a><span class="a2017">
                         <div>
                             <div class="a2047-root a2048 a2047-outlined">
-                                <ul class="a2049-root a2051 a2049-padding" role="menu" tabindex="-1">
-                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="0" role="menuitem" aria-disabled="false"><a href="/my-page/recently-viewed">최근본<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-                                            </svg></a><span class="a2060-root"></span></li>
-                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/orders">배송조회<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-                                            </svg></a><span class="a2060-root"></span></li>
-                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/cancel">주문취소<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-                                            </svg></a><span class="a2060-root"></span></li>
-                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/exchange">교환하기<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-                                            </svg></a><span class="a2060-root"></span></li>
-                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/refund">반품하기<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-                                            </svg></a><span class="a2060-root"></span></li>
-                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/cs">고객센터<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-                                            </svg></a><span class="a2060-root"></span></li>
-                                </ul>
-                                <hr class="a2055-root a2054">
-                                <div class="a2056"><a class="a2003-root a2059-root a2059-contained a2058 undefined a2057 a2059-containedPrimary a2059-fullWidth" tabindex="0" aria-disabled="false" href="/member/sign-in"><span class="a2059-label">로그인</span><span class="a2060-root"></span></a><a class="a2003-root a2059-root a2059-outlined a2058 a2061 a2057 a2059-colorInherit a2059-fullWidth" tabindex="0" aria-disabled="false" href="/member/sign-up"><span class="a2059-label">회원가입</span><span class="a2060-root"></span></a></div>
-
+                            	<c:choose>
+                                	<c:when test="${empty loginUser}">
+                                		<div class="a2056"><a class="a2003-root a2059-root a2059-contained a2058 undefined a2057 a2059-containedPrimary a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="changeContent('loginForm.member')" class="a2059-label">로그인</span><span class="a2060-root"></span></a><a class="a2003-root a2059-root a2059-outlined a2058 a2061 a2057 a2059-colorInherit a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="changeContent('Sign_upForm.member')" class="a2059-label">회원가입</span><span class="a2060-root"></span></a></div>
+                                	</c:when>
+                                	<c:otherwise>
+                                		<ul class="a2049-root a2051 a2049-padding" role="menu" tabindex="-1">
+		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="0" role="menuitem" aria-disabled="false"><a href="/my-page/recently-viewed">최근본<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
+		                                            </svg></a><span class="a2060-root"></span></li>
+		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/orders">배송조회<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
+		                                            </svg></a><span class="a2060-root"></span></li>
+		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/cancel">주문취소<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
+		                                            </svg></a><span class="a2060-root"></span></li>
+		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/exchange">교환하기<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
+		                                            </svg></a><span class="a2060-root"></span></li>
+		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/refund">반품하기<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
+		                                            </svg></a><span class="a2060-root"></span></li>
+		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a onclick="logout()">로그아웃<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
+		                                            </svg></a><span class="a2060-root"></span></li>
+		                                </ul>
+                                	</c:otherwise>
+                                </c:choose>
+                                
                             </div>
                         </div>
                     </span></span>

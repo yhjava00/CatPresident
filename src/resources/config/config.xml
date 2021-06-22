@@ -6,8 +6,12 @@
 <configuration>
     <typeAliases>
         <!-- <typeAlias alias="MemberVO" type="test.MemberVO"/> -->
+        <typeAlias alias="String" type="java.lang.String"/>
+        <typeAlias alias="map" type="java.util.Map"/>        
+        <typeAlias alias="memberVO" type="vo.MemberVO"/>    
         <typeAlias alias="goodsList" type="vo.GoodsVO"/>
         <typeAlias alias="goodsDetails" type="vo.GoodsDetailsVO"/>            
+        <typeAlias alias="chattingVO" type="vo.ChattingVO"/>            
     </typeAliases>
  
     <environments default="development">
@@ -24,5 +28,6 @@
     </environments>
     <mappers>
        <mapper resource="resources/mapper/main.xml"/>
+       <mapper resource="resources/mapper/member.xml"/>
     </mappers>
 </configuration>

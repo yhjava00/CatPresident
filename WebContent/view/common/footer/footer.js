@@ -12,9 +12,3 @@ function openChat() {
 		$('.c1001').html(data)
 	})
 }
-
-function closeChat() {
-    $('.c1001').css('display', 'none')
-    
-    $('.c1001').children().remove()
-}
