@@ -32,4 +32,8 @@ private static final MemberService memberService = new MemberService();
 	public void insertMember(MemberVO mVo) {
 		memberDAO.insertMember(mVo);
 	}
+	
+	public MemberVO getMember(String id) {
+		return memberDAO.selectMember(id);
+	}
 }

@@ -44,15 +44,13 @@ public class MemberController extends HttpServlet {
 			if(loginRs==1) {
 				HttpSession session=request.getSession();
 				session.setAttribute("loginUser", loginId);
-				if(loginId.equals("admin@gmail.com")) {
-					session.setAttribute("connect", "lee@gmail.com");
-				}
 			}
 			response.getWriter().write(loginRs + "");
 			return;
 		case "/logout":
+			nextPage = "main.jsp";
 			request.getSession().removeAttribute("loginUser");
-			return;
+			break;
 		case "/Sign_upForm":
 			nextPage = "member/Sign_up.jsp";
 			break;

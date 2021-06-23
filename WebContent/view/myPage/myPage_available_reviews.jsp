@@ -222,6 +222,9 @@
 			    pointer-events: none;
 			}
 		</style>
+		<script type="text/javascript">
+			setBtnEvent()
+		</script>
 		<title>Insert title here</title>
 	</head>
 	<body>

@@ -164,29 +164,50 @@
 	        }
 	    </style>
 		<title>Insert title here</title>
+		<script type="text/javascript">
+			function updatePhone() {
+				
+				var phone = $('#updatePhone').val()
+				
+				var regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/
+
+				
+				if(!regPhone.test(phone)) {
+					alert('전화번호를 정확히 입력해주세요.')
+					return
+				}
+				
+				$.ajax({
+					url: 'updatePhoneAction.myPage',
+					data : {'phone':phone},
+					async : true,
+					type : 'post',
+					dataType : 'html',
+					cache: false
+				}).done(function (data) {
+					$('main').html(data)
+				})
+			}
+		</script>
 	</head>
 	<body>	
-		<h2 class="a1120">회원정보</h2>
-	    <form>
-	        <div class="a1121">
-	            <div class="a1122">정보를 안전하게 보호하기 위해 비밀번호를 다시 입력해주세요.</div>
-	            <div class="a1123">
-	                <div class="a1124">
-	                    <div class="a1125">
-	                        <label class="a1126" data-shrink="true">yhjava00@naver.com</label>
-	                        <div class="a1127">
-	                            <input aria-invalid="false" name="confirmPassword" placeholder="비밀번호를 입력하세요." type="password" class="a1128" value="">
-	                        </div>
-	                    </div>
-	                    <div class="a1129">
-	                        <button class="a1130" tabindex="0" type="submit" data-testid="submit">
-	                            <span class="a1131">확인</span>
-	                            <span class="a1132"></span>
-	                        </button>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </form>
+		<h2 class="a1120">전화번호 수정</h2>
+        <div class="a1121">
+            <div class="a1123">
+                <div class="a1124">
+                    <div class="a1125">
+                        <div class="a1127">
+                            <input id="updatePhone" aria-invalid="false" placeholder="전화번호를 입력하세요." type="text" class="a1128">
+                        </div>
+                    </div>
+                    <div class="a1129">
+                        <button class="a1130" tabindex="0" onclick="updatePhone()">
+                            <span class="a1131">변경</span>
+                            <span class="a1132"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</body>
 </html>

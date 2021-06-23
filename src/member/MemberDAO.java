@@ -81,7 +81,9 @@ private static final MemberDAO memberDAO = new MemberDAO();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return -1;
-		}
+		}finally {
+            session.close();
+        }
 	}
 	
 	public MemberVO getMember(String id) {
@@ -92,7 +94,9 @@ private static final MemberDAO memberDAO = new MemberDAO();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
+            session.close();
+        }
 		return mVo;
 	}
 	
@@ -103,6 +107,23 @@ private static final MemberDAO memberDAO = new MemberDAO();
 			session.commit();
 		}catch(Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
+            session.close();
+        }
+	}
+	
+	public MemberVO selectMember(String id) {
+		SqlSession session = sqlSessionFactory.openSession();
+		MemberVO member = null;
+		
+		try {
+			member = session.selectOne("member.selectMember", id); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+            session.close();
+        }
+		
+		return member;
 	}
 }

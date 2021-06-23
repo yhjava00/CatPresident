@@ -19,7 +19,24 @@ $(document).ready(function() {
         })
     })
 
-    document.querySelectorAll('.buttonG').forEach(button => {
+    document.querySelectorAll('.jss1007').forEach((button) => {
+       button.addEventListener('mouseover', () => {
+        let buttonChild = button.children
+        
+        buttonChild[0].style.color = 'rgba(162, 0, 199, 0.7)'
+       })
+
+       button.addEventListener('mouseout', () => {
+        let buttonChild = button.children
+        
+        buttonChild[0].style.color = 'rgba(60, 60, 67, 0.6)'
+       })
+    })
+
+})
+
+function setBtnEvent() {
+	document.querySelectorAll('.buttonG').forEach(button => {
         button.addEventListener('mouseover', () => {
             button.style.backgroundColor = 'rgba(224, 224, 224, 1)'
         })
@@ -70,19 +87,4 @@ $(document).ready(function() {
             }, 500)
         })
     })
-
-    document.querySelectorAll('.jss1007').forEach((button) => {
-       button.addEventListener('mouseover', () => {
-        let buttonChild = button.children
-        
-        buttonChild[0].style.color = 'rgba(162, 0, 199, 0.7)'
-       })
-
-       button.addEventListener('mouseout', () => {
-        let buttonChild = button.children
-        
-        buttonChild[0].style.color = 'rgba(60, 60, 67, 0.6)'
-       })
-    })
-
-})
+}

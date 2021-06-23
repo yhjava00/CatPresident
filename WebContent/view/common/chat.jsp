@@ -487,7 +487,7 @@
 	    		$('.c1001').css('display', 'none')
 	    		$('.c1001').children().remove()
 	        }
-	
+		
 	    </script>
 		<title>Insert title here</title>
 	</head>

@@ -258,10 +258,9 @@
 	        }
 	    </style>
 	    <script>
-	        document.addEventListener('DOMContentLoaded', () => {
-	            
-	            document.querySelectorAll('.a1142').forEach((button) => {
-	
+	      	$(document).ready(function() {
+	      		document.querySelectorAll('.a1142').forEach((button) => {
+	      			
 	                button.addEventListener('mouseover', () => {
 	                    button.style.backgroundColor = 'rgba(224, 224, 224, 1)'
 	                })
@@ -269,7 +268,7 @@
 	                    button.style.backgroundColor = 'rgba(255, 255, 255, 1)'
 	                })
 	            })
-	        })
+	      	})
 	    </script>
 		<title>Insert title here</title>
 	</head>
@@ -280,17 +279,17 @@
 	        <div>
 	            <dl class="a1135">
 	                <dt class="a1136">이름</dt>
-	                <dd class="a1137">name</dd>
+	                <dd class="a1137">${member.name}</dd>
 	            </dl>
 	            <dl class="a1135">
 	                <dt class="a1136">이메일</dt>
-	                <dd class="a1137">email@naver.com</dd>
+	                <dd class="a1137">${member.id}</dd>
 	            </dl>
 	            <dl class="a1138">
 	                <dt class="a1136">휴대전화</dt>
 	                <dd class="a1137">
-	                    01012345678
-	                    <a class="a1139" tabindex="0" aria-disabled="false" href="#">
+	                    ${member.phone}
+	                    <a class="a1139" tabindex="0" aria-disabled="false" onclick="changeView('updatePhone.myPage')">
 	                        <span>수정</span>
 	                        <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
 	                            <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
@@ -303,7 +302,7 @@
 	                <dt class="a1136">비밀번호</dt>
 	                <dd class="a1137">
 	                    *******
-	                    <a class="a1139" tabindex="0" aria-disabled="false" href="#">
+	                    <a class="a1139" tabindex="0" aria-disabled="false" onclick="changeView('updatePw.myPage')">
 	                        <span>수정</span>
 	                        <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
 	                            <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
@@ -314,10 +313,10 @@
 	            </dl>
 	
 	            <div class="a1141">
-	                <button class="a1142" tabindex="0" type="button">
+	                <button onclick="logout()" class="a1142" tabindex="0" type="button">
 	                    <span class="a1143">로그아웃</span>
 	                </button>
-	                <a class="a1142" tabindex="0" aria-disabled="false" href="#">
+	                <a onclick="" class="a1142" tabindex="0" aria-disabled="false">
 	                    <span class="a1143">회원탈퇴</span>
 	                </a>
 	            </div>

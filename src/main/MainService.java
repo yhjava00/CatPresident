@@ -7,6 +7,7 @@ import java.util.Map;
 import vo.ChattingVO;
 import vo.GoodsDetailsVO;
 import vo.GoodsVO;
+import vo.ReviewVO;
 
 public class MainService {
 
@@ -22,40 +23,39 @@ public class MainService {
 		return mainService;
 	}
 	
-	public Map<String , Object> main(){
+	public Map<String , Object> main(){ //메인에 뿌려줌
 		
 		Map<String, Object> info = new HashMap<String, Object>();
 		
-		List<GoodsVO> goodsList1 = mainDAO.mainGoodsList(1);
-		List<GoodsVO> goodsList2 = mainDAO.mainGoodsList(7);
+		List<GoodsVO> goodsList1 = mainDAO.scoreDescList(); //별점 높은순 리스트
+		List<GoodsVO> goodsList2 = mainDAO.voteNumDescList(); //투표 인원 많은순 리스트
 		List<GoodsVO> goodsList3 = mainDAO.mainRankList(13);
-		
+
 		info.put("goodsList1", goodsList1);
 		info.put("goodsList2", goodsList2);
 		info.put("goodsList3", goodsList3);
-			
+		
 		return info;
 	}
 	
-	public Map<String , Object> details(int idx){
+	public Map<String , Object> details(Map param ,int idx){// 상품 상세
 		
-		Map<String, Object> info = new HashMap();
+		Map<String, Object> info = new HashMap<String, Object>();
 		
-		List<GoodsDetailsVO> detail = mainDAO.goodsDetails(idx);
+		List<GoodsDetailsVO> detail = mainDAO.goodsDetails(param);
 		List<String> imgList = mainDAO.goodsImgList(idx);
 		info.put("details", detail);
 		info.put("imgList", imgList);
 		
 		return info;
 	}
+		
+	public void like(Map param) {//좋아요 
+		mainDAO.insertLike(param);
+	}
 	
-	public Map<String , Object> search(String name){
-		Map<String, Object> info = new HashMap();
-		
-		List<GoodsVO> resultList = mainDAO.searchResult(name);
-		info.put("result", resultList);
-		
-		return info;
+	public void unlike(Map param) {//좋아요 취소
+		mainDAO.deleteLike(param);
 	}
 	
 	public int insertChatting(String sender, String recipient, String content) {

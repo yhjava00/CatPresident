@@ -5,33 +5,43 @@
  
 <mapper namespace="main">
  
- 	<select id="goodsList" parameterType="Int" resultType="goodsList">
- 		select idx, img, name, price from goods where idx between #{idx} and #{idx}+5
+	<select id="scoreDescList" resultType="goodsVO">
+ 		select goods.* from (select rownum rnum, g2.* from (select g1.idx ,g1.name,g1.img ,g1.price, g1.quantity, g1.category, round((g1.score/g1.vote_num),1) result_score, g1.vote_num  from goods g1 order by (score/vote_num) desc) g2) goods where rnum between 1 and 6
  	</select>
  	
- 	<select id="goodsRank" parameterType="Int" resultType="goodsList">
- 		select idx, img, name, price from goods where idx between #{idx} and #{idx}+8
+ 	<select id="voteNumDescList" resultType="goodsVO">
+ 		select goods.* from (select rownum rnum, g2.* from (select g1.idx ,g1.name,g1.img ,g1.price, g1.quantity, g1.category, round((g1.score/g1.vote_num),1) result_score, g1.vote_num  from goods g1 order by vote_num desc) g2) goods where rnum between 1 and 6
  	</select>
  	
- 	<select id="goodsDetails" parameterType="Int" resultType="goodsDetails">
- 		select g.name, g.price, gd.description, gd.detailsimg  from goods g, goodsdetails gd where g.idx = gd.goods_idx and g.idx = #{idx}
+ 	<select id="goodsRank" parameterType="int" resultType="goodsVO">
+ 		select idx, img, name, price, round((score/vote_num),1) result_score, vote_num from goods where idx between #{idx} and #{idx}+8
  	</select>
  	
- 	<select id="DetailsImg" parameterType="Int" resultType="String">
+ 	<select id="goodsDetails" parameterType="map" resultType="goodsDetailsVO">
+ 		select goods.idx, goods.name, goods.price, goodsdetails.description, goodsdetails.detailsimg, round((goods.score/goods.vote_num),1) result_score, goods.vote_num, gc.type from goods join goodsdetails on goods.idx = goodsdetails.goods_idx left join (select type, goods_idx from goodsCollection where member_id = '${id}' and type = 'like') gc on gc.goods_idx = goods.idx where goods.idx = ${idx}
+ 	</select>
+ 	
+ 	<select id="DetailsImg" parameterType="int" resultType="String">
  		select img from goodsimg where goods_idx = #{idx}
  	</select>
  	
- 	<select id="searchResult" parameterType="String" resultType="goodsList">
- 		select g2.idx, g2.img, g2.name , g2.price from (select rownum rnum, g.* from goods g where name like '%${name}%') g2 where rnum between 1 and 10
- 	</select>
+ 	<insert id="insertLike" parameterType="map">
+ 		insert into goodscollection(idx, member_id, goods_idx, type, regdate) values(goodsCollection_seq.nextval, '${like_id}', ${like_idx}, 'like', sysdate)
+ 	</insert>
  	
+ 	<delete id="deleteLike" parameterType="map">
+ 		delete from goodscollection where goods_idx = ${unlike_idx} and member_id = '${unlike_id}'
+ 	</delete>
+ 
  	<insert id="insertChatting" parameterType="map">
  		insert into chat (idx, sender, recipient, content, sendDate) values
  		(chat_seq.nextval, #{sender}, #{recipient}, #{content}, sysdate)
  	</insert>
  	
  	<select id="selectChattingList" parameterType="String" resultType="chattingVO">
- 		select * from chat where sender = #{id} or recipient = #{id} order by sendDate
+ 		<![CDATA[
+ 			select rownum, a.* from (select * from chat where sender = #{id} or recipient = #{id} order by sendDate) a where rownum <100
+ 		]]>
  	</select>
- 
+ 	
 </mapper>

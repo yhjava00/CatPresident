@@ -78,7 +78,7 @@ $(document).ready(function(){
 	});
 	function isCellPhone(user_phone) {
 		p = p.split('-').join('');
-		var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
+		var regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 		return regPhone.test(p);
 	}
 	$("#phone").keyup(function() {

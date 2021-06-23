@@ -29,8 +29,34 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/product_footer.css">
     <style>
     </style>
-    <script src="${contextPath}/resources/js/product.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+     <script type="text/javascript">              
+		function like(path){
+			var id = '${loginUser}';
+			var idx = ${idx};
+			$.ajax({
+				type: 'POST',  
+				url: path,
+				data: {"id": id, "idx": idx},	
+				success: function(result){
+				} 
+			});
+	  	}
+		
+		 $('#NoLikeBtn').click(function(){
+         	$('#NoLikeBtn').css("display" , "none");
+            $('#LikeBtn').css("display" , "block");
+            like('unlike.main');
+         })
+         
+         $('#LikeBtn').click(function(){
+         	$('#LikeBtn').css("display" , "none");
+            $('#NoLikeBtn').css("display" , "block");
+            like('like.main');
+         })  
+</script>
     <script src="${contextPath}/resources/js/footer.js"></script>
+    <script src="${contextPath}/resources/js/product.js"></script>
     <script src="${contextPath}/resources/js/product_header.js"></script>  
 </head>
 <body style="overflow-x: hidden;">
@@ -41,15 +67,15 @@
             <!-- 추가할 내용 하단에 추가-->
             <c:set var = "detailsValue" value = "${detailsMap.details}" />
             <c:set var = "imgList" value = "${detailsMap.imgList}" />
-			<c:forEach var = "list" items = "${detailsValue}">  
+            
+			<c:forEach var = "list" items = "${detailsValue}">		
             <div class="jss156">   
                 <div class="jss158">
                     <div class="jss160"> <!--before-->
                         <div class="jss161">
                             <div class="jss168"> <!--왼쪽화면-->
                                 <div>
-                                
-                                
+                                                                
                                <img src="${imgList[0]}" id = "productImg" style="width: 656px; height: 686px;">
                                 </div>
                                 <div>
@@ -58,16 +84,34 @@
                                     <li style="float: left;"><img src="${imgList[num]}" id = "productImg${num+1}" style="width:80px; height:80px;  border: 1px solid gray; margin-left:25px;"></li>                                
                                     </c:forEach>
                                     </ul>
-                                </div>
-                                
+                                </div>                               
                             </div>
-
                         </div>
                         <div class="jss162">
                             <div class="jss163">
                                 <div class="jss214">
                                     <h2 class="jss215">${list.name}</h2>
-                                    <div class="jss216"><span class="jss217"><button class="MuiButtonBase-root MuiIconButton-root jss218" tabindex="0" type="button" data-testid="like" id="wishBtn"><span class="MuiIconButton-label">
+                                    <div class="jss216"><span class="jss217">
+                                    	<!--로그인이 안된 상태일 때 로그인 화면으로 이동 -->
+
+										<c:choose>
+										<c:when test="${loginUser == null}">
+											<c:set var = "loginBtn" value = "onclick = 'alert(\"로그인 후 이용가능합니다.\");'" />
+											<c:set var = "LikeBtnDisplay" value = "block" />
+											<c:set var = "unLikeBtnDisplay" value = "none" />
+										</c:when>
+										<c:when test="${loginUser != null && list.type eq 'like'}">
+											<c:set var = "LikeBtnDisplay" value = "none" />
+											<c:set var = "unLikeBtnDisplay" value = "block" />
+											<c:set var = "LikeBtn" value = "LikeBtn" />
+										</c:when>
+										<c:when test="${loginUser != null && list.type ne 'like'}">
+											<c:set var = "LikeBtnDisplay" value = "block" />
+											<c:set var = "unLikeBtnDisplay" value = "none" />
+											<c:set var = "LikeBtn" value = "LikeBtn" />
+										</c:when>
+										</c:choose>
+	                                    <button class="MuiButtonBase-root MuiIconButton-root jss218" tabindex="0" type="button" data-testid="like" ${loginBtn} style="display: ${LikeBtnDisplay};" id="${LikeBtn}"><span class="MuiIconButton-label">
                                                     <div class="jss220">
                                                         <div class="jss228 jss221"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">
                                                                 <defs>
@@ -120,29 +164,82 @@
                                                                 </g>
                                                             </svg></div>
                                                     </div>
-                                                </span></button></span></div>
+                                                </span></button>
+
+												
+                                                <button class="MuiButtonBase-root MuiIconButton-root jss218" tabindex="0" type="button" data-testid="like" id="NoLikeBtn" style="display: ${unLikeBtnDisplay};"><span class="MuiIconButton-label">
+                                                    <div class="jss220">
+                                                        <div class="jss228 jss221"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);">
+                                                                <defs>
+                                                                    <clipPath id="__lottie_element_3">
+                                                                        <rect width="48" height="48" x="0" y="0"></rect>
+                                                                    </clipPath>
+                                                                </defs>
+                                                                <g clip-path="url(#__lottie_element_3)">
+                                                                    <g transform="matrix(1,0,0,1,7.926000595092773,10.04699993133545)" opacity="1" style="display: block;">
+                                                                        <g opacity="1" transform="matrix(1,0,0,1,16.073999404907227,13.95300006866455)">
+                                                                            <path fill="rgb(162,0,199)" fill-opacity="1" d=" M9.505999565124512,-12.246999740600586 C6.192999839782715,-13.70199966430664 2.430999994277954,-12.878000259399414 0.0010000000474974513,-10.321999549865723 C-2.430999994277954,-12.878000259399414 -6.192999839782715,-13.70300006866455 -9.505000114440918,-12.246999740600586 C-13.812999725341797,-10.35200023651123 -15.822999954223633,-5.229000091552734 -13.986000061035156,-0.828000009059906 C-12.812000274658203,1.9819999933242798 -6.8480000495910645,7.645999908447266 -2.052000045776367,11.901000022888184 C-1.5870000123977661,12.3149995803833 -1.1610000133514404,12.6899995803833 -0.8140000104904175,12.991000175476074 C-0.8140000104904175,12.991000175476074 0.0010000000474974513,13.70300006866455 0.0010000000474974513,13.70300006866455 C0.0010000000474974513,13.70300006866455 2.052000045776367,11.901000022888184 2.052000045776367,11.901000022888184 C6.848999977111816,7.64300012588501 12.814000129699707,1.9789999723434448 13.984999656677246,-0.828000009059906 C15.822999954223633,-5.229000091552734 13.814000129699707,-10.35200023651123 9.505999565124512,-12.246999740600586z"></path>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g style="display: none;">
+                                                                        <g>
+                                                                            <path></path>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g style="display: none;">
+                                                                        <g>
+                                                                            <path></path>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g style="display: none;">
+                                                                        <g>
+                                                                            <path></path>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g style="display: none;">
+                                                                        <g>
+                                                                            <path></path>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g transform="matrix(0,0,0,0,24,24)" opacity="0.2" style="display: block;">
+                                                                        <g opacity="1" transform="matrix(1,0,0,1,11.958000183105469,10.708000183105469)">
+                                                                            <path fill="rgb(162,0,199)" fill-opacity="1" d=" M0,-20 C11.038000106811523,-20 20,-11.038000106811523 20,0 C20,11.038000106811523 11.038000106811523,20 0,20 C-11.038000106811523,20 -20,11.038000106811523 -20,0 C-20,-11.038000106811523 -11.038000106811523,-20 0,-20z"></path>
+                                                                            <path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke-miterlimit="4" stroke="rgb(220,0,55)" stroke-opacity="1" stroke-width="0" d=" M0,-20 C11.038000106811523,-20 20,-11.038000106811523 20,0 C20,11.038000106811523 11.038000106811523,20 0,20 C-11.038000106811523,20 -20,11.038000106811523 -20,0 C-20,-11.038000106811523 -11.038000106811523,-20 0,-20z"></path>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g style="display: none;">
+                                                                        <g>
+                                                                            <path></path>
+                                                                        </g>
+                                                                    </g>
+                                                                    <g style="display: none;">
+                                                                        <g>
+                                                                            <path></path>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </svg></div>
+                                                    </div>
+                                                </span></button>
+
+                                                <!--  -->
+                                                </span></div>
                                 </div>
-                                <div class="jss229 jss222"><a class="jss223" href="/product/6617/reviews"><span class="jss230 jss224"><span class="MuiRating-root jss231 MuiRating-readOnly" role="img" aria-label="4.5 Stars"><span class="MuiRating-decimal"><span style="width:0%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
+                                <div class="jss229 jss222"><a class="jss223" href="/product/6617/reviews"><span class="jss230 jss224"><span class="MuiRating-root jss231 MuiRating-readOnly" role="img" aria-label="4.5 Stars">
+                                <c:forEach var = "num" begin = "1" end = "5">
+                                <c:choose>
+									<c:when test="${list.result_score >= num }"><c:set var = "score" value = "100"></c:set></c:when>
+									<c:when test="${num - list.result_score > 0.5 && num - list.result_score < 1}"><c:set var = "score" value = "100"></c:set></c:when>
+									<c:when test="${num - list.result_score <= 0.5 && num - list.result_score > 0}"><c:set var = "score" value = "50"></c:set></c:when>
+									<c:when test="${num - list.result_score >= 1}"><c:set var = "score" value = "0"></c:set></c:when>
+								</c:choose> 
+                                <span class="MuiRating-decimal"><span style="width:${score}%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
                                     <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
+                                </svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconFilled"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
                                     <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span></span><span class="MuiRating-decimal"><span style="width:0%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                    <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                    <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span></span><span class="MuiRating-decimal"><span style="width:0%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                    <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                    <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span></span><span class="MuiRating-decimal"><span style="width:0%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                    <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                    <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span></span><span class="MuiRating-decimal"><span style="width:50%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                    <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconEmpty jss235"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                    <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                </svg></span></span></span></span></span><span class="jss226">( <!-- -->0 <!-- -->)</span></a>
+                                </svg></span></span></span>
+                                </c:forEach>
+                                </span></span><span class="jss226">( <!-- -->${list.vote_num} <!-- -->)</span></a>
                                 </div>
                                 <!--상품 제고 목록 시작-->
                                 

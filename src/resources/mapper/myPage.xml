@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="myPage">
+	<select id="selectCollectionList" parameterType="map" resultType="goodsVO">
+		select g.* 
+		from goodsCollection gc inner join goods g on gc.goods_idx = g.idx
+		where gc.member_id = #{id} and gc.type = #{type}
+	</select>
+	
+ 	<insert id="insertReview" parameterType="reviewVO">
+		INSERT INTO review (idx, member_id, goods_idx, star, title, content, writedate) values
+		(REVIEW_SEQ.nextval, #{member_id}, #{goods_idx}, #{star}, #{title}, #{content}, sysdate)
+	</insert>
+	
+	<update id="updatePhone" parameterType="map">
+		update member set phone = #{phone} where id = #{id}
+	</update>
+	
+	<update id="updatePw" parameterType="map">
+		update member set pw = #{pw} where id = #{id}
+	</update>
+</mapper>

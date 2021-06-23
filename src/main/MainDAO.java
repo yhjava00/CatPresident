@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import vo.ChattingVO;
 import vo.GoodsDetailsVO;
 import vo.GoodsVO;
+import vo.ReviewVO;
 
 public class MainDAO {
 
@@ -35,19 +36,31 @@ public class MainDAO {
 		return mainDAO;
 	}
 
-	public List<GoodsVO> mainGoodsList(int idx) {
+	public List<GoodsVO> scoreDescList(){//별점 높은순으로 메인에 뿌려줌
 		List<GoodsVO> list = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
-			list = session.selectList("main.goodsList",idx);
+			list = session.selectList("main.scoreDescList");
+		}finally {
+			session.close();
+		}
+		return list;		
+	}
+	
+	public List<GoodsVO> voteNumDescList() {//투표 많은순으로 메인에 뿌려줌
+		List<GoodsVO> list = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try {
+			list = session.selectList("main.voteNumDescList");
 		}finally {
 			session.close();
 		}
 		return list;
 	}
 	
-	public List<GoodsVO> mainRankList(int idx) {
+	public List<GoodsVO> mainRankList(int idx) {// 랭킹 9가지 상품 임의로 뿌림
 		List<GoodsVO> list = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		
@@ -59,32 +72,19 @@ public class MainDAO {
 		return list;
 	}
 	
-	public List<GoodsVO> searchResult(String name){
-		List<GoodsVO> list = null;
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		try {
-			list = session.selectList("main.searchResult",name);
-		}finally {
-			session.close();
-		}				
-		return list;
-	}
-	
-	public List<GoodsDetailsVO> goodsDetails(int idx){
+	public List<GoodsDetailsVO> goodsDetails(Map param){// 상품 상세 정보 페이지
 		List<GoodsDetailsVO> list = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
-			list = session.selectList("main.goodsDetails",idx);
+			list = session.selectList("main.goodsDetails",param);
 		}finally {
 			session.close();
-		}
-		
+		}		
 		return list;
 	}
 
-	public List<String> goodsImgList(int idx){
+	public List<String> goodsImgList(int idx){// 상품 상세 정보 페이지 이미지 5장
 		List<String> list = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		
@@ -92,9 +92,22 @@ public class MainDAO {
 			list = session.selectList("main.DetailsImg",idx);
 		}finally {
 			session.close();
-		}
-		
+		}			
 		return list;
+	}
+	
+	public void insertLike(Map param) {// 상품 좋아요 
+		SqlSession session = sqlSessionFactory.openSession();
+		session.insert("insertLike", param);
+		session.commit();
+		session.close();
+	}
+	
+	public void deleteLike(Map param) {// 상품 좋아요 취소 
+		SqlSession session = sqlSessionFactory.openSession();
+		session.insert("deleteLike", param);
+		session.commit();
+		session.close();
 	}
 	
 	public int insertChatting(Map<String, Object> info){
