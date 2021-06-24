@@ -18,19 +18,19 @@
                             </g>
                         </svg></a></div>
                 <span class="a2011">
-                    <form autocomplete="off" class="a2012">
+                    <div autocomplete="off" class="a2012">
                         <div class="a2013"><svg class="a2002-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                 <path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283C15.024 19.308 13.042 20.003 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9c.003 2.042-.692 4.024-1.969 5.617zm-2.006-.742C17.295 14.57 18.003 12.82 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7 1.82.003 3.57-.706 4.875-1.975l.15-.15z"></path>
                             </svg></div>
                         <div>
-                            <div class="a2004-root jss47 a2008 a2004-fullWidth a2004-adornedEnd"><input type="search" name="searchInput" placeholder="3만원 이상 구매 시, 무료배송" value="" class="a2004-input a2006 a2007 a2004-inputAdornedEnd a2004-inputTypeSearch"><button class="a2003-root MuiIconButton-root a2009 a2010" tabindex="0" type="submit" aria-label="검색"><span class="MuiIconButton-label"><svg class="a2002-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+                            <div class="a2004-root jss47 a2008 a2004-fullWidth a2004-adornedEnd"><input type="text" id="searchInput" placeholder="3만원 이상 구매 시, 무료배송" value="" class="a2004-input a2006 a2007 a2004-inputAdornedEnd a2004-inputTypeSearch"><button class="a2003-root MuiIconButton-root a2009 a2010" tabindex="0" onclick = "inProductSearch()" aria-label="검색"><span class="MuiIconButton-label"><svg class="a2002-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                             <path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283C15.024 19.308 13.042 20.003 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9c.003 2.042-.692 4.024-1.969 5.617zm-2.006-.742C17.295 14.57 18.003 12.82 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7 1.82.003 3.57-.706 4.875-1.975l.15-.15z"></path>
                                         </svg></span><span class="a2060-root"></span></button></div>
                         </div>
-                    </form>
+                    </div>
                 </span>
                 <div class="a2005"></div>
-                <span class="a2014"><a class="a2003-root a2059-root a2059-text a2019" tabindex="0" aria-disabled="false" aria-label="마이페이지" href="/my-page"><span class="a2059-label a2020"><span class="a2021"><svg class="a2002-root a2022" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+                <span class="a2014"><a onclick="outProduct('main.myPage')" class="a2003-root a2059-root a2059-text a2019" tabindex="0" aria-disabled="false" aria-label="마이페이지"><span class="a2059-label a2020"><span class="a2021"><svg class="a2002-root a2022" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                     <path d="M4 23c0-4.418 3.582-8 8-8s8 3.582 8 8h-2c0-3.314-2.686-6-6-6s-6 2.686-6 6H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
                                 </svg></span><span class="a2025">MY<span class="a2026"><svg class="a2002-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                         <path d="M12 15L7.757 10.757 9.172 9.343 12 12.172 14.828 9.343 16.243 10.757z"></path>

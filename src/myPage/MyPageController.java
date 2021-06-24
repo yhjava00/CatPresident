@@ -2,6 +2,7 @@ package myPage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import main.MainService;
 import member.MemberService;
 import vo.GoodsVO;
 import vo.MemberVO;
@@ -24,10 +29,13 @@ public class MyPageController extends HttpServlet {
 	
 	private MemberService memberService;
 	
+	private MainService mainService;
+	
 	@Override
 	public void init() throws ServletException {
 		myPageService = MyPageService.getMyPageService();
 		memberService = MemberService.getMemberService();
+		mainService = MainService.getMainService();
 	}
  
 	@Override
@@ -52,11 +60,94 @@ public class MyPageController extends HttpServlet {
 		
 		switch (path) {
 		case "/available_reviews":
-			nextPage = "myPage/myPage_available_reviews.jsp";
-			break;
-		case "/often_seen":
 		{
-			List<GoodsVO> collectionList = myPageService.getCollectionList(id, "often_seen");
+			nextPage = "myPage/myPage_available_reviews.jsp";
+			
+			int page = 1;
+			
+			List<GoodsVO> canWriteReviewList = myPageService.getCollectionList(id, page, "review");
+			
+			request.setAttribute("canWriteReviewList", canWriteReviewList);
+		}
+			break;
+		case "/more_available_reviews":
+		{
+			int page = Integer.parseInt(request.getParameter("page"));
+			
+			List<GoodsVO> canWriteReviewList = myPageService.getCollectionList(id, page, "review");
+			
+			JSONObject json = new JSONObject();
+			JSONArray jsonArray = new JSONArray();
+			
+			for(GoodsVO goods : canWriteReviewList) {
+				JSONObject obj = new JSONObject();
+				
+				obj.put("idx", goods.getIdx());
+				obj.put("reviewIdx", goods.getReviewIdx());
+				obj.put("regDate", goods.getRegDate());
+				obj.put("img", goods.getImg());
+				obj.put("name", goods.getName());
+				obj.put("price", goods.getPrice());
+				
+				jsonArray.add(obj);
+				
+			}
+			
+			json.put("canWriteReviewList", jsonArray);
+			
+			response.setContentType("application/json;charset=utf-8");
+	        PrintWriter out = response.getWriter();
+	        out.print(json);
+	        out.close();
+		}
+			return;
+		case "/writeReviews":
+		{
+			nextPage = "myPage/myPage_write_reviews.jsp";
+
+			int page = 1;
+			
+			List<GoodsVO> writeReviewList = myPageService.getWriteReviewList(id, page);
+			
+			request.setAttribute("writeReviewList", writeReviewList);
+		}
+			break;
+		case "/moreWriteReviews":
+		{
+			int page = Integer.parseInt(request.getParameter("page"));
+			
+			List<GoodsVO> writeReviewList = myPageService.getWriteReviewList(id, page);
+			
+			JSONObject json = new JSONObject();
+			JSONArray jsonArray = new JSONArray();
+			
+			for(GoodsVO goods : writeReviewList) {
+				JSONObject obj = new JSONObject();
+				
+				obj.put("idx", goods.getIdx());
+				obj.put("reviewIdx", goods.getReviewIdx());
+				obj.put("regDate", goods.getRegDate());
+				obj.put("img", goods.getImg());
+				obj.put("name", goods.getName());
+				obj.put("price", goods.getPrice());
+				
+				jsonArray.add(obj);
+				
+			}
+			
+			json.put("writeReviewList", jsonArray);
+			
+			response.setContentType("application/json;charset=utf-8");
+	        PrintWriter out = response.getWriter();
+	        out.print(json);
+	        out.close();
+		}
+			return;
+		case "/often_seen":
+		{	
+			int page = 1;
+			
+			List<GoodsVO> collectionList = myPageService.getCollectionList(id, page, "often_seen");
 			
 			request.setAttribute("collection", "often_seen");
 			request.setAttribute("collectionList", collectionList);
@@ -65,7 +156,9 @@ public class MyPageController extends HttpServlet {
 			break;
 		case "/like":
 		{
-			List<GoodsVO> collectionList = myPageService.getCollectionList(id, "like");
+			int page = 1;
+			
+			List<GoodsVO> collectionList = myPageService.getCollectionList(id, page, "like");
 			
 			request.setAttribute("collection", "like");
 			request.setAttribute("collectionList", collectionList);
@@ -74,7 +167,9 @@ public class MyPageController extends HttpServlet {
 			break;
 		case "/recently_viewed":
 		{
-			List<GoodsVO> collectionList = myPageService.getCollectionList(id, "recently_viewed");
+			int page = 1;
+			
+			List<GoodsVO> collectionList = myPageService.getCollectionList(id, page, "recently_viewed");
 			
 			request.setAttribute("collection", "recently_viewed");
 			request.setAttribute("collectionList", collectionList);
@@ -84,16 +179,43 @@ public class MyPageController extends HttpServlet {
 		case "/orders":
 			nextPage = "myPage/myPage_orders.jsp";
 			break;
-		case "/reviewWrite":
+		case "/reviewWriteForm":
+		{
 			nextPage = "myPage/myPage_review.jsp";
+			
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			int ReviewIdx = Integer.parseInt(request.getParameter("reviewIdx"));
+			String regDate = request.getParameter("regDate");
+			
+			GoodsVO goods = mainService.getGoods(idx);
+			
+			request.setAttribute("goods", goods);
+			request.setAttribute("ReviewIdx", ReviewIdx);
+			request.setAttribute("regDate", regDate);
+		}
 			break;
+		case "/reviewModifyForm":
+		{
+			nextPage = "myPage/myPage_review_modify.jsp";
+			
+			int reviewIdx = Integer.parseInt(request.getParameter("reviewIdx"));
+
+			Map<String, Object> info = myPageService.reviewModifyForm(reviewIdx);
+			
+			request.setAttribute("info", info);
+		}
+		break;
 		case "/insertReview":
 		{
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			int reviewIdx = Integer.parseInt(request.getParameter("reviewIdx"));
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			int star = Integer.parseInt(request.getParameter("star"));
-			ReviewVO vo = new ReviewVO(1, id, star, title, content);
-			String state = myPageService.insertReview(vo);
+			
+			ReviewVO vo = new ReviewVO(idx, id, star, title, content);
+			
+			String state = myPageService.insertReview(vo, reviewIdx);
 			
 			response.setContentType("text/plain");
 			
@@ -103,6 +225,27 @@ public class MyPageController extends HttpServlet {
 			out.close();
 		}
 			return;
+		case "/updateReview":
+		{
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			int star = Integer.parseInt(request.getParameter("star"));
+			
+			ReviewVO review = new ReviewVO(idx, id, star, title, content);
+
+			review.setIdx(idx);
+			
+			String state = myPageService.updateReview(review);
+			
+			response.setContentType("text/plain");
+			
+			PrintWriter out = response.getWriter();
+			
+			out.write(state);
+			out.close();
+		}
+		return;
 		case "/update":
 		{
 			nextPage = "myPage/myPage_update.jsp";
@@ -151,11 +294,9 @@ public class MyPageController extends HttpServlet {
 		break;
 		default: 
 		{
-			MemberVO member = memberService.getMember(id);
-			Map<String, Integer> totCount = myPageService.getTotCount();
+			Map<String, Object> info = myPageService.myPageInfo(id);
 			
-			request.setAttribute("member", member);
-			request.setAttribute("totCount", totCount);
+			request.setAttribute("info", info);
 		}
 			break;
 		}

@@ -5,15 +5,53 @@
  
 <mapper namespace="myPage">
 	<select id="selectCollectionList" parameterType="map" resultType="goodsVO">
-		select g.* 
-		from goodsCollection gc inner join goods g on gc.goods_idx = g.idx
-		where gc.member_id = #{id} and gc.type = #{type}
+		select * 
+		from (select rownum rn,  a.*
+		        from (select TO_CHAR(gc.regdate, 'YYYY-MM-DD') regDate, gc.idx reviewIdx, g.idx, g.img, g.name, g.price
+		                from goodsCollection gc inner join goods g on gc.goods_idx = g.idx 
+		                where gc.member_id = #{id} and gc.type = #{type}
+		                order by gc.idx) a) 
+		where rn between (#{page}-1)*10+1 and #{page}*10
 	</select>
+	
+	<select id="totCollection" parameterType="map" resultType="int">
+		select count(*) from goodsCollection where member_id = #{id} and type = #{type}
+	</select>
+	
+	<select id="totMyReview" parameterType="String" resultType="int">
+		select count(*) from review where member_id = #{id}
+	</select>
+	
+	<select id="selectMyReviewList" parameterType="map" resultType="goodsVO">
+		select * 
+		from (select rownum rn,  a.*
+		        from (select TO_CHAR(r.writeDate, 'YYYY-MM-DD') regDate, r.idx reviewIdx, g.idx, g.img, g.name, g.price
+		                from review r inner join goods g on r.goods_idx = g.idx 
+		                where r.member_id = #{id}
+		                order by r.idx desc) a) 
+		where rn between (#{page}-1)*10+1 and #{page}*10
+	</select>
+	
+	<select id="selectCollection" parameterType="int" resultType="goodsCollectionVO">
+		select * from goodsCollection where idx = #{idx}
+	</select>
+	
+	<delete id="deleteCollection" parameterType="int">
+		delete from goodsCollection where idx = #{idx}
+	</delete>
 	
  	<insert id="insertReview" parameterType="reviewVO">
 		INSERT INTO review (idx, member_id, goods_idx, star, title, content, writedate) values
 		(REVIEW_SEQ.nextval, #{member_id}, #{goods_idx}, #{star}, #{title}, #{content}, sysdate)
 	</insert>
+	
+	<update id="updateReview" parameterType="reviewVO">
+		update review set title = #{title}, content = #{content}, star = #{star} where idx = #{idx}
+	</update>
+	
+	<select id="selectReview" parameterType="int" resultType="reviewVO">
+		select * from review where idx = #{idx}
+	</select>
 	
 	<update id="updatePhone" parameterType="map">
 		update member set phone = #{phone} where id = #{id}
@@ -22,4 +60,5 @@
 	<update id="updatePw" parameterType="map">
 		update member set pw = #{pw} where id = #{id}
 	</update>
+	
 </mapper>

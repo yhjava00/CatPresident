@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -259,16 +261,85 @@
 	    </style>
 	    <script>
 	      	$(document).ready(function() {
-	      		document.querySelectorAll('.a1142').forEach((button) => {
+	      		document.querySelectorAll('.a1142').forEach(function(button) {
 	      			
-	                button.addEventListener('mouseover', () => {
+	                button.addEventListener('mouseover', function() {
 	                    button.style.backgroundColor = 'rgba(224, 224, 224, 1)'
 	                })
-	                button.addEventListener('mouseout', () => {
+	                button.addEventListener('mouseout', function() {
 	                    button.style.backgroundColor = 'rgba(255, 255, 255, 1)'
 	                })
 	            })
 	      	})
+	      	
+	      	function withdrawal() {
+	      		
+	      		if(!confirm('회원 탈퇴를 진행하시겠습니까?')) {
+	      			return
+	      		}
+	      		
+	      		$.ajax({
+					type: 'post', 
+					url: 'withdrawal.member',
+					success:function (data) {
+						outProduct('main.main')
+					},
+					error:function () {
+						alert('에러가 발생했습니다.')
+					}
+				})
+	      	}
+
+        	function readURL(input) {
+        		if (input.files && input.files[0]) {
+        			var reader = new FileReader()
+        			reader.onload = function(e) {
+        				$('.a1150').attr('src', e.target.result)
+        			}
+        			reader.readAsDataURL(input.files[0])
+        		}
+        	}
+			
+        	$(document).ready(function() {
+	        	$('#label-id-0').change(function() {
+	        		
+	        		if( $('#label-id-0').val() == '' ) {
+	        			$('.a1150').attr('src' , '') 
+	        		}
+	        		readURL(this)
+	        	})
+        	})
+        	
+        	function send_profile(){
+            	
+            	if($('#label-id-0')[0].files[0] === undefined) {
+            		alert('프로필을 지정하세요.')
+            		return
+            	}
+            	
+               	var form = new FormData();
+                form.append('profile', $('#label-id-0')[0].files[0] );
+                
+                $.ajax({
+                    url : "upload_profile.member",
+                    type : 'post',
+                    processData : false,
+                    contentType : false,
+                    data : form,
+                    success:function (data) {
+                        if(data === 'error') {
+                        	alert('프로필 업로드에 실패하였습니다.')
+                        }else {
+                        	alert('프로필 업로드에 성공하셨습니다.')
+                        	var path = '/CatPresident/resources/profile/lee@gmail.com/' + data
+            				$('#myPageProfile').attr('src', path)
+                        }
+                    },
+                    error:function () {
+                        alert('에러가 발생했습니다.')
+                    }
+                })
+            }
 	    </script>
 		<title>Insert title here</title>
 	</head>
@@ -316,7 +387,7 @@
 	                <button onclick="logout()" class="a1142" tabindex="0" type="button">
 	                    <span class="a1143">로그아웃</span>
 	                </button>
-	                <a onclick="" class="a1142" tabindex="0" aria-disabled="false">
+	                <a onclick="withdrawal()" class="a1142" tabindex="0" aria-disabled="false">
 	                    <span class="a1143">회원탈퇴</span>
 	                </a>
 	            </div>
@@ -330,7 +401,7 @@
 	                    <input id="label-id-0" type="file" style="display: none;">
 	                    <div class="a1148">
 	                        <div class="a1149">
-	                            <img class="a1150" src="img/cat1.jpg" alt="프로필" sizes="auto">
+	                            <img class="a1150" src="${contextPath}/resources/profile/${member.id}/${member.profile}" alt="프로필" sizes="auto">
 	                        </div>                                                           
 	                        <span class="a1151">
 	                            <svg class="a1152" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
@@ -340,7 +411,7 @@
 	                    </div>
 	                </label>
 	            </div>
-	            <button class="a1145">
+	            <button onclick="send_profile()" class="a1145">
 	                <span>등록하기</span>
 	            </button>
 	        </div>

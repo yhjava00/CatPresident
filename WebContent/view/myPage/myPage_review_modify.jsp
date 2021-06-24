@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<c:set var="review" value="${info.review}"/>
+<<c:set var="goods" value="${info.goods}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -474,24 +477,16 @@
 	        		return;
 	        	}
 	        	
-	        	var reviewIdx = ${ReviewIdx}
+	        	var reviewIdx = ${review.idx}
 	        	
 	    		$.ajax({
 					type: 'post', 
-					url: 'insertReview.myPage', 
-				 	data: {'reviewIdx':reviewIdx, 'idx':idx, 'title': title, 'content':content, 'star': star},
+					url: 'updateReview.myPage', 
+				 	data: {'idx':reviewIdx, 'title': title, 'content':content, 'star': star},
 					success:function (data) {
 						
 						if(data==='error') {
 							alert('리뷰 작성에 실패하셨습니다.')
-						}else {
-							
-							var canWriteReviewCount = $('.jss1004').text() * 1
-							$('.jss1004').text(--canWriteReviewCount)
-							
-							
-							var reviewCount = $('.jss1005').text() * 1
-							$('.jss1005').text(++reviewCount)
 						}
 						changeView('orders.myPage')
 					},
@@ -592,7 +587,7 @@
 						<label class="b1046" data-shrink="true">제목</label>
 						<div class="b1047">
 							<input aria-invalid="false" name="title" placeholder="제목을 입력하세요."
-								class="b1048 reviewTitle" value="">
+								class="b1048 reviewTitle" value="${review.title}">
 						</div>
 					</div>
 					<div class="b1049">
@@ -600,7 +595,7 @@
 						<div class="b1050">
 							<textarea rows="1" aria-invalid="false" name="body"
 								placeholder="내용을 입력하세요." class="b1051 reviewContent"
-								style="height: 270px; overflow: hidden;"></textarea>
+								style="height: 270px; overflow: hidden;">${review.content}</textarea>
 						</div>
 					</div>
 				</div>

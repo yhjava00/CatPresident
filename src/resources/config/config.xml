@@ -9,6 +9,7 @@
         <typeAlias alias="map" type="java.util.Map"/>        
         <typeAlias alias="memberVO" type="vo.MemberVO"/>    
         <typeAlias alias="goodsVO" type="vo.GoodsVO"/>
+        <typeAlias alias="goodsCollectionVO" type="vo.GoodsCollectionVO"/>
         <typeAlias alias="goodsDetailsVO" type="vo.GoodsDetailsVO"/>            
         <typeAlias alias="chattingVO" type="vo.ChattingVO"/>  
         <typeAlias alias="reviewVO" type="vo.ReviewVO"/>          

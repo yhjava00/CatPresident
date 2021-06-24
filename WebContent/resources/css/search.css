@@ -277,4 +277,12 @@
             font-weight: 700 !important;
             font-size: 1.3rem !important;
         }
-        /* 페이징 */
+        .search1 {
+        	color: rgba(0, 0, 0, 1) !important;
+    		font-weight: 700;
+    		background-color: rgba(244, 244, 245, 1) !important;
+        }
+        .search2:hover{
+        	color: rgba(60, 60, 67, 0.6);
+    		background-color: rgba(244, 244, 245, 1);
+        }

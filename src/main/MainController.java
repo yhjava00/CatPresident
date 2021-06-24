@@ -41,17 +41,32 @@ public class MainController extends HttpServlet {
 			nextPage = "common/header.jsp";
 			break;
 		case "/product": //수정 됨
-		{
+		{				
 			Map<String, Object> param = new HashMap<String, Object>();
 			int idx = Integer.parseInt(request.getParameter("idx"));
 			param.put("idx", idx);
 			param.put("id", id);
 			request.setAttribute("detailsMap", mainService.details(param,idx));
-			request.setAttribute("idx", idx);
+			request.setAttribute("idx", param.get("idx"));
+			mainService.recently(param); //최근 본 추가
+
 			nextPage = "product.jsp";
 		}
 			break;
-						
+			
+		case "/search": //검색
+		{	
+			Map<String, Object> param = new HashMap<String, Object>();			
+			String keyword = request.getParameter("keyword");
+			int page = Integer.parseInt(request.getParameter("page"));
+			param.put("keyword", keyword);
+			param.put("page", page);
+			request.setAttribute("searchListMap",mainService.search(param,(String) param.get("keyword")));
+			request.setAttribute("selectedPage", page);
+			request.setAttribute("startPage", ((page-1)/5)*5+1);
+			nextPage = "search.jsp";
+		}
+			break;	
 		case "/like": //좋아요
 		{	
 			if(id == null) 
@@ -78,9 +93,6 @@ public class MainController extends HttpServlet {
 		}
 			break;
 
-		case "/search":
-			nextPage = "search.jsp";
-			break;
 		case "/chat":
 			nextPage = "common/chat.jsp";
 			

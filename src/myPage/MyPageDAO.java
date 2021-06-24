@@ -2,6 +2,7 @@ package myPage;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import vo.GoodsCollectionVO;
 import vo.GoodsVO;
 import vo.ReviewVO;
 
@@ -33,8 +35,40 @@ public class MyPageDAO {
 	public static MyPageDAO getMyPageDAO() {
 		return myPageDAO;
 	}
+
+	public int totCollection(String id, String type) {
+		
+		Map<String, Object> info = new HashMap<String, Object>();
+
+		info.put("id", id);
+		info.put("type", type);
+		
+		int tot = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			tot = session.selectOne("myPage.totCollection", info);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return tot;
+	}
 	
-	public List<GoodsVO> selectCollectionList(Map<String, String> info) {
+	public int totMyReview(String id) {
+		int tot = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			tot = session.selectOne("myPage.totMyReview", id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return tot;
+	}
+	
+	public List<GoodsVO> selectCollectionList(Map<String, Object> info) {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<GoodsVO> collectionList = null;
 		
@@ -48,6 +82,52 @@ public class MyPageDAO {
 		
 		return collectionList;
 	}
+	
+	public List<GoodsVO> selectMyReviewList(Map<String, Object> info) {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<GoodsVO> collectionList = null;
+		
+		try {
+			collectionList = session.selectList("myPage.selectMyReviewList", info); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return collectionList;
+	}
+	
+	public GoodsCollectionVO selectCollection(int idx) {
+		SqlSession session = sqlSessionFactory.openSession();
+		GoodsCollectionVO goodsCollection = null;
+		
+		try {
+			goodsCollection = session.selectOne("myPage.selectCollection", idx); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return goodsCollection;
+	}
+	
+	public int deleteCollection(int idx) {
+		SqlSession session = sqlSessionFactory.openSession();
+		int state = 0;
+		
+		try {
+			state = session.delete("myPage.deleteCollection", idx);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return state;
+	}
 
 	public int insertReview(ReviewVO vo) {
 		int state = 0;
@@ -55,10 +135,39 @@ public class MyPageDAO {
 		try {
 			state = session.insert("myPage.insertReview", vo);
 			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 		return state;
+	}
+	
+	public int updateReview(ReviewVO vo) {
+		int state = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			state = session.update("myPage.updateReview", vo);
+			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return state;
+	}
+	
+	public ReviewVO selectReview(int idx) {
+		ReviewVO review = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			review = session.selectOne("myPage.selectReview", idx);
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}	
+		return review;
 	}
 	
 	public int updatePhone(Map<String, String> info) {
@@ -67,6 +176,8 @@ public class MyPageDAO {
 		try {
 			state = session.update("myPage.updatePhone", info);
 			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -79,6 +190,8 @@ public class MyPageDAO {
 		try {
 			state = session.update("myPage.updatePw", info);
 			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}

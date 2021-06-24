@@ -8,7 +8,6 @@
 		<title>Insert title here</title>
 	    <link rel="stylesheet" href="view/common/header/header.css?a">
 	    <script src="view/common/header/header.js"></script>
-
 	</head>
 	<body style="overflow-x: hidden;">
 	 	<div class="a2039">
@@ -20,16 +19,16 @@
                             </g>
                         </svg></a></div>
                 <span class="a2011">
-                    <form autocomplete="off" class="a2012">
+                    <div autocomplete="off" class="a2012">
                         <div class="a2013"><svg class="a2002-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                 <path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283C15.024 19.308 13.042 20.003 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9c.003 2.042-.692 4.024-1.969 5.617zm-2.006-.742C17.295 14.57 18.003 12.82 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7 1.82.003 3.57-.706 4.875-1.975l.15-.15z"></path>
                             </svg></div>
                         <div>
-                            <div class="a2004-root jss47 a2008 a2004-fullWidth a2004-adornedEnd"><input type="search" name="searchInput" placeholder="3만원 이상 구매 시, 무료배송" value="" class="a2004-input a2006 a2007 a2004-inputAdornedEnd a2004-inputTypeSearch"><button class="a2003-root MuiIconButton-root a2009 a2010" tabindex="0" type="submit" aria-label="검색"><span class="MuiIconButton-label"><svg class="a2002-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+                            <div class="a2004-root jss47 a2008 a2004-fullWidth a2004-adornedEnd"><input type="text" id="searchInput" placeholder="3만원 이상 구매 시, 무료배송" value="" class="a2004-input a2006 a2007 a2004-inputAdornedEnd a2004-inputTypeSearch"><button class="a2003-root MuiIconButton-root a2009 a2010" tabindex="0" onclick = "search('1',$('#searchInput').val())" aria-label="검색"><span class="MuiIconButton-label"><svg class="a2002-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                             <path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283C15.024 19.308 13.042 20.003 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9c.003 2.042-.692 4.024-1.969 5.617zm-2.006-.742C17.295 14.57 18.003 12.82 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7 1.82.003 3.57-.706 4.875-1.975l.15-.15z"></path>
                                         </svg></span><span class="a2060-root"></span></button></div>
                         </div>
-                    </form>
+                    </div>
                 </span>
                 <div class="a2005"></div>
                 <span class="a2014"><a onclick="changeContent('main.myPage')" class="a2003-root a2059-root a2059-text a2019" tabindex="0" aria-disabled="false" aria-label="마이페이지"><span class="a2059-label a2020"><span class="a2021"><svg class="a2002-root a2022" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">

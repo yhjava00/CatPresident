@@ -7,13 +7,20 @@ public class MemberVO {
 	private String name;
 	private String phone;
 	private String joindate;
+	private String profile;
 	
-	@Override
-	public String toString() {
-		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name  + ", phone="
-				+ phone + ", joindate=" + joindate + "]";
+	public String getJoindate() {
+		return joindate;
 	}
-	
+	public void setJoindate(String joindate) {
+		this.joindate = joindate;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	public String getId() {
 		return id;
 	}

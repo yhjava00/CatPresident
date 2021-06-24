@@ -192,42 +192,42 @@
 				page++
 				$.ajax({
 			        type: "post", 
-			        url: "more_available_reviews.myPage", 
+			        url: "moreWriteReviews.myPage", 
 			        data: {'page':page},
 			        success:function (data) {
 			        	
-			        	var canWriteReviewList = data.canWriteReviewList
+			        	var writeReviewList = data.writeReviewList
 		            
 		            	var item = ''
 		            
-			        	for(var i=0; i<canWriteReviewList.length; i++) {
+			        	for(var i=0; i<writeReviewList.length; i++) {
 			        		item += '<tr class="b1004">'
 			        		item += '<td class="b1007">'
-			        		item += '<span class="b1008">' + canWriteReviewList[i].reviewIdx + '</span>'
+			        		item += '<span class="b1008">' + writeReviewList[i].reviewIdx + '</span>'
 			        		item += '</td>'
 			        		item += ' <td class="b1007 b1007-1">'
-			        		item += '<span class="b1008">' + canWriteReviewList[i].regDate + '</span>'
+			        		item += '<span class="b1008">' + writeReviewList[i].regDate + '</span>'
 			        		item += '</td>'
 			        		item += '<td class="b1009">'
 			        		item += '<div class="b1009-1">'
 			        		item += '<div class="b1010">'
 			        		item += '<a>'
 			        		item += '<picture class="b1011">'
-			        		item += '<img class="b1012" src="' + canWriteReviewList[i].img + '" sizes="auto">'
+			        		item += '<img class="b1012" src="' + writeReviewList[i].img + '" sizes="auto">'
 			        		item += '</picture>'
 			        		item += '</a>'
 			        		item += '</div>'
 			        		item += '<div class="b1013">'
 			        		item += '<h3 class="b1014">'
-			        		item += '<a>' + canWriteReviewList[i].name + '</a>'
+			        		item += '<a>' + writeReviewList[i].name + '</a>'
 			        		item += '</h3>'
-			        		item += '<strong class="b1015">' + canWriteReviewList[i].price + '</strong>'
+			        		item += '<strong class="b1015">' + writeReviewList[i].price + '</strong>'
 			        		item += '</div>'
 			        		item += '</div>'
 			        		item += '</td>'
 			        		item += '<td class="b1007 b1007-1">'
-			        		item += '<button onclick="reviewWriteForm(\'' + canWriteReviewList[i].idx +'\', \'' + canWriteReviewList[i].reviewIdx + '\', \'' + canWriteReviewList[i].regDate + '\')" class="b1017 buttonP" tabindex="0" type="button">'
-			        		item += '<span class="b1018">구매후기 작성</span>'
+			        		item += '<button onclick="reviewModifyForm(\'' + writeReviewList[i].reviewIdx + '\')" class="b1017 buttonP" tabindex="0" type="button">'
+			        		item += '<span class="b1018">수정하기</span>'
 			        		item += '<span class="b1019"></span>'
 			        		item += '</button>'
 			        		item += '</td>'
@@ -237,7 +237,7 @@
 			        	
 			        	setBtnEvent()
 			        	
-			        	if(canWriteReviewList.length>0)
+			        	if(writeReviewList.length>0)
 							canMore = true
 			        },
 			        error:function () {
@@ -245,11 +245,11 @@
 			        }
 			    })
 			}
-			function reviewWriteForm(idx, reviewIdx, regDate) {
+			function reviewModifyForm(reviewIdx) {
 				$(window).unbind()
 				$.ajax({
-					url: 'reviewWriteForm.myPage',
-					data : {'idx':idx, 'reviewIdx':reviewIdx, 'regDate':regDate},
+					url: 'reviewModifyForm.myPage',
+					data : {'reviewIdx':reviewIdx,},
 					async : true,
 					type : 'post',
 					dataType : 'html',
@@ -262,7 +262,7 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<h2 class="b1001">작성 가능한 리뷰</h2>
+		<h2 class="b1001">작성한 리뷰</h2>
 	    <table class="b1002" aria-label="customized table">
 	        <colgroup>
 	            <col width="150px">
@@ -273,13 +273,13 @@
 	        <thead class="b1003">
 	            <tr class="b1004">
 	                <th class="b1005" scope="col">리뷰 번호</th>
-	                <th class="b1005" scope="col">주문 일자</th>
+	                <th class="b1005" scope="col">작성 일자</th>
 	                <th class="b1005" scope="col">상품 정보</th>
-	                <th class="b1005" scope="col">진행 상황</th>
+	                <th class="b1005" scope="col">수정하기</th>
 	            </tr>
 	        </thead>
 	        <tbody class="b1006">
-	        	<c:forEach var="goods" items="${canWriteReviewList}">
+	        	<c:forEach var="goods" items="${writeReviewList}">
 		            <tr class="b1004">
 		                <td class="b1007">
 		                    <span class="b1008">${goods.reviewIdx}</span>
@@ -305,8 +305,8 @@
 		                    </div>
 		                </td>
 		                <td class="b1007 b1007-1">
-		                    <button onclick="reviewWriteForm('${goods.idx}', '${goods.reviewIdx}', '${goods.regDate}')" class="b1017 buttonP" tabindex="0" type="button">
-		                        <span class="b1018">구매후기 작성</span>
+		                    <button onclick="reviewModifyForm('${goods.reviewIdx}')" class="b1017 buttonP" tabindex="0" type="button">
+		                        <span class="b1018">수정하기</span>
 		                        <span class="b1019"></span>
 		                    </button>
 		                </td>

@@ -14,6 +14,7 @@
 			})
 		
 			function changeContent(path) {
+				$(window).unbind()
 				$.ajax({
 					url: path,
 					async : true,
@@ -26,6 +27,7 @@
 			}
 
 			function inProduct(idx) {
+				$(window).unbind()
 				$.ajax({
 					url: 'product.main',
 					data: {"idx": idx},
@@ -40,6 +42,7 @@
 			}
 			
 			function outProduct(path) {
+				$(window).unbind()
 				$.ajax({
 					url: 'header.main',
 					async : true,
@@ -72,6 +75,46 @@
 					}
 				})
 	        }
+	        
+			function search(page,keyword){ 	
+				$(window).unbind()
+	        	var keyword = keyword;
+	        	var page = page;	        	
+	        	
+	        	$.ajax({
+					url: 'search.main',
+					async : true,
+					data : {"keyword": keyword, "page": page},
+					type : 'post',
+					dataType : 'html',
+					cache: false
+				}).done(function (data) {
+					$('#htmlContent').html(data)
+				})
+	        }
+			
+			function inProductSearch() {
+				$(window).unbind()
+				var keyword = $('#searchInput').val();
+				$.ajax({
+					url: 'header.main',
+					async : true,
+					type : 'post',
+					dataType : 'html',
+					cache: false
+				}).done(function (data) {
+					$('#product_box').children().remove()
+					$('#outermost_box').html(data)
+					var item = ''
+					item += '<div>'
+					item += '<div class="a2038"></div>'
+					item += '<div id="htmlContent" style="position: relative; top: 168px;">'
+					item += '</div>'
+					item += '</div>'
+					$('#outermost_box').append(item)
+					search('1',keyword);
+				})
+			}
 		</script>
 	</head>
 	<body>

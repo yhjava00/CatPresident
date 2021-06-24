@@ -23,6 +23,10 @@ public class MainService {
 		return mainService;
 	}
 	
+	public GoodsVO getGoods(int idx) {
+		return mainDAO.selectGoods(idx);
+	}
+	
 	public Map<String , Object> main(){ //메인에 뿌려줌
 		
 		Map<String, Object> info = new HashMap<String, Object>();
@@ -58,6 +62,29 @@ public class MainService {
 		mainDAO.deleteLike(param);
 	}
 	
+	public void recently(Map param) {
+		if(param.get("id") == null) {
+			return;
+		}
+				
+		if(mainDAO.selectRecently(param) == null) {// db검색 결과 없으면
+			mainDAO.insertRecently(param); // 입력
+		}else if(mainDAO.selectRecently(param).equals("recently")) {// db검색 결과 최근 본 상품이 있으면
+			mainDAO.deleteRecently(param); // 삭제 후
+			mainDAO.insertRecently(param); // 다시 입력
+		}
+	}
+	public Map<String, Object> search(Map keywordMap, String keyword){ //검색결과, 페이징
+		
+		Map<String, Object> info = new HashMap<String, Object>();
+		List<GoodsVO> searchList = mainDAO.searchResult(keywordMap); //검색 상품 리스트
+		int count = mainDAO.searchCount(keyword); //총 검색 상품 수
+		int pageCount = (count%10==0 ? count/10 : (count/10)+1); //총 몇 페이지 나왔는지
+		info.put("searchList", searchList);
+		info.put("searchCount", count);
+		info.put("pageCount", pageCount);	
+		return info;		
+	}
 	public int insertChatting(String sender, String recipient, String content) {
 		
 		Map<String, Object> info = new HashMap<>();

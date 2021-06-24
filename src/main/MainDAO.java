@@ -36,6 +36,18 @@ public class MainDAO {
 		return mainDAO;
 	}
 
+	public GoodsVO selectGoods(int idx){
+		GoodsVO goods = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try {
+			goods = session.selectOne("main.selectGoods", idx);
+		}finally {
+			session.close();
+		}
+		return goods;
+	}
+	
 	public List<GoodsVO> scoreDescList(){//별점 높은순으로 메인에 뿌려줌
 		List<GoodsVO> list = null;
 		SqlSession session = sqlSessionFactory.openSession();
@@ -110,6 +122,54 @@ public class MainDAO {
 		session.close();
 	}
 	
+	public List<GoodsVO> searchResult(Map keywordMap) {
+		List<GoodsVO> list = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try {
+			list = session.selectList("main.selectSearch",keywordMap);
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+	
+	public int searchCount(String keyword) {// 총 검색된 결과 수
+		int count;
+		SqlSession session = sqlSessionFactory.openSession();		
+		try {
+			 count = session.selectOne("main.selectSearchCount", keyword);
+		}finally {
+			session.close();
+		}
+		return count;
+		
+	}
+	
+	public void insertRecently(Map param) {// 최근 본 insert
+		SqlSession session = sqlSessionFactory.openSession();
+		session.insert("main.insertRecently", param);
+		session.commit();
+		session.close();
+	}
+	
+	public void deleteRecently(Map param) {// 최근 본 delete
+		SqlSession session = sqlSessionFactory.openSession();
+		session.insert("main.deleteRecently", param);
+		session.commit();
+		session.close();
+	}
+	
+	public String selectRecently(Map param) {// 최근에 본 입력 전 db에 있는 데이터인지 체크위해 select 		
+		String result;
+		SqlSession session = sqlSessionFactory.openSession();		
+		try {
+			 result = session.selectOne("main.selectRecently", param);
+		}finally {
+			session.close();
+		}
+		return result;
+	}
 	public int insertChatting(Map<String, Object> info){
 		int state = 0;
 		SqlSession session = sqlSessionFactory.openSession();

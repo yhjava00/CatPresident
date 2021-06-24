@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -125,5 +126,34 @@ private static final MemberDAO memberDAO = new MemberDAO();
         }
 		
 		return member;
+	}
+	public int deleteMember(String id) {
+		SqlSession session = sqlSessionFactory.openSession();
+		int state = 0;
+		try {
+			state = session.delete("member.deleteMember", id); 
+			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return state;
+	}
+	
+	public int updateProfile(Map<String, String> info) {
+		SqlSession session = sqlSessionFactory.openSession();
+		int state = 0;
+		try {
+			state = session.update("member.updateProfile", info); 
+			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return state;
 	}
 }

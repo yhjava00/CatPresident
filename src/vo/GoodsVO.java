@@ -11,6 +11,29 @@ public class GoodsVO {
 	private float result_score;
 	private int vote_num;
 	
+	private String regDate;
+	private int reviewIdx;
+	
+	public int getReviewIdx() {
+		return reviewIdx;
+	}
+
+
+	public void setReviewIdx(int reviewIdx) {
+		this.reviewIdx = reviewIdx;
+	}
+
+
+	public String getRegDate() {
+		return regDate;
+	}
+
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+
+
 	public int getIdx() {
 		return idx;
 	}
