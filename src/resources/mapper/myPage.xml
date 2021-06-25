@@ -9,7 +9,7 @@
 		from (select rownum rn,  a.*
 		        from (select o.idx, TO_CHAR(o.orderDate, 'YYYY-MM-DD') orderDate, o.status, g.idx goodsIdx, g.img goodsImg, g.name goodsName, g.price goodsPrice
 		                from orders o inner join goods g on o.goods_idx = g.idx 
-		                where o.member_id = #{id}
+		                where o.member_id = #{id} and o.status != '주문 취소'
 		                order by o.idx desc) a) 
 		where rn between (#{page}-1)*10+1 and #{page}*10
 	</select>
@@ -54,6 +54,10 @@
 	
 	<select id="selectCollection" parameterType="int" resultType="goodsCollectionVO">
 		select * from goodsCollection where idx = #{idx}
+	</select>
+	
+	<select id="selectCollectionType2" parameterType="map" resultType="goodsCollectionVO">
+		select * from goodsCollection where goods_idx = #{goodsIdx} and member_id = #{memberId} and type = #{type}
 	</select>
 	
 	<delete id="deleteCollection" parameterType="map">

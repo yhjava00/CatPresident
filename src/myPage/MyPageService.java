@@ -74,6 +74,7 @@ public class MyPageService {
 	}
 	
 	public List<GoodsVO> deleteCollection(int goodsIdx, String memberId, String type, int page) {
+		
 		int state = myPageDAO.deleteCollection(goodsIdx, memberId, type);
 
 		Map<String, Object> info = new HashMap<>();
@@ -116,6 +117,10 @@ public class MyPageService {
 	public String updateReview(ReviewVO review) {
 		
 		ReviewVO oldReview = myPageDAO.selectReview(review.getIdx());
+		
+		if(!review.getMember_id().equals(oldReview.getMember_id())) {
+			return "error";
+		}
 		
 		int state = myPageDAO.updateReview(review);
 		

@@ -144,6 +144,28 @@ public class MyPageDAO {
 		return goodsCollection;
 	}
 	
+	public GoodsCollectionVO selectCollection(int goodsIdx, String memberId, String type) {
+
+		Map<String, Object> info = new HashMap<>();
+		
+		info.put("goodsIdx", goodsIdx);
+		info.put("memberId", memberId);
+		info.put("type", type);
+		
+		SqlSession session = sqlSessionFactory.openSession();
+		GoodsCollectionVO goodsCollection = null;
+		
+		try {
+			goodsCollection = session.selectOne("myPage.selectCollectionType2", info); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return goodsCollection;
+	}
+	
 	public int deleteCollection(int goodsIdx, String memberId, String type) {
 		
 		Map<String, Object> info = new HashMap<>();

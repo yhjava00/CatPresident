@@ -9,6 +9,10 @@ public class ReviewVO {
 	String content;
 	String writedate;
 	
+	String memberName;
+
+	String memberProfile;
+	
 	public ReviewVO() {
 	}
 	
@@ -20,6 +24,20 @@ public class ReviewVO {
 		this.content = content;
 	}
 	
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+	public String getMemberProfile() {
+		return memberProfile;
+	}
+
+	public void setMemberProfile(String memberProfile) {
+		this.memberProfile = memberProfile;
+	}
 	public int getIdx() {
 		return idx;
 	}

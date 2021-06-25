@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -221,7 +222,9 @@
 			        		item += '<h3 class="b1014">'
 			        		item += '<a>' + canWriteReviewList[i].name + '</a>'
 			        		item += '</h3>'
-			        		item += '<strong class="b1015">' + canWriteReviewList[i].price + '</strong>'
+			        		var price = canWriteReviewList[i].price + ''
+			        		price = price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+			        		item += '<strong class="b1015">' + price + '</strong>'
 			        		item += '</div>'
 			        		item += '</div>'
 			        		item += '</td>'
@@ -300,7 +303,7 @@
 		                            <h3 class="b1014">
 		                                <a>${goods.name}</a>
 		                            </h3>
-		                            <strong class="b1015">${goods.price}</strong>
+		                            <strong class="b1015"><fmt:formatNumber value="${goods.price}" pattern="#,###"/></strong>
 		                        </div>
 		                    </div>
 		                </td>

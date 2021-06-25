@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -189,7 +190,7 @@
 		                <td class="b1009">
 		                    <div class="b1009-1">
 		                        <div class="b1010">
-		                            <a onclick="inProduct('${order.goods_idx}')">
+		                            <a onclick="inProduct('${order.goodsIdx}')">
 		                                <picture class="b1011">
 		                                    <img class="b1012" src="${order.goodsImg}" sizes="auto">
 		                                </picture>
@@ -199,7 +200,7 @@
 		                            <h3 class="b1014">
 		                                <a>${order.goodsName }</a>
 		                            </h3>
-		                            <strong class="b1015">${order.goodsPrice}원</strong>
+		                            <strong class="b1015"><fmt:formatNumber value="${order.goodsPrice}" pattern="#,###"/>원</strong>
 		                        </div>
 		                    </div>
 		                </td>

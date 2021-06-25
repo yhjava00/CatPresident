@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 				<c:forEach var="order" items="${orderList}">
 	            	<tr class="b1004">
 		                <td class="b1007">
@@ -22,7 +23,7 @@
 		                            <h3 class="b1014">
 		                                <a>${order.goodsName }</a>
 		                            </h3>
-		                            <strong class="b1015">${order.goodsPrice}원</strong>
+		                            <strong class="b1015"><fmt:formatNumber value="${order.goodsPrice}" pattern="#,###"/>원</strong>
 		                        </div>
 		                    </div>
 		                </td>
