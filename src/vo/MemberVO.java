@@ -8,19 +8,6 @@ public class MemberVO {
 	private String phone;
 	private String joindate;
 	private String profile;
-	
-	public String getJoindate() {
-		return joindate;
-	}
-	public void setJoindate(String joindate) {
-		this.joindate = joindate;
-	}
-	public String getProfile() {
-		return profile;
-	}
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
 	public String getId() {
 		return id;
 	}
@@ -45,10 +32,17 @@ public class MemberVO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getjoinDate() {
+	public String getJoindate() {
 		return joindate;
 	}
-	public void setjoinDate(String joindate) {
-		this.joindate=joindate;
+	public void setJoindate(String joindate) {
+		this.joindate = joindate;
 	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	
 }

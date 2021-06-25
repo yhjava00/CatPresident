@@ -52,8 +52,8 @@
         <button class="a5010 a5011 " tabindex="0" aria-disabled="false" onclick="changeContent('Sign_upForm.member')" id="sign_button"><span class="MuiButton-label">회원가입</span><span class="MuiTouchRipple-root"></span></button>
         <div class="a5012">
             <div role="group" class="MuiButtonGroup-root" aria-label="login Help">
-                <a onclick="changeContent('search_id.member')" class="MuiButtonBase-root MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary" tabindex="0" aria-disabled="false"  style="border-radius: 0px;">아이디 찾기<span class="MuiTouchRipple-root"></span></a>
-                <a onclick="changeContent('search_pw.member')" class="MuiButtonBase-root MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary" tabindex="0" aria-disabled="false"  style="border-radius: 0px;">비밀번호 찾기<span class="MuiTouchRipple-root"></span></a>                
+                <a onclick="changeContent('search_idForm.member')" class="MuiButtonBase-root MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary" tabindex="0" aria-disabled="false"  style="border-radius: 0px;">아이디 찾기<span class="MuiTouchRipple-root"></span></a>
+                <a onclick="changeContent('search_pwForm.member')" class="MuiButtonBase-root MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedText MuiButtonGroup-groupedTextHorizontal MuiButtonGroup-groupedTextPrimary" tabindex="0" aria-disabled="false"  style="border-radius: 0px;">비밀번호 찾기<span class="MuiTouchRipple-root"></span></a>                
             </div>
         </div>
     </div>

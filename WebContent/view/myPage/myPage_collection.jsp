@@ -223,63 +223,92 @@
 	            pointer-events: none;
 	        }
 	
-	        /* 페이징 */
-	        .jss1025 {
-	            padding: 75px 0 25px;
-	            margin: 0;
-	            display: flex;
-	            list-style: none;
-	            justify-content: center;
-	            background-color: #fff;
-	        }
-	        .jss1025 button {
-	            height: 48px;
-	            min-width: 48px;
-	            margin: 0 2px;
-	            padding: 0 10px;
-	            font-size: 1.1rem;
-	            border-radius: 8px; 
-	            transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-	            color: rgba(0, 0, 0, 1);
-	            box-sizing: border-box;
-	            text-align: center;
-	            font-family: Noto Sans KR,sans-serif;
-	            font-weight: 400;
-	            line-height: 1.43;
-	            border: 0;
-	            cursor: pointer;
-	            display: inline-flex;
-	            outline: 0;
-	            position: relative;
-	            align-items: center;
-	            user-select: none;
-	            vertical-align: middle;
-	            justify-content: center;
-	            text-decoration: none;
-	            background-color: transparent;
-	            -webkit-appearance: none;
-	            -webkit-tap-highlight-color: transparent;   
-	        }
-	        .jss1025 svg {
-	            width: 16px;
-	            height: 16px;
-	            fill: currentColor;
-	            display: inline-block;
-	            font-size: 2.4rem;
-	            transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-	            flex-shrink: 0;
-	            user-select: none;
-	        }
-	        .jss1026 {
-	            font-weight: 700 !important;
-	            font-size: 1.3rem !important;
-	        }
-	        /* 페이징 */
 	    </style>
 	    <script type="text/javascript">
 	    	$(document).ready(function() {
 	    		setBtnEvent()
 	    	})
+	    	
+	    	
+			var canMore = true
+			var page = 1
+		
+			$(document).ready(function() {
+				$(window).scroll(function(){
+
+					if(canMore&&$(window).scrollTop() > ($('body').height()-1000)) {
+						canMore = false						
+						readMore()
+					}
+
+				})
+				setBtnEvent()
+			})
+			
+			function readMore() {
+	    		
+	    		var type = '${collection}'
+	    		
+				page++
+				$.ajax({
+					url: 'moreCollection.myPage',
+			        data: {'page':page, 'type':type},
+					async : true,
+					type : 'post',
+					dataType : 'html',
+					cache: false
+				}).done(function (data) {
+					
+			        $('.jss1012').append(data)
+			        	
+		        	setBtnEvent()
+		        	
+				})
+				
+			}
+	    	
+	    	function delCollection(idx) {
+	    		var type = '${collection}'
+    			$.ajax({
+					url: 'delCollection.myPage',
+			        data: {'goodsIdx':idx, 'type':type, 'page':page},
+					async : true,
+					type : 'post',
+					dataType : 'html',
+					cache: false
+				}).done(function (data) {
+
+		        	$('#collectionId_' + idx).remove()
+		        	
+			        $('.jss1012').append(data)
+			        	
+		        	setBtnEvent()
+		        	
+		        	switch (type) {
+					case 'often_seen':
+						var collectionCount = $('#oftenSeenCount').text() * 1
+						$('#oftenSeenCount').text(--collectionCount)
+						if(collectionCount===0) 
+							changeView('often_seen.myPage')
+		        	break;
+					case 'like':
+						var collectionCount = $('#likeCount').text() * 1
+						$('#likeCount').text(--collectionCount)							
+						if(collectionCount===0) 
+							changeView('like.myPage')
+						break;
+					case 'recently':
+						var collectionCount = $('#recentlyCount').text() * 1
+						$('#recentlyCount').text(--collectionCount)
+						if(collectionCount===0) 
+							changeView('recently_viewed.myPage')
+						break;
+					}
+		        	
+				})
+	    		
+	    	}
+	    	
 	    </script>
 		<title>Insert title here</title>
 	</head>
@@ -292,11 +321,10 @@
 				<c:when test="${collection == 'like'}">
 			        <h2>관심</h2>
 				</c:when>
-				<c:when test="${collection == 'recently_viewed'}">
+				<c:when test="${collection == 'recently'}">
 			        <h2>최근본</h2>
 				</c:when>
 			</c:choose>
-	        <div class="jss1009">0개의 상품</div>
 	        <c:if test="${empty collectionList}">
 	        	<c:choose>
 					<c:when test="${collection == 'often_seen'}">
@@ -311,7 +339,7 @@
 	            			관심 상품이 없습니다.
 						</div>
 					</c:when>
-					<c:when test="${collection == 'recently_viewed'}">
+					<c:when test="${collection == 'recently'}">
 				        <div class="jss1010">
 	            			<span class="jss1011"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M17.618 5.968l1.453-1.453 1.414 1.414-1.453 1.453c2.981 3.731 2.528 9.142-1.032 12.326-3.56 3.184-8.986 3.033-12.364-.344C2.26 15.986 2.108 10.559 5.292 7c3.184-3.56 8.595-4.013 12.326-1.032zM12 20c2.5 0 4.812-1.334 6.062-3.5s1.25-4.834 0-7C16.812 7.334 14.501 6 12 6c-3.866 0-7 3.134-7 7s3.134 7 7 7zM11 8h2v6h-2V8zM8 1h8v2H8V1z"></path></svg></span>
 	            			최근 본 상품이 없습니다.
@@ -321,9 +349,9 @@
 	        </c:if>
 	        <ul class="jss1012">
 	        	<c:forEach var="goods" items="${collectionList}">
-	        		<li>
+	        		<li id="collectionId_${goods.idx}">
 		                <div>
-		                    <div class="jss1013">
+		                    <div class="jss1013" onclick="inProduct('${goods.idx}')">
 		                        <img src="${goods.img}" width="110" height="110">
 		                    </div>
 		                    <div class="jss1014">
@@ -333,76 +361,54 @@
 		                                <strong><fmt:formatNumber value="${goods.price}" pattern="#,###"/></strong>
 		                            </div>
 		                            <!-- 별점 시작 -->
-		                            <div class="jss1017">
-		                                <span class="jss1018">
-		                                    <span class="MuiRating-root jss1020 MuiRating-readOnly" role="img" aria-label="5 Stars">
-		                                        <span class="MuiRating-decimal">
-		                                            <span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;">
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                            <span>
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                        </span>
-		                                        <span class="MuiRating-decimal">
-		                                            <span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;">
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                            <span>
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                        </span>
-		                                        <span class="MuiRating-decimal">
-		                                            <span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;">
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                            <span>
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                        </span>
-		                                        <span class="MuiRating-decimal">
-		                                            <span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;">
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                            <span>
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                        </span>
-		                                        <span class="MuiRating-decimal">
-		                                            <span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;">
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                            <span>
-		                                                <span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
-		                                                    <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg>
-		                                                </span>
-		                                            </span>
-		                                        </span>
-		                                    </span>
-		                                </span>
-		                                <span>(4)</span>
-		                            </div>
-		                            <!-- 별점 끝 -->
+									<div class="jss1017">
+										<div class="jss1017">
+											<span class="jss1018"> <span
+												class="MuiRating-root jss1020 MuiRating-readOnly"
+												role="img" aria-label="5 Stars">
+												<c:forEach var = "num" begin = "1" end = "5"> 
+												<span
+													class="MuiRating-decimal">
+													<!-- 별점 보라색 영역 -->
+													<c:choose>
+														<c:when test="${goods.result_score >= num }"><c:set var = "score" value = "100"></c:set></c:when>
+														<c:when test="${num - goods.result_score > 0.5 && num - goods.result_score < 1}"><c:set var = "score" value = "100"></c:set></c:when>
+														<c:when test="${num - goods.result_score <= 0.5 && num - goods.result_score > 0}"><c:set var = "score" value = "50"></c:set></c:when>
+														<c:when test="${num - goods.result_score >= 1}"><c:set var = "score" value = "0"></c:set></c:when>
+													</c:choose> 
+													<span style="width: ${score}%; overflow: hidden; z-index: 1; position: absolute;">
+															<span class="MuiRating-icon jss1019 MuiRating-iconFilled jss1021">
+																<svg class="MuiSvgIcon-root" focusable="false"
+																	viewBox="0 0 48 48" aria-hidden="true"
+																	role="img">
+                                                                                   <path
+																		fill="#c4c4c6" fill-rule="evenodd"
+																		d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
+                                                                               </svg>
+														</span>
+													</span> <span>
+													<!-- 별점 회색 영역 --> 
+													<span class="MuiRating-icon jss1019 MuiRating-iconFilled jss10210"> 
+																<svg class="MuiSvgIcon-root" focusable="false"
+																	viewBox="0 0 48 48" aria-hidden="true"
+																	role="img">
+                                                                                   <path
+																		fill="#c4c4c6" fill-rule="evenodd"
+																		d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
+                                                                               </svg>
+														</span>
+													</span>
+												</span>
+												</c:forEach> 
+											</span>
+											</span>
+											
+										</div class="jss1017">
+										<span class="b3999">(${goods.vote_num})</span>
+									</div>
+									<!-- 별점 끝 -->
 		                            <div class="jss1022">
-		                                <button class="jss1023 buttonG" tabindex="0" type="button">
+		                                <button onclick="delCollection('${goods.idx}')" class="jss1023 buttonG" tabindex="0" type="button">
 		                                    <span class="MuiButton-label">삭제</span>
 		                                    <span class="MuiTouchRipple-root"></span>
 		                                </button>
@@ -418,32 +424,7 @@
 	        	</c:forEach>
 	            
 	        </ul>
-	        <!-- 페이징 -->
-	        <nav>
-	            <ul class="jss1025">
-	                <li>
-	                    <button tabindex="0" type="button" aria-current="true">
-	                        <span>
-	                            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z"></path></svg>
-	                        </span>
-	                    </button>
-	                </li>
-	                <li>
-	                    <button tabindex="0" type="button" aria-current="true">1</button>
-	                </li>
-	                <li>
-	                    <button class="jss1026" tabindex="0" type="button" aria-current="true">2</button>
-	                </li>
-	                <li>
-	                    <button tabindex="0" type="button" aria-current="true">
-	                        <span class="MuiButton-label">
-	                            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
-	                        </span>
-	                    </button>
-	                </li>
-	            </ul>
-	        </nav>
-	        <!-- 페이징 -->
+	        
 	    </div>
 	</body>
 </html>

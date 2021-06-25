@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<<c:set var="review" value="${info.review}"/>
-<<c:set var="goods" value="${info.goods}"/>
+<c:set var="review" value="${info.review}"/>
+<c:set var="goods" value="${info.goods}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -477,12 +477,13 @@
 	        		return;
 	        	}
 	        	
+	        	var goodsIdx = ${goods.idx}
 	        	var reviewIdx = ${review.idx}
 	        	
 	    		$.ajax({
 					type: 'post', 
 					url: 'updateReview.myPage', 
-				 	data: {'idx':reviewIdx, 'title': title, 'content':content, 'star': star},
+				 	data: {'goodsIdx':goodsIdx, 'idx':reviewIdx, 'title': title, 'content':content, 'star': star},
 					success:function (data) {
 						
 						if(data==='error') {
@@ -507,7 +508,7 @@
 					<ul class="b1024" aria-label="customized table">
 						<li class="b1025">
 							<div class="b1026">
-								<div class="b1027">
+								<div class="b1027" onclick="inProduct('${goods.idx}')">
 									<picture style="display: inline;">
 									<img class="b1028"
 										src="${goods.img}"

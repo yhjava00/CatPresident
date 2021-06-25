@@ -33,4 +33,15 @@
  		update member set profile = #{profile} where id = #{id}
  	</update>
  	
+ 	 <select id="checkPhone" parameterType="String" resultType="String">
+ 		select phone from member where phone=#{phone}
+ 	</select>
+ 
+ 	<update id="changePw" parameterType="map">
+ 		update member set pw=#{changePw} where id=#{id}
+ 	</update>
+ 	
+ 	<select id="search_id_rs" parameterType="hashMap" resultType="memberVO">
+ 		select id,TO_CHAR(joindate, 'YYYY/MM/DD') as joindate from member where name=#{name} and phone=#{phone}
+ 	</select>
 </mapper>

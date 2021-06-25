@@ -1,10 +1,6 @@
 
 
-    var n=0;
-    var scrollValue;
-    $(window).scroll(function () {
-        scrollValue = $(document).scrollTop(); 
-        });
+    
     
         $(document).ready(function() {
             $('#category').hover(function() {
@@ -57,27 +53,34 @@
         });
     
 
-
-
+        var n=0;
+        var scrollValue;
+        
         var lastScrollTop = 0,
-            delta = 15;
-        $(window).scroll(function() {
-            var scrollTop = $(this).scrollTop() 
-            if (Math.abs(lastScrollTop - scrollTop) <= delta) 
-                return; 
+        delta = 15;
+        
+        function setHeaderEvent() {
+        	$(window).scroll(function () {
+                scrollValue = $(document).scrollTop(); 
+                });
+            $(window).scroll(function() {
+                var scrollTop = $(this).scrollTop() 
+                if (Math.abs(lastScrollTop - scrollTop) <= delta) 
+                    return; 
 
-            if ((scrollTop > lastScrollTop) && (lastScrollTop > 0)) {
-                if(n==0){
-                $(".a2032").css("top", "-10px");
-                $(".a2032").css("z-index", "10");
+                if ((scrollTop > lastScrollTop) && (lastScrollTop > 0)) {
+                    if(n==0){
+                    $(".a2032").css("top", "-10px");
+                    $(".a2032").css("z-index", "10");
 
-                }else{
-                
+                    }else{
+                    
+                    }
+                } else {
+                    $(".a2032").css("top", "80px");
+
                 }
-            } else {
-                $(".a2032").css("top", "80px");
-
-            }
-            lastScrollTop = scrollTop;
-        });
+                lastScrollTop = scrollTop;
+            });
+        }
     

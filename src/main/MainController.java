@@ -46,10 +46,9 @@ public class MainController extends HttpServlet {
 			int idx = Integer.parseInt(request.getParameter("idx"));
 			param.put("idx", idx);
 			param.put("id", id);
-			request.setAttribute("detailsMap", mainService.details(param,idx));
-			request.setAttribute("idx", param.get("idx"));
+			request.setAttribute("detailsMap", mainService.details(param));
+			request.setAttribute("idx", idx);
 			mainService.recently(param); //최근 본 추가
-
 			nextPage = "product.jsp";
 		}
 			break;

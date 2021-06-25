@@ -38,34 +38,17 @@
                                     </svg></span></span></span></a><span class="a2017">
                         <div>
                             <div class="a2047-root a2048 a2047-outlined">
-                            	<c:choose>
-                                	<c:when test="${empty loginUser}">
-                                		<div class="a2056"><a class="a2003-root a2059-root a2059-contained a2058 undefined a2057 a2059-containedPrimary a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="changeContent('loginForm.member')" class="a2059-label">로그인</span><span class="a2060-root"></span></a><a class="a2003-root a2059-root a2059-outlined a2058 a2061 a2057 a2059-colorInherit a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="changeContent('Sign_upForm.member')" class="a2059-label">회원가입</span><span class="a2060-root"></span></a></div>
-                                	</c:when>
-                                	<c:otherwise>
-                                		<ul class="a2049-root a2051 a2049-padding" role="menu" tabindex="-1">
-		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="0" role="menuitem" aria-disabled="false"><a href="/my-page/recently-viewed">최근본<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-		                                            </svg></a><span class="a2060-root"></span></li>
-		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/orders">배송조회<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-		                                            </svg></a><span class="a2060-root"></span></li>
-		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/cancel">주문취소<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-		                                            </svg></a><span class="a2060-root"></span></li>
-		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/exchange">교환하기<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-		                                            </svg></a><span class="a2060-root"></span></li>
-		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a href="/my-page/refund">반품하기<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-		                                            </svg></a><span class="a2060-root"></span></li>
-		                                    <li class="a2003-root a2050-root MuiMenuItem-root a2052 a2050-button" tabindex="-1" role="menuitem" aria-disabled="false"><a onclick="logout()">로그아웃<svg class="a2002-root a2053" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-		                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-		                                            </svg></a><span class="a2060-root"></span></li>
-		                                </ul>
-                                	</c:otherwise>
-                                </c:choose>
-                                
+                             	<div class="a2056">
+                            		<c:choose>
+                                		<c:when test="${empty loginUser}">
+                                			<a class="a2003-root a2059-root a2059-contained a2058 undefined a2057 a2059-containedPrimary a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="changeContent('loginForm.member')" class="a2059-label">로그인</span><span class="a2060-root"></span></a>
+                                			<a class="a2003-root a2059-root a2059-outlined a2058 a2061 a2057 a2059-colorInherit a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="changeContent('Sign_upForm.member')" class="a2059-label">회원가입</span><span class="a2060-root"></span></a>
+                                		</c:when>
+                                		<c:otherwise>
+                                			<a class="a2003-root a2059-root a2059-contained a2058 undefined a2057 a2059-containedPrimary a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="logout()" class="a2059-label">로그아웃</span><span class="a2060-root"></span></a>
+                                		</c:otherwise>
+                                	</c:choose>
+                                </div>
                             </div>
                         </div>
                     </span></span>

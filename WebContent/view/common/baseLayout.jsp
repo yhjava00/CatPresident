@@ -15,6 +15,8 @@
 		
 			function changeContent(path) {
 				$(window).unbind()
+				setHeaderEvent()
+				$('html').scrollTop(0)
 				$.ajax({
 					url: path,
 					async : true,
@@ -27,6 +29,7 @@
 			}
 
 			function inProduct(idx) {
+				$('html').scrollTop(0)
 				$(window).unbind()
 				$.ajax({
 					url: 'product.main',
@@ -42,6 +45,7 @@
 			}
 			
 			function outProduct(path) {
+				$('html').scrollTop(0);
 				$(window).unbind()
 				$.ajax({
 					url: 'header.main',
@@ -78,6 +82,8 @@
 	        
 			function search(page,keyword){ 	
 				$(window).unbind()
+				setHeaderEvent()
+				$('html').scrollTop(0)
 	        	var keyword = keyword;
 	        	var page = page;	        	
 	        	

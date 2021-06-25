@@ -156,4 +156,50 @@ private static final MemberDAO memberDAO = new MemberDAO();
 		
 		return state;
 	}
+	public int checkPhone(String phone) {
+		List<String> list=null;
+		int result=1;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			String phone2= session.selectOne("member.checkPhone", phone);
+			if(phone2.equals(phone)) {
+				return -1;
+			}else {
+				return 1;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return result;
+	}
+	public void changePw(String changePw, String id) {
+		HashMap map=new HashMap();
+		map.put("changePw", changePw);
+		map.put("id", id);
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			session.update("member.changePw",map);
+			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public MemberVO search_id_rs(String name,String phone) {
+		MemberVO mVo=new MemberVO();
+		SqlSession session = sqlSessionFactory.openSession();
+		HashMap map=new HashMap();
+		map.put("name", name);
+		map.put("phone", phone);
+		try {
+			mVo=session.selectOne("member.search_id_rs", map);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return mVo;
+	}
 }

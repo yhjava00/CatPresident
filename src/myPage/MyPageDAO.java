@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import vo.GoodsCollectionVO;
 import vo.GoodsVO;
+import vo.OrderVO;
 import vo.ReviewVO;
 
 public class MyPageDAO {
@@ -34,6 +35,21 @@ public class MyPageDAO {
 	
 	public static MyPageDAO getMyPageDAO() {
 		return myPageDAO;
+	}
+	
+	public List<OrderVO> selectOrderList(Map<String, Object> info) {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<OrderVO> orderList = null;
+		
+		try {
+			orderList = session.selectList("myPage.selectOrderList", info); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+            session.close();
+        }
+		
+		return orderList;
 	}
 
 	public int totCollection(String id, String type) {
@@ -83,6 +99,21 @@ public class MyPageDAO {
 		return collectionList;
 	}
 	
+	public List<GoodsVO> delAfterFoundCollection(Map<String, Object> info) {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<GoodsVO> collectionList = null;
+		
+		try {
+			collectionList = session.selectList("myPage.delAfterFoundCollection", info); 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return collectionList;
+	}
+	
 	public List<GoodsVO> selectMyReviewList(Map<String, Object> info) {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<GoodsVO> collectionList = null;
@@ -113,12 +144,19 @@ public class MyPageDAO {
 		return goodsCollection;
 	}
 	
-	public int deleteCollection(int idx) {
+	public int deleteCollection(int goodsIdx, String memberId, String type) {
+		
+		Map<String, Object> info = new HashMap<>();
+		
+		info.put("goodsIdx", goodsIdx);
+		info.put("memberId", memberId);
+		info.put("type", type);
+		
 		SqlSession session = sqlSessionFactory.openSession();
 		int state = 0;
 		
 		try {
-			state = session.delete("myPage.deleteCollection", idx);
+			state = session.delete("myPage.deleteCollection", info);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,6 +172,34 @@ public class MyPageDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			state = session.insert("myPage.insertReview", vo);
+			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return state;
+	}
+	
+	public int updateGoodsStar(ReviewVO vo) {
+		int state = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			state = session.update("myPage.updateGoodsStar", vo);
+			session.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return state;
+	}
+	
+	public int updateGoodsStarOnly(ReviewVO vo) {
+		int state = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			state = session.update("myPage.updateGoodsStarOnly", vo);
 			session.commit();
 		}catch(Exception e) {
 			e.printStackTrace();

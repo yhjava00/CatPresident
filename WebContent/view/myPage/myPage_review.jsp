@@ -512,7 +512,7 @@
 					<ul class="b1024" aria-label="customized table">
 						<li class="b1025">
 							<div class="b1026">
-								<div class="b1027">
+								<div class="b1027" onclick="inProduct('${goods.idx}')">
 									<picture style="display: inline;">
 									<img class="b1028"
 										src="${goods.img}"

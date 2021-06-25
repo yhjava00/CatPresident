@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
 import com.oreilly.servlet.MultipartFilter;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -96,7 +98,41 @@ public class MemberController extends HttpServlet {
 			out.println(fileName);
 			out.close();
 			return;
+		case "/checkPhone" :
+			String userPhone=request.getParameter("user_phone");
+			int rs=memberService.checkPhone(userPhone);
+			response.getWriter().write(rs+"");
+			return;
+		case "/search_idForm" :
+			nextPage = "member/search_id.jsp";
+			break;
+		case "/search_id" :
+			String name=request.getParameter("name");
+			String phone=request.getParameter("phone");
+			MemberVO mVo2=memberService.search_id_rs(name, phone);
 			
+			JSONObject json = new JSONObject();
+			
+			json.put("id", mVo2.getId());
+			json.put("joindate", mVo2.getJoindate());
+			
+			try {
+				response.getWriter().write(json.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		case "/search_id_rs" :
+			nextPage = "member/search_id_rs.jsp";
+			break;
+		case "/search_pwForm" :
+			nextPage="member/search_pw.jsp";
+			break;
+		case "/search_pw_rs" :
+			String searchPw_id=request.getParameter("id");
+			int searchPw=memberService.changePw(searchPw_id);
+			response.getWriter().write(searchPw+"");
+			return;
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/" + nextPage);

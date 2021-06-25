@@ -10,6 +10,7 @@ import member.MemberDAO;
 import vo.GoodsCollectionVO;
 import vo.GoodsVO;
 import vo.MemberVO;
+import vo.OrderVO;
 import vo.ReviewVO;
 
 public class MyPageService {
@@ -28,6 +29,15 @@ public class MyPageService {
 	
 	public static MyPageService getMyPageService() {
 		return myPageService;
+	}
+	
+	public List<OrderVO> getOrderList(String id, int page) {
+		Map<String, Object> info = new HashMap<>();
+		
+		info.put("id", id);
+		info.put("page", page);
+		
+		return myPageDAO.selectOrderList(info);
 	}
 	
 	public Map<String, Object> myPageInfo(String id) {
@@ -63,6 +73,18 @@ public class MyPageService {
 		return myPageDAO.selectCollectionList(info);
 	}
 	
+	public List<GoodsVO> deleteCollection(int goodsIdx, String memberId, String type, int page) {
+		int state = myPageDAO.deleteCollection(goodsIdx, memberId, type);
+
+		Map<String, Object> info = new HashMap<>();
+		
+		info.put("id", memberId);
+		info.put("page", page);
+		info.put("type", type);
+		
+		return myPageDAO.delAfterFoundCollection(info);
+	}
+	
 	public List<GoodsVO> getWriteReviewList(String id, int page) {
 
 		Map<String, Object> info = new HashMap<>();
@@ -86,13 +108,22 @@ public class MyPageService {
 			return "error";
 		}
 		
-		myPageDAO.deleteCollection(reviewIdx);
-		
+		myPageDAO.deleteCollection(vo.getGoods_idx(), vo.getMember_id(), "review");
+		myPageDAO.updateGoodsStar(vo);
 		return "success";
 	}
 	
 	public String updateReview(ReviewVO review) {
+		
+		ReviewVO oldReview = myPageDAO.selectReview(review.getIdx());
+		
 		int state = myPageDAO.updateReview(review);
+		
+		int newStar = review.getStar() - oldReview.getStar();
+		
+		review.setStar(newStar);
+		
+		myPageDAO.updateGoodsStarOnly(review);
 		
 		if (state == 0) {
 			return "error";

@@ -2,7 +2,6 @@ package myPage;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +19,7 @@ import main.MainService;
 import member.MemberService;
 import vo.GoodsVO;
 import vo.MemberVO;
+import vo.OrderVO;
 import vo.ReviewVO;
 
 @WebServlet("*.myPage")
@@ -169,15 +169,55 @@ public class MyPageController extends HttpServlet {
 		{
 			int page = 1;
 			
-			List<GoodsVO> collectionList = myPageService.getCollectionList(id, page, "recently_viewed");
+			List<GoodsVO> collectionList = myPageService.getCollectionList(id, page, "recently");
 			
-			request.setAttribute("collection", "recently_viewed");
+			request.setAttribute("collection", "recently");
 			request.setAttribute("collectionList", collectionList);
 			nextPage = "myPage/myPage_collection.jsp";
 		}
 			break;
+		case "/moreCollection":
+		{
+			int page = Integer.parseInt(request.getParameter("page"));
+			String type = request.getParameter("type");
+			
+			List<GoodsVO> collectionList = myPageService.getCollectionList(id, page, type);
+			
+			request.setAttribute("collectionList", collectionList);
+			nextPage = "myPage/myPage_collection_more.jsp";
+		}
+		break;
+		case "/delCollection":
+		{
+			int page = Integer.parseInt(request.getParameter("page"));
+			int goodsIdx = Integer.parseInt(request.getParameter("goodsIdx"));
+			String type = request.getParameter("type");
+			
+			List<GoodsVO> collectionList = myPageService.deleteCollection(goodsIdx, id, type, page);
+			
+			request.setAttribute("collectionList", collectionList);
+			nextPage = "myPage/myPage_collection_more.jsp";
+		}
+		break;
 		case "/orders":
+		{
 			nextPage = "myPage/myPage_orders.jsp";
+			
+			int page = 1;
+			
+			List<OrderVO> orderList = myPageService.getOrderList(id, page);
+			
+			request.setAttribute("orderList", orderList);
+		}
+			break;
+		case "/moreOrders":
+			nextPage = "myPage/myPage_orders_more.jsp";
+			
+			int page = Integer.parseInt(request.getParameter("page"));
+			
+			List<OrderVO> orderList = myPageService.getOrderList(id, page);
+			
+			request.setAttribute("orderList", orderList);
 			break;
 		case "/reviewWriteForm":
 		{
@@ -228,11 +268,12 @@ public class MyPageController extends HttpServlet {
 		case "/updateReview":
 		{
 			int idx = Integer.parseInt(request.getParameter("idx"));
+			int goodsIdx = Integer.parseInt(request.getParameter("goodsIdx")); 
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			int star = Integer.parseInt(request.getParameter("star"));
 			
-			ReviewVO review = new ReviewVO(idx, id, star, title, content);
+			ReviewVO review = new ReviewVO(goodsIdx, id, star, title, content);
 
 			review.setIdx(idx);
 			

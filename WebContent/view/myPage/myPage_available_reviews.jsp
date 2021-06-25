@@ -211,7 +211,7 @@
 			        		item += '<td class="b1009">'
 			        		item += '<div class="b1009-1">'
 			        		item += '<div class="b1010">'
-			        		item += '<a>'
+			        		item += '<a style="cursor: pointer;" onclick="inProduct(\'' + canWriteReviewList[i].idx + '\')">'
 			        		item += '<picture class="b1011">'
 			        		item += '<img class="b1012" src="' + canWriteReviewList[i].img + '" sizes="auto">'
 			        		item += '</picture>'
@@ -290,7 +290,7 @@
 		                <td class="b1009">
 		                    <div class="b1009-1">
 		                        <div class="b1010">
-		                            <a href="#">
+		                            <a style="cursor: pointer;" onclick="inProduct('${goods.idx}')">
 		                                <picture class="b1011">
 		                                    <img class="b1012" src="${goods.img}" sizes="auto">
 		                                </picture>

@@ -42,12 +42,12 @@ public class MainService {
 		return info;
 	}
 	
-	public Map<String , Object> details(Map param ,int idx){// 상품 상세
+	public Map<String , Object> details(Map param){// 상품 상세
 		
 		Map<String, Object> info = new HashMap<String, Object>();
 		
 		List<GoodsDetailsVO> detail = mainDAO.goodsDetails(param);
-		List<String> imgList = mainDAO.goodsImgList(idx);
+		List<String> imgList = mainDAO.goodsImgList((Integer)param.get("idx"));
 		info.put("details", detail);
 		info.put("imgList", imgList);
 		
