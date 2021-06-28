@@ -72,12 +72,12 @@ public class MainDAO {
 		return list;
 	}
 	
-	public List<GoodsVO> mainRankList(int idx) {// 랭킹 9가지 상품 임의로 뿌림
+	public List<GoodsVO> mainRankList() {// 랭킹 : 판매량 순으로 9개 메인에 뿌림
 		List<GoodsVO> list = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		try {
-			list = session.selectList("main.goodsRank",idx);
+			list = session.selectList("main.goodsRank");
 		}finally {
 			session.close();
 		}
@@ -170,6 +170,42 @@ public class MainDAO {
 		}
 		return result;
 	}
+	
+	public List<GoodsVO> descList(Map param) { //
+		List<GoodsVO> list = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try {
+			list = session.selectList("main.selectSearchDesc",param);
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+	
+	public int allGoodsCount() { //
+		int count;
+		SqlSession session = sqlSessionFactory.openSession();		
+		try {
+			 count = session.selectOne("main.selectAllGoodsCount");
+		}finally {
+			session.close();
+		}
+		return count;		
+	}
+
+	public List<ReviewVO> ReviewInProduct(int goods_idx) {	//////	
+		List<ReviewVO> list = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try {
+			list = session.selectList("main.selectReviewInProduct",goods_idx);
+		}finally {
+			session.close();
+		}	
+		return list;
+	}
+	
 	public int insertChatting(Map<String, Object> info){
 		int state = 0;
 		SqlSession session = sqlSessionFactory.openSession();

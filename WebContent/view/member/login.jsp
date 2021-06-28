@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" href="resources/member/css/login.css">
 <script src="https://code.jquery.com/jquery-1.11.3.js" type="text/javascript"></script>
 <script src="resources/member/js/login.js"></script>
+<link rel="stylesheet" href="resources/member/css/login.css">
 </head>
 <body>
     <div class="a5001">
@@ -32,7 +32,7 @@
                     <label class="a5008">
                         <span id="login_checkbox"class="jss361" aria-disabled="false">
                             <span class="MuiIconButton-label">
-                                <input class="a5009" name="rememberMe" type="checkbox"  value="1" checked>
+                                <input class="a5009" id="rememberMe"name="rememberMe" type="checkbox"  checked onclick="checkbox()">
                                 <svg class="MuiSvgIcon-root" focusable="false" viewbox="0 0 24 24" aria-hidden="true" role="img">
                                     <g fill="none" fill-rule="evenodd">
                                         <path class="a5013" fill="#FF5152"  d="M2 12c0 5.5 4.5 10 10 10s10-4.5 10-10S17.5 2 12 2 2 6.5 2 12z"></path>

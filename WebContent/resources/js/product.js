@@ -190,7 +190,16 @@
             });
 
             
-            var price = $('#price').text();
+            
+            function priceToString(price) {
+                return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            }
+            
+            var price = $('#hiddenPrice').text();
+//            $('price').text(priceToString($('price').text()));
+//            $('price1').text(priceToString($('price1').text()));
+                                                                  
+            
             $('#down_button').click(function(){
                 var amount = $('#amount').attr("value");
                 if(amount > 1){
@@ -199,8 +208,9 @@
                     $('#amount').val(amount);
                     $('#amount1').attr("value",amount);
                     $('#amount1').val(amount);
-                    $('#price').text(amount*price);
-                    $('#price1').text(amount*price);
+                    $('#hiddenPrice').text(amount*price);
+                    $('#price').text(priceToString(amount*price));
+                    $('#price1').text(priceToString(amount*price));
                 }else{
                     return;
                 }
@@ -215,8 +225,9 @@
                     $('#amount').val(amount);
                     $('#amount1').attr("value",amount);
                     $('#amount1').val(amount);
-                    $('#price').text(amount*price);
-                    $('#price1').text(amount*price);
+                    $('#hiddenPrice').text(amount*price);
+                    $('#price').text(priceToString(amount*price));
+                    $('#price1').text(priceToString(amount*price));
                 }else{
                     max_amount();
                     return;
@@ -232,8 +243,9 @@
                     $('#amount').val(amount);
                     $('#amount1').attr("value",amount);
                     $('#amount1').val(amount);
-                    $('#price').text(amount*price);
-                    $('#price1').text(amount*price);
+                    $('#hiddenPrice').text(amount*price);
+                    $('#price').text(priceToString(amount*price));
+                    $('#price1').text(priceToString(amount*price));
                 }else{
                     return;
                 }
@@ -248,8 +260,9 @@
                     $('#amount').val(amount);
                     $('#amount1').attr("value",amount);
                     $('#amount1').val(amount);
-                    $('#price').text(amount*price);
-                    $('#price1').text(amount*price);
+                    $('#hiddenPrice').text(amount*price);
+                    $('#price').text(priceToString(amount*price));
+                    $('#price1').text(priceToString(amount*price));
                 }else{
                     max_amount();
                     return;
@@ -269,11 +282,12 @@
                 $('#amount').val(amount);
                 $('#amount1').attr("value",amount);
                 $('#amount1').val(amount);
-                $('#price').text(amount*price);
-                $('#price1').text(amount*price);
+                $('#hiddenPrice').text(amount*price);
+                $('#price').text(priceToString(amount*price));
+                $('#price1').text(priceToString(amount*price));
                 
             });
-
+//
             $('#amount1').keyup(function(e){
                 var amount = $('#amount1').val();
                 if(amount > 99){
@@ -287,8 +301,9 @@
                 $('#amount').val(amount);
                 $('#amount1').attr("value",amount);
                 $('#amount1').val(amount);
-                $('#price').text(amount*price);
-                $('#price1').text(amount*price);            
+                $('#hiddenPrice').text(amount*price);
+                $('#price').text(priceToString(amount*price));
+                $('#price1').text(priceToString(amount*price));
             });
 
             function max_amount(){
@@ -298,6 +313,8 @@
             function min_amount(){
                 $('#min_amount').css("display" , "");
             }
+            
+           
 
 
             $('#max_amount_confirm_button').click(function(){

@@ -17,9 +17,9 @@
  		select goods.* from (select rownum rnum, g2.* from (select g1.idx ,g1.name,g1.img ,g1.price, g1.quantity, g1.category, round((g1.score/g1.vote_num),1) result_score, g1.vote_num  from goods g1 order by vote_num desc) g2) goods where rnum between 1 and 6
  	</select>
  	
- 	<select id="goodsRank" parameterType="int" resultType="goodsVO">
- 		select idx, img, name, price, round((score/vote_num),1) result_score, vote_num from goods where idx between #{idx} and #{idx}+8
- 	</select>
+ 	<select id="goodsRank" resultType="goodsVO">
+ 		select goods.* from (select rownum rnum, g2.* from (select g1.idx ,g1.name,g1.img ,g1.price, g1.quantity, g1.category, round((g1.score/g1.vote_num),1) result_score, g1.vote_num  from goods g1 order by quantity desc) g2) goods where rnum between 1 and 9
+ 	</select> 
  	
  	<select id="goodsDetails" parameterType="map" resultType="goodsDetailsVO">
  		select goods.idx, goods.name, goods.price, goodsdetails.description, goodsdetails.detailsimg, round((goods.score/goods.vote_num),1) result_score, goods.vote_num, gc.type from goods join goodsdetails on goods.idx = goodsdetails.goods_idx left join (select type, goods_idx from goodsCollection where member_id = '${id}' and type = 'like') gc on gc.goods_idx = goods.idx where goods.idx = ${idx}
@@ -38,11 +38,11 @@
  	</delete>
  	
  	<select id="selectSearch" parameterType="map" resultType="goodsVO">
- 		select g2.idx ,g2.name,g2.img ,g2.price, g2.quantity, g2.category, round((g2.score/g2.vote_num),1) result_score, g2.vote_num  from (select rownum rnum, g.* from goods g where name like '%${keyword}%') g2 where rnum between ((#{page}-1)*10+1) and #{page}*10
- 	</select>
+       select g2.idx ,g2.name,g2.img ,g2.price, g2.quantity, g2.category, round((g2.score/g2.vote_num),1) result_score, g2.vote_num  from (select rownum rnum, g.* from goods g where name like '%${keyword}%' or category like '%${keyword}%') g2 where rnum between ((#{page}-1)*10+1) and #{page}*10
+    </select>
  	
  	<select id="selectSearchCount" parameterType="String" resultType="int">
- 		select count(*) from goods where name like '%${keyword}%'	
+ 		select count(*) from goods where name like '%${keyword}%' or category like '%${keyword}%'
  	</select>
  	
  	<insert id="insertRecently" parameterType="map">
@@ -57,11 +57,27 @@
  		select type from goodscollection where member_id = '${id}' and goods_idx = #{idx} and type = 'recently'
  	</select>
  	
+ 	<select id="selectReviewInProduct" parameterType = "int" resultType="reviewVO">
+ 		select r2.*, member.profile memberProfile, member.name memberName from (select rownum rnum, r1.* from (select review.* from review where goods_idx = #{goods_idx} order by idx desc)r1) r2 join member on member.id = r2.member_id where rnum between 1 and 3
+ 	</select>
+ 	
  	<insert id="insertChatting" parameterType="map">
  		insert into chat (idx, sender, recipient, content, sendDate) values
  		(chat_seq.nextval, #{sender}, #{recipient}, #{content}, sysdate)
  	</insert>
  	
+ 	<select id="selectSearchDesc" parameterType="map" resultType="goodsVO">
+       select goods.* 
+       from (select rownum rnum, g2.* 
+       			from (select g1.idx ,g1.name,g1.img ,g1.price, g1.quantity, g1.category, round((g1.score/g1.vote_num),1) result_score, g1.vote_num  
+       					from goods g1 order by ${keyword} desc) g2) goods 
+       where rnum between ((#{page}-1)*10+1) and #{page}*10
+    </select>
+    
+    <select id="selectAllGoodsCount" resultType="int">
+       select count(*) from goods   
+    </select>
+    
  	<select id="selectChattingList" parameterType="String" resultType="chattingVO">
  		<![CDATA[
  			select rownum, a.* from (select * from chat where sender = #{id} or recipient = #{id} order by sendDate) a where rownum <100

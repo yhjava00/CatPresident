@@ -9,6 +9,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.mail.HtmlEmail;
 
 import vo.MemberVO;
@@ -274,5 +277,17 @@ private static final MemberService memberService = new MemberService();
 		}else {
 			return mVo=null;
 		}		
+	}
+	public void autologin(HttpSession session, Cookie[] cookie) {
+		if(session.getAttribute("loginUser")!=null) {
+			return;
+		}else if(cookie!=null) {
+			for(int i=0; i<cookie.length; i++) {
+				if(cookie[i].getName().equals("loginUser")) {
+					session.setAttribute("loginUser", cookie[i].getValue());
+					return;
+				}
+			}
+		}
 	}
 }

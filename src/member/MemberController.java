@@ -8,6 +8,7 @@ import java.util.Enumeration;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,19 +49,30 @@ public class MemberController extends HttpServlet {
 			break;
 		case "/login":
 			String loginId=request.getParameter("user_id");
-
-			String loginPw=request.getParameter("user_pw");
-
-			int loginRs= memberService.login(loginId, loginPw);
-			if(loginRs==1) {
-				HttpSession session=request.getSession();
-				session.setAttribute("loginUser", loginId);
-			}
-			response.getWriter().write(loginRs + "");
-			return;
+	         String checkbox=request.getParameter("rememberMe");
+	         String loginPw=request.getParameter("user_pw");
+	         int loginRs= memberService.login(loginId, loginPw);
+	         if(loginRs==1) {
+	            HttpSession session=request.getSession();
+	            session.setAttribute("loginUser", loginId);
+	            if(checkbox.equals("true")) {
+	               Cookie c= new Cookie("loginUser",loginId);
+	               c.setMaxAge(365*24*60*60);
+	               response.addCookie(c);
+	            }else {
+	               Cookie c=new Cookie("loginUser","");
+	               c.setMaxAge(0);
+	               response.addCookie(c);
+	            }
+	         }
+	         response.getWriter().write(loginRs + "");
+	         return;
 		case "/logout":
 			request.getSession().removeAttribute("loginUser");
-			return;
+	         Cookie c=new Cookie("loginUser","");
+	         c.setMaxAge(0);
+	         response.addCookie(c);
+	         return;
 		case "/withdrawal":
 		{
 			String id = (String) request.getSession().getAttribute("loginUser");

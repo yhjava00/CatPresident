@@ -55,14 +55,15 @@ public class MainController extends HttpServlet {
 			
 		case "/search": //검색
 		{	
-			Map<String, Object> param = new HashMap<String, Object>();			
+			Map<String, Object> param = new HashMap<String, Object>();	
 			String keyword = request.getParameter("keyword");
 			int page = Integer.parseInt(request.getParameter("page"));
 			param.put("keyword", keyword);
 			param.put("page", page);
-			request.setAttribute("searchListMap",mainService.search(param,(String) param.get("keyword")));
+			request.setAttribute("searchListMap",mainService.search(param));
+			request.setAttribute("keyword", keyword);
 			request.setAttribute("selectedPage", page);
-			request.setAttribute("startPage", ((page-1)/5)*5+1);
+			request.setAttribute("startPage", ((page-1)/5)*5+1);	
 			nextPage = "search.jsp";
 		}
 			break;	

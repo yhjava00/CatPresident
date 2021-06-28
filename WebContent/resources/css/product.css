@@ -1775,3 +1775,21 @@ strong, b {
 .jss20002:hover{
     background-color: rgba(117, 2, 143, 1);
 }
+.jss20010 {
+    display: flex;
+	padding: 50px 16px;
+    flex-wrap: wrap;
+    color: rgba(60, 60, 67, 0.6);
+    box-sizing: border-box;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(244, 244, 245, 1);
+}
+.jss20011{
+	margin-bottom: 14px;
+	}
+	
+.jss20011 path {
+    fill: rgba(60, 60, 67, 0.6);
+}

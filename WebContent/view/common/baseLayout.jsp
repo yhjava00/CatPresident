@@ -80,13 +80,9 @@
 				})
 	        }
 	        
-			function search(page,keyword){ 	
-				$(window).unbind()
-				setHeaderEvent()
-				$('html').scrollTop(0)
+	        function search(page,keyword){
 	        	var keyword = keyword;
 	        	var page = page;	        	
-	        	
 	        	$.ajax({
 					url: 'search.main',
 					async : true,
@@ -99,9 +95,14 @@
 				})
 	        }
 			
-			function inProductSearch() {
-				$(window).unbind()
-				var keyword = $('#searchInput').val();
+			function inProductSearch(inputKeyword) {
+				var inputkeyWord = inputKeyword;
+				var keyword;
+				if(inputkeyWord == null){
+					keyword = $('#searchInput').val();
+				}else{
+					keyword = inputkeyWord;
+				}
 				$.ajax({
 					url: 'header.main',
 					async : true,

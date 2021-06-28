@@ -33,7 +33,7 @@ public class MainService {
 		
 		List<GoodsVO> goodsList1 = mainDAO.scoreDescList(); //별점 높은순 리스트
 		List<GoodsVO> goodsList2 = mainDAO.voteNumDescList(); //투표 인원 많은순 리스트
-		List<GoodsVO> goodsList3 = mainDAO.mainRankList(13);
+		List<GoodsVO> goodsList3 = mainDAO.mainRankList();
 
 		info.put("goodsList1", goodsList1);
 		info.put("goodsList2", goodsList2);
@@ -41,6 +41,7 @@ public class MainService {
 		
 		return info;
 	}
+
 	
 	public Map<String , Object> details(Map param){// 상품 상세
 		
@@ -48,6 +49,8 @@ public class MainService {
 		
 		List<GoodsDetailsVO> detail = mainDAO.goodsDetails(param);
 		List<String> imgList = mainDAO.goodsImgList((Integer)param.get("idx"));
+		List<ReviewVO> reviewList = mainDAO.ReviewInProduct((Integer)param.get("idx"));
+		info.put("reviewList", reviewList);
 		info.put("details", detail);
 		info.put("imgList", imgList);
 		
@@ -74,12 +77,20 @@ public class MainService {
 			mainDAO.insertRecently(param); // 다시 입력
 		}
 	}
-	public Map<String, Object> search(Map keywordMap, String keyword){ //검색결과, 페이징
-		
+	public Map<String, Object> search(Map keywordMap){ //search		
 		Map<String, Object> info = new HashMap<String, Object>();
-		List<GoodsVO> searchList = mainDAO.searchResult(keywordMap); //검색 상품 리스트
-		int count = mainDAO.searchCount(keyword); //총 검색 상품 수
-		int pageCount = (count%10==0 ? count/10 : (count/10)+1); //총 몇 페이지 나왔는지
+		List<GoodsVO> searchList = null;
+		int count;
+		
+		if(keywordMap.get("keyword").equals("(score/vote_num)") || keywordMap.get("keyword").equals("vote_num") 
+				|| keywordMap.get("keyword").equals("quantity")) {
+			searchList = mainDAO.descList(keywordMap);
+			count = mainDAO.allGoodsCount();
+		}else {
+			searchList = mainDAO.searchResult(keywordMap);
+			count = mainDAO.searchCount((String) keywordMap.get("keyword"));
+		}		
+		int pageCount = (count%10==0 ? count/10 : (count/10)+1);
 		info.put("searchList", searchList);
 		info.put("searchCount", count);
 		info.put("pageCount", pageCount);	

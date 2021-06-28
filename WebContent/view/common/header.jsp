@@ -64,56 +64,52 @@
         <!-------------->
         <div class="a2032">
             <div class="a2034" id = "header2">
-                <div class="a2037"></div><a href="index2.html" id="category_background"><svg id="category" class="a2035" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 122 50">
+                <div class="a2037"></div><a href="javascript:search('1','')" id="category_background"><svg id="category" class="a2035" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 122 50">
                         <g fill="none" fill-rule="evenodd">
                             <path d="M0 0H122V52H0z"></path>
                             <path class="a2036" id="category1" fill="#000" fill-rule="nonzero" d="M51.56 35.86v-9.18h2.42v-2.64h-2.42V17.1h-3.24v18.76h3.24zm-13.38-2.6c7.14-3.66 8.28-8.4 8.28-14.42h-8.74v2.54h5.52c-.06.72-.14 1.42-.3 2.08l-6.22.32.36 2.72 4.92-.46c-.98 1.8-2.68 3.3-5.52 4.76l1.7 2.46zm33.16 2.6V17.12h-3.06v18.74h3.06zm-4-.72V17.42h-3v6.38h-1.68v2.58h1.68v8.76h3zM56.9 31.96c2.56 0 4.36-.02 6.46-.34l-.24-2.54c-1.54.22-2.88.3-4.5.32v-2.82h3.3v-2.46h-3.3v-2.5h3.92v-2.54h-6.98v12.88h1.34zm31.42-2.48c.78-4.12.78-6.82.78-9.16v-1.76H75.22v2.54h10.64c0 2.1-.08 4.64-.76 8.04l3.22.34zm2.2 4.34v-2.58h-8.08v-6.32H79.2v6.32h-5.68v2.58h17zm17.14 2.14V17.1h-3.24v18.86h3.24zm-13.06-4.3c3.52 0 6.26-.1 9.1-.62l-.32-2.6c-2.34.42-4.52.56-7.2.6v-2.86h5.64v-7.56h-8.96v2.54h5.66v2.5h-5.64v8h1.72z"></path>
                             <path id="category2" class="a2036" fill="#000" d="M12 19h16v3H12v-3zm0 6.5h16v3H12v-3zm0 6.5h16v3H12v-3z"></path>
                         </g>
                     </svg></a>
-                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href="/today-deals"><span class="MuiTab-wrapper">오늘의딜</span></a>
-                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href="/brands"><span class="MuiTab-wrapper">브랜드</span></a>
-                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href="/best-products"><span class="MuiTab-wrapper">랭킹</span></a>
-                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href="/recent-products"><span class="MuiTab-wrapper">신상품</span></a>
-                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href="/planned"><span class="MuiTab-wrapper">기획전</span></a>
-                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href="/know-how"><span class="MuiTab-wrapper">노하우</span></a>
-                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href="/sticker-shop"><span class="MuiTab-wrapper">스티커샵</span></a>
+                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href = "javascript:search('1','(score/vote_num)')"><span class="MuiTab-wrapper">별점 순</span></a>
+                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href = "javascript:search('1','vote_num')"><span class="MuiTab-wrapper">평가 순</span></a>
+                <a class="a2003-root MuiTab-root MuiTab-textColorInherit a2028" tabindex="-1" aria-disabled="false" role="tab" aria-selected="false" href = "javascript:search('1','quantity')"><span class="MuiTab-wrapper">랭킹</span></a>
+                
 
-                <div style="margin-right: 220px;"></div>
+                <div style="margin-right: 600px;"></div>
                 <img src="https://catpre.com/images/gnb_banner.svg">
             </div>
-            <div class="a2044">홈 > 오늘의 딜</div>
+            <div class="a2044"></div>
             <div id="category_list" class="a2045">
                 <ul class="a2046">
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/053">사료</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','사료')">사료</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/054">간식</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','간식')">간식</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/055">건강관리</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','건강')">건강관리</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/056">모래</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','모래')">모래</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/057">화장실/위생</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','화장실')">화장실/위생</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/058">미용/목욕</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','미용')">미용/목욕</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/059">급식기/급수기</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','급식')">급식기/급수기</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/060">스크래쳐/캣타워</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','타워')">스크래쳐/캣타워</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/061">하우스</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','하우스')">하우스</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/063">이동장</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','이동장')">이동장</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/064">의류/액세서리</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','의류')">의류/액세서리</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/069">목줄/가슴줄</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','목줄')">목줄/가슴줄</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/065">장난감</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','장난감')">장난감</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/category/070">생활/가전</a>
+                    <li><a class="jss147" role="button" tabindex="0" style="cursor:pointer" href = "javascript:search('1','생활')">생활/가전</a>
                     </li>
-                    <li><a class="jss147" role="button" tabindex="0" href="/brands">브랜드 <span class="jss146">A-Z</span></a></li>
                 </ul>
             </div>
             <div id = "productInfo"></div><div id = "qa"></div><div id = "productReview"></div><div id = "info"></div>

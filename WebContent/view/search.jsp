@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
  <c:set var="contextPath"  value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -15,20 +16,28 @@
         <div class="a1054">
             <div class="a1055">
                 <h2 class="a1056">
-                    <strong>파우치</strong>
+                	<c:choose>
+                		<c:when test = "${keyword eq ''}">
+                			<strong>전체</strong>
+                		</c:when>
+                		<c:when test = "${keyword eq '(score/vote_num)'}">
+                			<strong>별점 순</strong>
+                		</c:when>
+                		<c:when test = "${keyword eq 'vote_num'}">
+                			<strong>평가 순</strong>
+                		</c:when>
+                		<c:when test = "${keyword eq 'quantity'}">
+                			<strong>랭킹</strong>
+                		</c:when>
+                		<c:otherwise>
+                			<strong>${keyword}</strong>
+                		</c:otherwise>
+                	</c:choose>
+                    
                 </h2>
             </div>
             <div class="a1057">
                 <span class="a1058"><strong>${searchListMap.searchCount}</strong>개의 상품</span>
-                <label class="a1059">정렬</label>
-                <select class="a1060" name="sort" >
-                    <option value="">대통령 랭킹순</option>
-                    <option value="">최근 등록순</option>
-                    <option value="">가격 낮은순</option>
-                    <option value="">가격 높은순</option>
-                    <option value="">별점 높은순</option>
-                    <option value="">후기 많은순</option>
-                  </select>
             </div>
         </div>
         <div>
@@ -46,7 +55,7 @@
                                 <div class="a1069">
                                     <h3 class="a1070">${list.name}</h3>
                                     <div class="a1071">
-                                        <strong class="a1072">${list.price}원</strong>
+                                        <strong class="a1072"><fmt:formatNumber value="${list.price}" pattern="###,###,###,###"/>원</strong>
                                     </div>
                                 </div>
                                 <!-- 별점 시작 -->
@@ -94,7 +103,7 @@
             <ul class="jss1025">
             	<c:if test="${endPage > 5}">
                 <li>
-                    <button class = "search2" tabindex="0" type="button" aria-current="true" onclick = "search('${endPage-5}')">
+                    <button class = "search2" tabindex="0" type="button" aria-current="true" onclick = "search('${endPage-5}','${keyword}')">
                         <span>
                             <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z"></path></svg>
                         </span>
@@ -107,12 +116,12 @@
                 <c:otherwise><c:set var = "selectedPageClass" value = ""/></c:otherwise>
                 </c:choose>
                 <li>
-                    <button class = "search2 ${selectedPageClass}"  tabindex="0" type="button" aria-current="true" value = "${num}" onclick = "search('${num}')">${num}</button>
+                    <button class = "search2 ${selectedPageClass}"  tabindex="0" type="button" aria-current="true" value = "${num}" onclick = "search('${num}','${keyword}')">${num}</button>
                 </li>
 				</c:forEach>
 				<c:if test="${endPage < pageCount}">
                 <li>
-                    <button class = "search2" tabindex="0" type="button" aria-current="true" onclick = "search('${startPage+5}')">
+                    <button class = "search2" tabindex="0" type="button" aria-current="true" onclick = "search('${startPage+5}','${keyword}')">
                         <span class="MuiButton-label">
                             <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg>
                         </span>

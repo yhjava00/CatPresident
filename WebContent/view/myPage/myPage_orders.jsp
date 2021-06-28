@@ -102,6 +102,7 @@
 	            margin: auto;
 	            display: block;
 	            max-width: 100%;
+	            cursor: pointer;
 	        }
 	        .b1013 {
 	            flex-grow: 1;

@@ -249,7 +249,7 @@
                                         
                                         <dl class="jss281">
                                             <dt class="jss282" style="font-size: 14px;">판매가</dt>
-                                            <dd class="jss283"><span><span>${list.price}원</span></span></dd>
+                                            <dd class="jss283"><span><span><fmt:formatNumber value="${list.price}" pattern="###,###,###,###"/>원</span></span></dd>
                                         </dl>
                                     </div>
                                     
@@ -303,8 +303,7 @@
                                         <ul class="jss301">
                                             <li class="jss302"><strong>오늘</strong> 출발 마감<c:if test="${cal_hh>0 || cal_mm>0}">까지
                                                 <!-- --> <strong>${cal_hh}시간 ${cal_mm}분</strong>남음</c:if></li>
-                                            <li class="jss302" data-testid="todayDeliveryTime"><strong>저녁 6시</strong> 이전 주문하면 오늘 출발! / 영업일 기준</li>
-                                            <li class="jss302" data-testid="freeDeliveryRule"><strong>30,000</strong>원 이상 구매 시, 무료배송</li>
+                                            <li class="jss302" data-testid="todayDeliveryTime"><strong>저녁 6시</strong> 이전 주문하면 오늘 출발! / 영업일 기준</li>                                            
                                         </ul>
                                     </div>
                                 </div>
@@ -324,7 +323,8 @@
                                         </div>
                                         <div>
                                             <div class="jss307">총 상품금액</div>
-                                            <div class="jss308"><strong><span id = "price">${list.price}</span></strong>원</div>
+                                            <span id = "hiddenPrice" style="display:none">${list.price}</span>                                            
+                                            <div class="jss308"><strong><span id = "price"><fmt:formatNumber value="${list.price}" pattern="###,###,###,###"/></span></strong>원</div>
                                         </div>
                                     </div>
                                     <div class="jss310"><button id = "cart_in_button1" class="MuiButtonBase-root jss320 jss321 jss311" tabindex="0" type="button" data-testid="cart"><span class="MuiButton-label">장바구니 담기</span><span class="MuiTouchRipple-root"></span></button><button class="jss320 jss311 jss10008" tabindex="0" type="button"><span class="MuiButton-label">바로 구매</span><span class="MuiTouchRipple-root"></span></button></div>
@@ -360,7 +360,7 @@
                                 <div class="jss2672"><button id ="moreView1" class="MuiButtonBase-root jss2674" tabindex="0" type="button">
                                     <h4 class="jss2675">설명</h4>
                                     <div class="jss2676">
-                                        <div class="jss2689">${list.description}</div><span class="jss2677">more</span>
+                                        <div class="jss2689">${list.description}</div>
                                         <div class="jss2678"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                                 <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
                                             </svg></div>
@@ -392,6 +392,7 @@
                                             </svg></span></a></span>
                             </div>
                         </div>
+                        
                         <div class="jss832">
                             <div>
                             	<c:forEach var = "qna" begin = "1" end = "3"> <!-- 질문/답변  forEach 시작 -->
@@ -423,39 +424,25 @@
                             <span role="button"><a class="MuiButtonBase-root MuiButton-root MuiButton-outlined jss383 jss375" tabindex="0" aria-disabled="false" data-testid="pc-click" href="/product/523/reviews"><span class="MuiButton-label">더 보기<svg class="MuiSvgIcon-root jss376" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img"><path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path></svg></span></a></span>
                         </div>
                     </div>
-                    <div class="jss391">
-                        <div class="jss392">
-                            <span class="MuiRating-root jss393 MuiRating-readOnly" role="img" aria-label="4.5 Stars"><span class="MuiRating-decimal"><span style="width:0%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span></span><span class="MuiRating-decimal"><span style="width:0%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span></span><span class="MuiRating-decimal"><span style="width:0%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span></span><span class="MuiRating-decimal"><span style="width:0%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span></span><span class="MuiRating-decimal"><span style="width:50%;overflow:hidden;z-index:1;position:absolute"><span class="MuiRating-icon jss234 MuiRating-iconFilled jss236"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span><span><span class="MuiRating-icon jss234 MuiRating-iconEmpty jss235"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img"><path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path></svg></span></span></span></span>
-                            <strong>4.6</strong>
-                            <span class="jss394">(<!-- -->9,611<!-- -->)</span>
-                        </div>
-                        <div class="jss842">
-                            <ul class="MuiGridList-root jss843" style="margin: -8px;">
-                            	<c:forEach var = "photoReview" begin = "1" end = "8"><!-- 포토리뷰 forEach문 시작 -->
-                                <li class="MuiGridListTile-root" style="width: 12.5%; height: auto; padding: 8px;">
-                                    <div class="MuiGridListTile-tile jss844"><a class="MuiButtonBase-root jss868 jss847" tabindex="0" aria-disabled="false" data-testid="button" href="/product/523/reviews/201316">
-                                            <div class="jss872">
-                                                <picture class="jss184">
-                                                    <source media="(max-width: 1199px)" srcset="https://img.catpre.com/web/catpre/reviewphoto/1/thumb/523_thumbnail_S3_6172.jpg">
-                                                    <source media="(min-width: 1200px)" srcset="https://img.catpre.com/web/catpre/reviewphoto/1/thumb/523_thumbnail_S3_6172.jpg"><img class="jss185 jss873" src="https://img.catpre.com/web/catpre/reviewphoto/1/thumb/523_thumbnail_S3_6172.jpg" alt="https://img.catpre.com/web/catpre/reviewphoto/1/thumb/523_thumbnail_S3_6172.jpg" sizes="auto"></picture><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="jss874 IE_HACK_objectFitCover" style="display: none; background-image: url(&quot;https://img.catpre.com/web/catpre/reviewphoto/1/thumb/523_thumbnail_S3_6172.jpg&quot;);">
-                                            </div><span class="MuiTouchRipple-root"></span>
-                                        </a></div>
-                                </li>
-                                </c:forEach> <!-- 포토리뷰 forEach문 끝 -->                                
-                            </ul>
-                        </div>
-                        
-                        
-                    </div>
+     
                   <div>
-                  	<c:forEach var = "review" begin = "1" end = "3"> <!-- 리뷰 forEach문 시작 -->
+                  	<c:set var = "reviewList" value = "${detailsMap.reviewList}"/>
+                  	<c:choose>
+                  	<c:when test="${empty reviewList}">
+                  		<div class="jss20010"><span class="jss20011"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+            			<path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283C15.024 19.308 13.042 20.003 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9c.003 2.042-.692 4.024-1.969 5.617zm-2.006-.742C17.295 14.57 18.003 12.82 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7 1.82.003 3.57-.706 4.875-1.975l.15-.15z"></path>
+        				</svg></span>작성된 리뷰가 없습니다.</div>
+                  	</c:when>
+                  	<c:otherwise>
+                  	<c:forEach var = "reviewList" items="${reviewList}" > <!-- 리뷰 forEach문 시작 -->
                     <div class="jss875"> <!--d-->
                         <div class="jss876">
                             <span class="jss877" role="button">
                                 <picture class="jss184">
-                                    <source media="(max-width: 1199px)" srcset="https://img.catpre.com/web/catpre/pet/jq/197009_2228_thumbnail2.jpg">
-                                    <source media="(min-width: 1200px)" srcset="https://img.catpre.com/web/catpre/pet/jq/197009_2228_thumbnail2.jpg"><img class="jss185 jss878" src="https://img.catpre.com/web/catpre/pet/jq/197009_2228_thumbnail2.jpg" alt="박*량" sizes="auto"></picture>
-                            </span>
+                                    <source media="(max-width: 1199px)" srcset="${contextPath}/resources/profile/${reviewList.member_id}/${reviewList.memberProfile}">
+                                    <source media="(min-width: 1200px)" srcset="${contextPath}/resources/profile/${reviewList.member_id}/${reviewList.memberProfile}">
+                                    <img class="jss185 jss878" src="${contextPath}/resources/profile/${reviewList.member_id}/${reviewList.memberProfile}" alt="${reviewList.member_id}" sizes="auto"></picture>
+                            </span>                         
                             <div class="jss886">
                                 <div class="jss887"><span class="MuiRating-root jss888 MuiRating-readOnly" role="img" aria-label="5 Stars"><span class="MuiRating-decimal"><span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;"><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
                                                         <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
@@ -477,24 +464,24 @@
                                                         <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
                                                     </svg></span></span><span><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
                                                         <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span></span></span>구매인증됨<div class="jss896 jss885"></div>2021.xx.xx.</div><span>이름 </span><span> · 묘종</span><span> · 나이</span>
+                                                    </svg></span></span></span></span>구매인증됨<div class="jss896 jss885"></div>${reviewList.writedate}</div><span>${reviewList.memberName} </span>
                             </div>
                         </div>
                         <div class="jss528">
                             <div class="jss529 jss530">
                                 <div class="jss531">
-                                    <h3 class="jss533">리뷰제목.</h3>
-                                    <div class="jss10000">리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용 리뷰내용</div>
+                                    <h3 class="jss533">${reviewList.title}</h3>
+                                    <div class="jss10000">${reviewList.content}</div>
                                 </div>      
                             </div>
                             <div class="jss539"><button class="MuiButtonBase-root MuiButton-root MuiButton-outlined jss546 jss540 jss547" tabindex="0" type="button" data-testid="recommend"><span class="MuiButton-label"><svg class="MuiSvgIcon-root jss548" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                 <path fill="#38383A" fill-rule="evenodd" d="M14.6 8H21c1.105 0 2 .895 2 2v2.104c0 .261-.05.52-.15.762l-3.095 7.515c-.154.375-.52.619-.925.619H2c-.552 0-1-.448-1-1V10c0-.552.448-1 1-1h3.482c.325 0 .63-.158.817-.423L11.752.85c.142-.202.411-.27.632-.159l1.814.907c1.052.526 1.595 1.713 1.305 2.853L14.6 8zM7 10.588V19h11.16L21 12.104V10h-6.4c-.617 0-1.2-.285-1.579-.773-.379-.487-.511-1.122-.359-1.72l.903-3.548c.058-.228-.05-.466-.261-.571l-.661-.33-4.71 6.672c-.25.354-.57.644-.933.858zM5 11H3v8h2v-8z"></path>
-                            </svg>35</span><span class="MuiTouchRipple-root"></span></button></div>
-                        </div>
-                        
-                        
+                            </svg>추천수</span><span class="MuiTouchRipple-root"></span></button></div>
+                        </div>                                               
                     </div>
-                     </c:forEach>   <!-- 리뷰 forEach문 끝 -->
+                     </c:forEach>
+                     </c:otherwise>
+                     </c:choose>   <!-- 리뷰 forEach문 끝 -->
                 </div>
                 <!--구매후기 끝-->
                 </div>
@@ -507,20 +494,39 @@
                     <div>
                         <div class="jss100001">
                             <div class="jss551">
-                                <h3 class="jss552">취소/교환/반품 안내</h3><span role="button"><button id = "moreView2" class="MuiButtonBase-root MuiButton-root MuiButton-outlined jss557 jss549" tabindex="0" type="button" data-testid="pc-click"><span class="MuiButton-label">더 보기<svg class="MuiSvgIcon-root jss550" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                                <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-                                            </svg></span></button></span>
+                                <h3 class="jss552">취소/교환/반품 안내</h3>
                             </div>
-                        </div><button class="MuiButtonBase-root jss576" tabindex="0" type="button">
+                        </div>
                             <div class="jss577">
-                                <h4 class="jss578">취소</h4>
-                                <ul class="jss579">
-                                    <li class="jss580">입금하신 상품은 '입금대기, 입금완료' 단계에서만 취소가 가능합니다.</li>
-                                </ul><svg class="MuiSvgIcon-root jss581" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                    <path d="M8.828 12L17.413 20.645 15.999 22.06 6 12 15.999 2.002 17.413 3.417z" transform="matrix(-1 0 0 1 23.413 0)"></path>
-                                </svg>
+                                <h4 class="jss408">취소</h4>
+                            <ul class="jss412">
+                                <li class="jss413">입금하신 상품은 '입금대기, 입금완료' 단계에서만 취소가 가능합니다.</li>
+                                <li class="jss413">전체 주문 중 일부 상품의 부분취소는 불가능합니다.</li>
+                            </ul>
+                            <h4 class="jss408">교환/반품</h4>
+                            <ul class="jss412">
+                                <li class="jss413">교환 및 반품은 배송완료일 기준으로 7일 이내 가능합니다.</li>
+                                <li class="jss413">교환하려는 상품은 처음 배송한 택배사에서 수거하므로 다른 택배사 이용은 불가능합니다.</li>
+                                <li class="jss413">업체배송 상품은 제공 업체와 상품에 따라 배송비가 다르고, 상품의 도착지가 처음 발송한 주소와 다를 수 있으므로 고객센터(1588-2469)로 먼저 연락주시기 바랍니다.</li>
+                            </ul>
+                            <h4 class="jss408">교환/반품이 불가능한 경우</h4>
+                            <ul class="jss412">
+                                <li class="jss413">반품 요청기간이 지난 경우</li>
+                                <li class="jss413">주문/제작 상품의 경우, 상품의 제작이 이미 진행된 경우</li>
+                                <li class="jss413">상품 포장을 개봉하여 사용 또는 설치 완료되어 상품의 가치가 현저히 감소한 경우</li>
+                                <li class="jss413">시간의 경과에 의하여 재판매가 곤란할 정도로 상품의 가치가 현저히 감소한 경우</li>
+                                <li class="jss413">구성품을 분실하였거나 고객님의 취급 부주의로 인한 파손/고장/오염으로 재판매 불가한 경우</li>
+                            </ul>
+                            <h4 class="jss408">교환/반품 배송비</h4>
+                            <ul class="jss412">
+                                <li class="jss413">단순변심으로 인한 교환/반품은 고객님께서 배송비를 부담하셔야 합니다.</li>
+                                <li class="jss413">상품의 불량 또는 파손, 오배송의 경우에는 배송비를 고양이대통령에서 부담합니다.</li>
+                                <li class="jss413">업체배송 상품은 제공업체에 따라 교환/반품 배송비가 다를 수 있으므로 고객센터로 문의하시기 바랍니다.</li>
+                                <li class="jss413">제주, 산간지역은 추가 배송비가 발생할 수 있습니다.</li>
+                            </ul>
+                            
                             </div>
-                        </button>
+
                     </div>
                 </div>
                 <!--취소 / 교환 / 반품 안내 끝-->
@@ -553,52 +559,7 @@
             </div>
             <div tabindex="0" data-test="sentinelEnd"></div>
         </div>
-        
-        <div id = "moreViewWindow2" role="presentation" class="MuiDialog-root jss103" style="position: fixed; z-index: 1300; inset: 0px; display: none;">
-            <div class="MuiBackdrop-root" aria-hidden="true" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"></div>
-            <div tabindex="0" data-test="sentinelStart"></div>
-            <div class="MuiDialog-container MuiDialog-scrollPaper" role="none presentation" tabindex="-1" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;">
-                <div class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthFalse MuiPaper-elevation24 MuiPaper-rounded" role="dialog">
-                    <div class="jss104 jss105">
-                        <h2 class="jss106">취소/교환/반품 안내</h2>
-                        <div class="jss111"><button id ="close2" class="MuiButtonBase-root MuiIconButton-root jss112" tabindex="0" type="button" data-testid="close"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
-                                        <path d="M11 11L11 2.002 13 2.002 13 11 22 11 22 13 13 13 13 22.06 11 22.06 11 13 2 13 2 11z" transform="rotate(45 12 12.03)"></path>
-                                    </svg></span><span class="MuiTouchRipple-root"></span></button></div>
-                    </div>
-                    <div class="jss107">
-                        <div>
-                            <h4 class="jss408">취소</h4>
-                            <ul class="jss412">
-                                <li class="jss413">입금하신 상품은 '입금대기, 입금완료' 단계에서만 취소가 가능합니다.</li>
-                                <li class="jss413">전체 주문 중 일부 상품의 부분취소는 불가능합니다.</li>
-                            </ul>
-                            <h4 class="jss408">교환/반품</h4>
-                            <ul class="jss412">
-                                <li class="jss413">교환 및 반품은 배송완료일 기준으로 7일 이내 가능합니다.</li>
-                                <li class="jss413">교환하려는 상품은 처음 배송한 택배사에서 수거하므로 다른 택배사 이용은 불가능합니다.</li>
-                                <li class="jss413">업체배송 상품은 제공 업체와 상품에 따라 배송비가 다르고, 상품의 도착지가 처음 발송한 주소와 다를 수 있으므로 고객센터(1588-2469)로 먼저 연락주시기 바랍니다.</li>
-                            </ul>
-                            <h4 class="jss408">교환/반품이 불가능한 경우</h4>
-                            <ul class="jss412">
-                                <li class="jss413">반품 요청기간이 지난 경우</li>
-                                <li class="jss413">주문/제작 상품의 경우, 상품의 제작이 이미 진행된 경우</li>
-                                <li class="jss413">상품 포장을 개봉하여 사용 또는 설치 완료되어 상품의 가치가 현저히 감소한 경우</li>
-                                <li class="jss413">시간의 경과에 의하여 재판매가 곤란할 정도로 상품의 가치가 현저히 감소한 경우</li>
-                                <li class="jss413">구성품을 분실하였거나 고객님의 취급 부주의로 인한 파손/고장/오염으로 재판매 불가한 경우</li>
-                            </ul>
-                            <h4 class="jss408">교환/반품 배송비</h4>
-                            <ul class="jss412">
-                                <li class="jss413">단순변심으로 인한 교환/반품은 고객님께서 배송비를 부담하셔야 합니다.</li>
-                                <li class="jss413">상품의 불량 또는 파손, 오배송의 경우에는 배송비를 고양이대통령에서 부담합니다.</li>
-                                <li class="jss413">업체배송 상품은 제공업체에 따라 교환/반품 배송비가 다를 수 있으므로 고객센터로 문의하시기 바랍니다.</li>
-                                <li class="jss413">제주, 산간지역은 추가 배송비가 발생할 수 있습니다.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div tabindex="0" data-test="sentinelEnd"></div>
-        </div>
+
 
         <div id = "max_amount" role="presentation" class="MuiDialog-root jss323 jss324" style="position: fixed; z-index: 1300; inset: 0px; display: none;">
             <div class="MuiBackdrop-root" aria-hidden="true" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"></div>
@@ -664,7 +625,7 @@
                         </div>
                         <div class="jss330">
                             <div class="jss331">총 상품금액</div>
-                            <div class="jss332"><span id="price1"><strong>${price}</strong></span>원</div>
+                            <div class="jss332"><span id="price1"><strong><fmt:formatNumber value="${price}" pattern="###,###,###,###"/></strong></span>원</div>
                         </div>
                     </div>
                     <div class="jss334"></div>
