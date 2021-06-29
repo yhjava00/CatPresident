@@ -12,10 +12,8 @@ function check() {
 			'user_id': user_id, 'user_pw' : user_pw,'rememberMe' : rememberMe},
 	    			type: 'post',
 			success: function(loginRs) {
-				if (loginRs == -2) {
-					$("#loginMessage").text("아이디없음 .");
-				} else if(loginRs== 0){
-					$("#loginMessage").text("비밀번호틀림 .");
+				if (loginRs == -2 || loginRs== 0) {
+					$("#loginMessage").text("이메일(아이디)또는 비밀번호가 일치하지 않습니다.");
 				}else{
 					// 로그인성공후 페이지 이동처리
 					outProduct('main.main')
@@ -43,3 +41,10 @@ function check() {
 		$(".a5006").css("outline-color", "rgba(162, 0, 199, 1)");
 		$(".a5006").css("outline-style", "unset");
 	});
+	
+function enterkey() {
+	if (window.event.keyCode == 13) {
+ 		check();
+	}
+}
+

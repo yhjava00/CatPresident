@@ -49,24 +49,24 @@ public class MemberController extends HttpServlet {
 			break;
 		case "/login":
 			String loginId=request.getParameter("user_id");
-	         String checkbox=request.getParameter("rememberMe");
-	         String loginPw=request.getParameter("user_pw");
-	         int loginRs= memberService.login(loginId, loginPw);
-	         if(loginRs==1) {
-	            HttpSession session=request.getSession();
-	            session.setAttribute("loginUser", loginId);
-	            if(checkbox.equals("true")) {
-	               Cookie c= new Cookie("loginUser",loginId);
-	               c.setMaxAge(365*24*60*60);
-	               response.addCookie(c);
-	            }else {
-	               Cookie c=new Cookie("loginUser","");
-	               c.setMaxAge(0);
-	               response.addCookie(c);
-	            }
-	         }
-	         response.getWriter().write(loginRs + "");
-	         return;
+			String checkbox=request.getParameter("rememberMe");
+			String loginPw=request.getParameter("user_pw");
+			int loginRs= memberService.login(loginId, memberService.encryptionPw(loginPw));
+			if(loginRs==1) {
+				HttpSession session=request.getSession();
+				session.setAttribute("loginUser", loginId);
+				if(checkbox.equals("true")) {
+					Cookie c= new Cookie("loginUser",loginId);
+					c.setMaxAge(365*24*60*60);
+					response.addCookie(c);
+				}else {
+					Cookie c=new Cookie("loginUser","");
+					c.setMaxAge(0);
+					response.addCookie(c);
+				}
+			}
+			response.getWriter().write(loginRs + "");
+			return;
 		case "/logout":
 			request.getSession().removeAttribute("loginUser");
 	         Cookie c=new Cookie("loginUser","");
@@ -91,7 +91,7 @@ public class MemberController extends HttpServlet {
 			MemberVO mVo=new MemberVO();
 			mVo.setId(userid);
 			mVo.setName(username);
-			mVo.setPw(userpw);
+			mVo.setPw(memberService.encryptionPw(userpw));
 			mVo.setPhone(userphone);
 			mVo.setProfile("profile-empty.svg");
 			memberService.insertMember(mVo);			
@@ -122,12 +122,14 @@ public class MemberController extends HttpServlet {
 			String name=request.getParameter("name");
 			String phone=request.getParameter("phone");
 			MemberVO mVo2=memberService.search_id_rs(name, phone);
-			
 			JSONObject json = new JSONObject();
-			
-			json.put("id", mVo2.getId());
-			json.put("joindate", mVo2.getJoindate());
-			
+			if(mVo2==null) {
+				json.put("id", "nothing");
+				json.put("joindate", "nothing");
+			}else {
+				json.put("id", mVo2.getId());
+				json.put("joindate", mVo2.getJoindate());
+			}
 			try {
 				response.getWriter().write(json.toString());
 			} catch (IOException e) {

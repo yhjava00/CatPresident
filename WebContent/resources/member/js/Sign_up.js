@@ -16,8 +16,7 @@ $(document).ready(function(){
 					$("#reg_submit").attr("disabled", true);
 				}else{
 					if(idJ.test(user_id)){
-						// 0 : 아이디 길이 / 문자열 검사
-						$("#msg_id").text("사용가능한 아이디 입니다.");
+						$("#msg_id").text("");
 						$("#reg_submit").attr("disabled", false);
 					}else if (user_id == "") {
 						$('#msg_id').text('아이디를 입력하세요.');
@@ -37,7 +36,6 @@ $(document).ready(function(){
 		var user_pw_check = $('#pw_check').val();
 		var num = user_pw.search(/[0-9]/g);
 		var eng = user_pw.search(/[a-z]/ig);
-		
 		if(pw.length < 6 || pw.length > 12){
 			$('#msg_pwd').text("6자리 ~ 12자리 이내로 입력해주세요.");
 			$("#reg_submit").attr("disabled", true);
@@ -76,31 +74,40 @@ $(document).ready(function(){
 			$("#reg_submit").attr("disabled", false);
 		}
 	});
-	function isCellPhone(user_phone) {
-		p = p.split('-').join('');
-		var regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-		return regPhone.test(p);
-	}
-	$("#phone").keyup(function() {
-		var user_phone = $('#phone').val();
+	$("#phone").blur(function() {
+		var user_phone = $('#phone').val();	
+		var regPhone = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/;
+		var user_phone2 = user_phone.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/, "$1-$2-$3");
 		if (user_phone == "") {
 			$('#msg_phone').text('핸드폰번호를 입력하세요.');
 			$("#reg_submit").attr("disabled", true);
 		} else {
-			user_phone = user_phone.split('-').join('');
-			var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
-			if (regPhone.test(user_phone)) {
+			if(regPhone.test(user_phone)&&user_phone == user_phone2){
 				$('#msg_phone').text('');
-				$("#reg_submit").attr("disabled", false);
-			}
-			else {
+				$.ajax({
+					url: 'checkPhone.member',
+					data: { 'user_phone' : user_phone },
+					type: 'post',
+					success: function(rs) {
+						if(rs==-1){
+							$('#msg_phone').text('이미 사용중인 핸드폰번호입니다.');
+							$("#reg_submit").attr("disabled", true);
+						}else{
+							$("#reg_submit").attr("disabled", false);
+						}
+					}, error: function() {
+						
+					}
+				});
+			}else if (user_phone != user_phone2) {
+				$('#msg_phone').text('하이픈을 입력하세요.');
+				$("#reg_submit").attr("disabled", true);
+			}else {
 				$('#msg_phone').text('핸드폰번호를 올바르게 입력하세요.');
 				$("#reg_submit").attr("disabled", true);
 			}
-
 		}
 	});
-
 });
 function insert(){
 	var user_id = $('#id').val();
@@ -113,12 +120,10 @@ function insert(){
 		type: 'post',
 		success: function() {
 	         alert("회원가입에 성공 했습니다");
-	         changeContent('main.main')
+	         changeContent('loginForm.member')
 		}, error: function() {
 			alert("회원가입에 실패하셨습니다.");
 		}
 	});
 }
-
-
 

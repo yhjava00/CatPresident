@@ -13,11 +13,11 @@
 	<div class="a6001 MuiContainer-disableGutters MuiContainer-maxWidthLg">
 		<h2 class="a6002">비밀번호 찾기</h2>
 		<div class="a6003 jss341">
-			<label class="a6004" data-shrink="true">아이디<span
+			<label class="a6004" data-shrink="true">이메일(아이디)<span
 				aria-hidden="true"
 				class="MuiFormLabel-asterisk MuiInputLabel-asterisk"> *</span></label>
 			<div class="a6005">
-				<input aria-invalid="false" id="id" name="id" placeholder="아이디를 입력하세요."
+				<input onkeyup="enterkey()" aria-invalid="false" id="id" name="id" placeholder="이메일을 입력하세요."
 					required="" class="a6006" value="${id}">
 			</div>
 		</div>

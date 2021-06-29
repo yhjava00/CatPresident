@@ -226,4 +226,7 @@ color:rgb(162, 0, 199);
 }
 #messageTable{
 margin-bottom:12px;
+}
+.message{
+	color: rgba(162, 0, 199, 1);
 }    

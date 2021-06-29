@@ -239,11 +239,3 @@
 	border-radius: inherit;
 	pointer-events: none;
 }
-
-#loginMessage {
-	color: rgb(162, 0, 199);
-}
-
-#messageTable {
-	margin-bottom: 12px;
-}

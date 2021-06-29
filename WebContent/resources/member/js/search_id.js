@@ -1,22 +1,3 @@
-$("#mobile").keyup(function() {
-		var user_phone = $('#mobile').val();
-		if (user_phone == "") {
-			$('#search_idMessage').text('핸드폰번호를 입력하세요.');
-			$("#searchid_submit").attr("disabled", true);
-		} else {
-			user_phone = user_phone.split('-').join('');
-			var regPhone = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-			if (regPhone.test(user_phone)) {
-				$('#search_idMessage').text('');
-				$("#searchid_submit").attr("disabled", false);
-			}
-			else {
-				$('#search_idMessage').text('핸드폰번호를 올바르게 입력하세요.');
-				$("#searchid_submit").attr("disabled", true);
-			}
-
-		}
-	});
 function search_id_rs() {
 	var name = $('#name').val();
 	var phone = $('#mobile').val();
@@ -25,9 +6,10 @@ function search_id_rs() {
 		data: { 'name': name, 'phone': phone },
 		type: 'post',
 		dataType: 'json',
-		success: function(gson) {
-			if (gson == null) {
-				alert('일치하는 정보가 없습니다.');
+		success: function(json) {
+			
+			if (json.id == 'nothing') {
+				$('#msg_search_id').text('일치하는 정보가 없습니다.');
 			} else {
 				$.ajax({
 					url: 'search_id_rs.member',
@@ -37,8 +19,8 @@ function search_id_rs() {
 					cache: false
 				}).done(function(data) {
 					$('#htmlContent').html(data);
-					$('#search_id').text(gson.id);
-					$('#joindate').text('가입일 :' + gson.joindate);
+					$('#search_id').text(json.id);
+					$('#joindate').text('가입일 :' + json.joindate);
 				})
 			}
 		}, error: function() {
@@ -46,4 +28,27 @@ function search_id_rs() {
 		}
 	});
 }
-
+function enterkey() {
+	if (window.event.keyCode == 13) {
+		var user_phone = $('#mobile').val();
+		var regPhone = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/;
+		var user_phone2 = user_phone.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/, "$1-$2-$3");
+		if (user_phone == "") {
+			$('#msg_search_id').text('핸드폰번호를 입력하세요.');
+			$("#searchid_submit").attr("disabled", true);
+		} else {
+			if (regPhone.test(user_phone) && user_phone == user_phone2) {
+				$('#msg_search_id').text('');
+				$("#searchid_submit").attr("disabled", false);
+			} else if (user_phone != user_phone2) {
+				$('#msg_search_id').text('하이픈을 입력하세요.');
+				$("#searchid_submit").attr("disabled", true);
+			} else {
+				$('#msg_search_id').text('핸드폰번호를 올바르게 입력하세요.');
+				$("#searchid_submit").attr("disabled", true);
+			}
+		}
+		if ($("#searchid_submit").attr("disabled") == undefined)
+			search_id_rs();
+	}
+}

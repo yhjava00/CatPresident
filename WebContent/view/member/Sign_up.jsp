@@ -22,7 +22,7 @@ request.setCharacterEncoding("utf-8");
                         <label class="a4005" data-shrink="true">아이디</label>
                         <div class="a4007">
                             <input id="id" aria-invalid="false" focusout="check_id()" name="id" placeholder="아이디를 입력하세요."  value="" class="a4008">
-                        </div>
+                        </div>										
                         <spen class="message" id="msg_id" >${message_id}</spen>
                     </div>
                     <div class="a4009">
@@ -54,11 +54,11 @@ request.setCharacterEncoding("utf-8");
                         <label class="a4010" data-shrink="true"style="margin-bottom:20px;">핸드폰 번호
                         </label>
                         <div class ="a4012">
-                            <input id="phone" aria-invalid="false" name="phoneNumber" placeholder="핸드폰번호를 입력하세요." required="" value="" class="a4013">
+                            <input onkeyup="enterkey()" id="phone" aria-invalid="false" name="phoneNumber" placeholder="핸드폰번호를 입력하세요." required="" value="" class="a4013">
                         </div>
                     	<spen class="message" id="msg_phone">${message_phone}</spen>
                     </div>
-                <button class="a4032" tabindex="0" onclick="insert()" id="reg_submit">
+                <button class="a4032" tabindex="0" onclick="insert()" id="reg_submit" disabled=disabled>
                     <span class="a4033">회원가입</span>
                     <span class="a4034"></span>
                 </button>

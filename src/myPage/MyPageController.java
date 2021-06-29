@@ -325,7 +325,7 @@ public class MyPageController extends HttpServlet {
 			
 			String pw = request.getParameter("pw");
 
-			String state = myPageService.updatePw(id, pw);
+			String state = myPageService.updatePw(id, memberService.encryptionPw(pw));
 			
 			MemberVO member = memberService.getMember(id);
 

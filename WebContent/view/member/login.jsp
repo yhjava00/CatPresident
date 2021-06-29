@@ -22,7 +22,7 @@
                 </div>
                 <div class="a5004 jss341">
                     <div class="a5005 ">
-                        <input id="pw" aria-invalid="false" name="password" placeholder="비밀번호를 입력해주세요." required="" type="password" class="MuiInputBase-input MuiFilledInput-input a5006" value=${password}>
+                        <input id="pw" onkeyup="enterkey()" aria-invalid="false" name="password" placeholder="비밀번호를 입력해주세요." required="" type="password" class="MuiInputBase-input MuiFilledInput-input a5006" value=${password}>
                     </div>
                 </div>
                  <table>

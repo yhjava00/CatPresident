@@ -29,3 +29,8 @@ function search_pw_rs() {
 		}
 	});
 }
+function enterkey() {
+	if (window.event.keyCode == 13) {
+ 		search_pw_rs();
+	}
+}
