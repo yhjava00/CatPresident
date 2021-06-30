@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="resources/css/basket.css">
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script>
+
 	        function updateQty(idx, qty, type) {
 	        	if(type=='minus' && qty == 1){
 	        		return;
@@ -24,7 +25,7 @@
 					dataType : 'html',
 					cache: false
 				}).done(function (data) {
-					$('.htmlContent').html(data)
+					$('#htmlContent').html(data)
 				})
 			}
 	        
@@ -37,7 +38,7 @@
 					dataType : 'html',
 					cache: false
 				}).done(function (data) {
-					$('.htmlContent').html(data)
+					$('#htmlContent').html(data)
 				})
 	        }
        	</script>

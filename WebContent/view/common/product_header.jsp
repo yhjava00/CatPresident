@@ -40,8 +40,8 @@
                                 <div class="a2056">
                             		<c:choose>
                                 		<c:when test="${empty loginUser}">
-                                			<a class="a2003-root a2059-root a2059-contained a2058 undefined a2057 a2059-containedPrimary a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="changeContent('loginForm.member')" class="a2059-label">로그인</span><span class="a2060-root"></span></a>
-                                			<a class="a2003-root a2059-root a2059-outlined a2058 a2061 a2057 a2059-colorInherit a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="changeContent('Sign_upForm.member')" class="a2059-label">회원가입</span><span class="a2060-root"></span></a>
+                                			<a class="a2003-root a2059-root a2059-contained a2058 undefined a2057 a2059-containedPrimary a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="outProduct('loginForm.member')" class="a2059-label">로그인</span><span class="a2060-root"></span></a>
+                                			<a class="a2003-root a2059-root a2059-outlined a2058 a2061 a2057 a2059-colorInherit a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="outProduct('Sign_upForm.member')" class="a2059-label">회원가입</span><span class="a2060-root"></span></a>
                                 		</c:when>
                                 		<c:otherwise>
                                 			<a class="a2003-root a2059-root a2059-contained a2058 undefined a2057 a2059-containedPrimary a2059-fullWidth" tabindex="0" aria-disabled="false"><span onclick="logout()" class="a2059-label">로그아웃</span><span class="a2060-root"></span></a>

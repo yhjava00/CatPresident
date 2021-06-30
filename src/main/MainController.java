@@ -105,7 +105,7 @@ public class MainController extends HttpServlet {
 		case "/basket":
 		{
 			nextPage ="basket.jsp";
-			List<BasketVO> list = mainService.basket("kh");
+			List<BasketVO> list = mainService.basket(id);
 			request.setAttribute("basketList", list);
 
 			break;
@@ -116,9 +116,9 @@ public class MainController extends HttpServlet {
 			int idx = Integer.parseInt(request.getParameter("idx"));
 			String type = request.getParameter("type");
 			
-			mainService.updatebasket("kh", type, idx);
+			mainService.updatebasket(id, type, idx);
 			
-			List<BasketVO> list = mainService.basket("kh");
+			List<BasketVO> list = mainService.basket(id);
 			request.setAttribute("basketList", list);
 
 			nextPage = "basket.jsp";
@@ -128,8 +128,8 @@ public class MainController extends HttpServlet {
 		case "/deleteBasket":
 		{
 			int idx = Integer.parseInt(request.getParameter("idx"));
-			mainService.deleteBasket("kh", idx);
-			List<BasketVO> list = mainService.basket("kh"); 
+			mainService.deleteBasket(id, idx);
+			List<BasketVO> list = mainService.basket(id); 
 			request.setAttribute("basketList", list);
 			
 			nextPage ="basket.jsp";
