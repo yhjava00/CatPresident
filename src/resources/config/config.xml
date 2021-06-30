@@ -13,7 +13,8 @@
         <typeAlias alias="goodsDetailsVO" type="vo.GoodsDetailsVO"/>            
         <typeAlias alias="chattingVO" type="vo.ChattingVO"/>  
         <typeAlias alias="reviewVO" type="vo.ReviewVO"/>          
-        <typeAlias alias="orderVO" type="vo.OrderVO"/>          
+        <typeAlias alias="orderVO" type="vo.OrderVO"/>
+        <typeAlias alias="basketVO" type="vo.BasketVO"/>
     </typeAliases>
  
     <environments default="development">

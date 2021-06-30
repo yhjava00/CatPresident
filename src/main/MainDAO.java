@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import vo.BasketVO;
 import vo.ChattingVO;
 import vo.GoodsDetailsVO;
 import vo.GoodsVO;
@@ -232,5 +233,67 @@ public class MainDAO {
 		
 		return list;
 	}
+	
+	public List<BasketVO> selectbasket(String id) {
+	List<BasketVO> list = null;
+    SqlSession session = sqlSessionFactory.openSession();
+    try {
+        list = session.selectList("main.selectBasket", id);
+        
+    } finally {
+        session.close();
+    }
+    return list;
+}
+
+public int minusBasket(Map<String, Object> info){
+	int state = 0;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		state = session.update("main.minusBasket", info);
+		session.commit();
+	} finally {
+		session.close();
+	}
+	return state;
+}
+
+public int plusBasket(Map<String, Object> info){
+	int state = 0;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		state = session.update("main.plusBasket", info);
+		session.commit();
+	} finally {
+		session.close();
+	}
+	return state;
+}
+
+public int deleteBasket(Map<String, Object> info) {
+	int state = 0;
+	
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		state = session.delete("main.deleteBasket", info);
+		session.commit();
+	} finally{
+		session.close();
+	}
+	
+	return state;
+}
+
+public List<BasketVO> quantityCheck(Map<String, Object> info) {
+	List<BasketVO> list = null;
+	
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		list = session.selectList("main.quantityCheck", info);
+	} finally {
+		session.close();
+	}
+	return list;
+}
 	
 }

@@ -74,7 +74,7 @@ $(document).ready(function(){
 			$("#reg_submit").attr("disabled", false);
 		}
 	});
-	$("#phone").blur(function() {
+	$("#phone").keyup(function() {
 		var user_phone = $('#phone').val();	
 		var regPhone = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/;
 		var user_phone2 = user_phone.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/, "$1-$2-$3");
@@ -126,4 +126,26 @@ function insert(){
 		}
 	});
 }
+function enterkey() {
+	var user_id = $('#id').val();
+	var user_pw = $('#pw').val();
+	var user_name = $('#name').val();
+	var user_phone = $('#phone').val();
+	if (window.event.keyCode == 13) {
+		if($("#reg_submit").attr("disabled") == undefined){
+			if(user_id == ""){
+				$('#msg_id').text('아이디를 입력하세요.');
+			}else if(user_pw == ""){
+				$('#msg_pwd').text('비밀번호를 입력해주세요.');
+			}else if(user_name == ""){
+				$('#msg_name').text('이름을 입력해주세요.');
+			}else{
+				insert();
+			}
+		}
+			
+	}
+}
+	
+	
 

@@ -17,7 +17,7 @@
         <div class="a5003">
                 <div class="a5004 jss341 ">
                     <div class="a5005">
-                        <input id="id" aria-invalid="false" name="loginId" placeholder="아이디를 입력해주세요." required="" class="MuiInputBase-input MuiFilledInput-input a5006" value=${loginId}>
+                        <input id="id" onkeyup="enterkey()" aria-invalid="false" name="loginId" placeholder="아이디를 입력해주세요." required="" class="MuiInputBase-input MuiFilledInput-input a5006" value=${loginId}>
                     </div>
                 </div>
                 <div class="a5004 jss341">

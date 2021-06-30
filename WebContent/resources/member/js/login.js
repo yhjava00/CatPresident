@@ -44,7 +44,26 @@ function check() {
 	
 function enterkey() {
 	if (window.event.keyCode == 13) {
- 		check();
+		var user_id = $('#id').val();
+		var user_pw = $('#pw').val();
+		var idJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		if (idJ.test(user_id)) {
+			$("#loginMessage").text("");
+			if (user_pw == "") {
+				$("#loginMessage").text("비밀번호를 입력해 주세요.");
+				$('#login_button').attr("disabled", true);
+			} else {
+				$('#login_button').attr("disabled", false);
+			}
+		} else if (user_id == "") {
+			$('#loginMessage').text('아이디를 입력하세요.');
+			$("#login_button").attr("disabled", true);
+		} else {
+			$('#loginMessage').text("올바른 이메일을 입력하세요.");
+			$("#login_button").attr("disabled", true);
+		}
+		if ($("#login_button").attr("disabled") == undefined)
+			check();
 	}
 }
 

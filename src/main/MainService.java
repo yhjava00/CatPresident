@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import vo.BasketVO;
 import vo.ChattingVO;
 import vo.GoodsDetailsVO;
 import vo.GoodsVO;
@@ -110,4 +111,46 @@ public class MainService {
 	public List<ChattingVO> getChattingList(String id) {
 		return mainDAO.selectChattingList(id);
 	}
+	
+	public List<BasketVO> basket(String id) {
+	return mainDAO.selectbasket(id);
+	}
+
+	public String updatebasket(String id, String type, int idx){
+	
+	Map<String, Object> info = new HashMap<>();
+	info.put("id", id);
+	info.put("idx", idx);
+	
+	int state = 0;
+	List<BasketVO> list = mainDAO.quantityCheck(info);
+	for(BasketVO li : list) {
+	int quantity =0; 
+		quantity = li.getQuantity();
+	if(type.equals("minus")) {
+		if(quantity>1) {
+			state = mainDAO.minusBasket(info);				
+		}
+	}else
+		state = mainDAO.plusBasket(info);
+	}
+	if(state!=1) {
+		return "error";
+	}
+	
+	return "success";
+}
+
+public String deleteBasket(String id, int idx){
+	int state = 0;
+	Map<String, Object> info = new HashMap<>();
+	info.put("id", id);
+	info.put("idx", idx);
+	
+	state = mainDAO.deleteBasket(info);
+	if(state == 0) {
+		return "error";
+	}
+	return "success";
+}
 }

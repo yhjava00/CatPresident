@@ -11,10 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
 
+import vo.BasketVO;
 import vo.ChattingVO;
-import vo.ReviewVO;
 
 @WebServlet("*.main")
 public class MainController extends HttpServlet {
@@ -103,6 +102,39 @@ public class MainController extends HttpServlet {
 		case "/reviews":
 			nextPage = "reviews.jsp";
 			break;
+		case "/basket":
+		{
+			nextPage ="basket.jsp";
+			List<BasketVO> list = mainService.basket("kh");
+			request.setAttribute("basketList", list);
+
+			break;
+		}
+		
+		case "/updateQty":
+		{
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			String type = request.getParameter("type");
+			
+			mainService.updatebasket("kh", type, idx);
+			
+			List<BasketVO> list = mainService.basket("kh");
+			request.setAttribute("basketList", list);
+
+			nextPage = "basket.jsp";
+			break;
+		}	
+		
+		case "/deleteBasket":
+		{
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			mainService.deleteBasket("kh", idx);
+			List<BasketVO> list = mainService.basket("kh"); 
+			request.setAttribute("basketList", list);
+			
+			nextPage ="basket.jsp";
+			break;
+		}
 		default :
 			request.setAttribute("goodsListMap", mainService.main());
 		}

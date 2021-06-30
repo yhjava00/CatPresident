@@ -15,7 +15,7 @@
             <div class="a6003 jss341">
                 <label class="a6004" data-shrink="true">이름<span aria-hidden="true" class="MuiFormLabel-asterisk MuiInputLabel-asterisk"> *</span></label>
                 <div class="a6005">
-                    <input id="name" aria-invalid="false" name="name" placeholder="이름을 입력하세요." required="" class="a6006" value="${name}">
+                    <input onkeyup="enterkey()" id="name" aria-invalid="false" name="name" placeholder="이름을 입력하세요." required="" class="a6006" value="${name}">
                 </div>
             </div>
             <div class="a6003 jss341 ">

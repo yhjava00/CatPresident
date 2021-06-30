@@ -17,19 +17,18 @@ request.setCharacterEncoding("utf-8");
     <body>
         <div class="a4001">
             <h2 class="a4002">회원 가입</h2>
-                <div style="white-space: pre-wrap;">
+                <div>
                     <div class="a4003">
                         <label class="a4005" data-shrink="true">아이디</label>
                         <div class="a4007">
-                            <input id="id" aria-invalid="false" focusout="check_id()" name="id" placeholder="아이디를 입력하세요."  value="" class="a4008">
+                            <input onkeyup="enterkey()" id="id" aria-invalid="false" name="id" placeholder="아이디를 입력하세요."  value="" class="a4008">
                         </div>										
                         <spen class="message" id="msg_id" >${message_id}</spen>
                     </div>
                     <div class="a4009">
-                        <label class="a4010" data-shrink="true">이름
-                        </label>
+                        <label class="a4010" data-shrink="true">이름</label>
                         <div class ="a4012">
-                            <input  id="name" aria-invalid="false" name="name" placeholder="이름을 입력하세요." required="" value="" class="a4013">
+                            <input onkeyup="enterkey()" id="name" aria-invalid="false" name="name" placeholder="이름을 입력하세요." required="" value="" class="a4013">
                         </div>
                     	<spen class="message" id="msg_name">${message_name}</spen>
                     </div>
@@ -37,7 +36,7 @@ request.setCharacterEncoding("utf-8");
                         <label class="a4015" data-shrink="true">비밀번호
                         </label>
                         <div class="a4017">
-                            <input id="pw"type="password" aria-invalid="false" name="password1" placeholder="비밀번호를 6자 이상 입력해 주세요." required="" value="" minlength="6" maxlength="12" class="a4018">
+                            <input onkeyup="enterkey()" id="pw"type="password" aria-invalid="false" name="password1" placeholder="비밀번호를 6자 이상 입력해 주세요." required="" value="" minlength="6" maxlength="12" class="a4018">
                         </div>
                         <spen class="message" id="msg_pwd">${message_pwd}</spen>
                     </div>
@@ -45,20 +44,20 @@ request.setCharacterEncoding("utf-8");
                         <label class="a4020" data-shrink="true">비밀번호 확인
                         </label>
                         <div class="a4022">
-                            <input id="pw_check" type="password" aria-invalid="false" name="Password2" placeholder="비밀번호를 한번 더 입력하세요." required="" value="" minlength="6" maxlength="24" class="a4023">
+                            <input onkeyup="enterkey()" id="pw_check" type="password" aria-invalid="false" name="Password2" placeholder="비밀번호를 한번 더 입력하세요." required="" value="" minlength="6" maxlength="24" class="a4023">
                         </div>
                     	<spen class="message" id="msg_pwd_check">${message_pwd}</spen>
                     </div>
-                </div>
                 <div class="a4009" style="margin-bottom:20px;">
-                        <label class="a4010" data-shrink="true"style="margin-bottom:20px;">핸드폰 번호
+                        <label class="a4010" data-shrink="true">핸드폰 번호
                         </label>
                         <div class ="a4012">
                             <input onkeyup="enterkey()" id="phone" aria-invalid="false" name="phoneNumber" placeholder="핸드폰번호를 입력하세요." required="" value="" class="a4013">
                         </div>
                     	<spen class="message" id="msg_phone">${message_phone}</spen>
                     </div>
-                <button class="a4032" tabindex="0" onclick="insert()" id="reg_submit" disabled=disabled>
+                </div>
+                <button disabled="disabled" onkeyup="enterkey()" class="a4032" tabindex="0" onclick="insert()" id="reg_submit" disabled=disabled>
                     <span class="a4033">회원가입</span>
                     <span class="a4034"></span>
                 </button>

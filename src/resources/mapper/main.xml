@@ -5,6 +5,26 @@
  
 <mapper namespace="main">
  	
+ 	<!-- 장바구니 -->
+ 	 <select id="selectBasket" parameterType="String" resultType="basketVO">
+ 		select b.*, g.*
+		from basket b, goods g
+		where b.goods_idx = g.idx
+		and b.member_id = #{id}
+ 	</select>
+ 	<update id="minusBasket" parameterType="map">
+ 		update basket set quantity = quantity-1 where member_id =#{id} and idx =#{idx}
+ 	</update>
+ 	<update id="plusBasket" parameterType="map">
+ 		update basket set quantity = quantity+1 where member_id =#{id} and idx =#{idx}
+ 	</update>
+ 	<delete id="deleteBasket" parameterType="map">
+ 		delete basket where member_id =#{id} and idx =#{idx}
+ 	</delete>
+ 	<select id="quantityCheck" parameterType="map" resultType="basketVO">
+ 		select quantity from basket where member_id =#{id} and idx=#{idx}
+ 	</select>
+ 	<!-- 장바구니 -->
  	<select id="selectGoods" parameterType="int" resultType="goodsVO">
  		select * from goods where idx = #{idx}
  	</select>

@@ -51,7 +51,7 @@
                             </div>
                         </div>
                     </span></span>
-                <span class="a2014"><a class="a2003-root a2059-root a2059-text a2019" tabindex="0" aria-disabled="false" aria-label="장바구니" href="/cart"><span class="a2059-label a2020"><span class="a2021"><span class="MuiBadge-root"><svg class="a2002-root a2022l" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
+                <span class="a2014"><a class="a2003-root a2059-root a2059-text a2019" tabindex="0" aria-disabled="false" aria-label="장바구니" onclick="outProduct('basket.main')"><span class="a2059-label a2020"><span class="a2021"><span class="MuiBadge-root"><svg class="a2002-root a2022l" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                         <path d="M4 16V4H2V2h3c.552 0 1 .448 1 1v12h12.438l2-8H8V5h13.72c.308 0 .599.142.788.385.19.243.257.56.182.858l-2.5 10c-.111.445-.511.757-.97.757H5c-.552 0-1-.448-1-1zm2 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2zm12 0c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"></path>
                                     </svg><span class="MuiBadge-badge a2023 MuiBadge-anchorOriginTopRightCircle MuiBadge-invisible">0</span></span></span><span class="a2025">장바구니<span class="a2026"><svg class="a2002-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="img">
                                         <path d="M12 15L7.757 10.757 9.172 9.343 12 12.172 14.828 9.343 16.243 10.757z"></path>

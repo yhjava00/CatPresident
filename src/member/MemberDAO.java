@@ -156,23 +156,25 @@ private static final MemberDAO memberDAO = new MemberDAO();
 		
 		return state;
 	}
-	public int checkPhone(String phone) {
-		List<String> list=null;
-		int result=1;
-		SqlSession session = sqlSessionFactory.openSession();
-		try {
-			String phone2= session.selectOne("member.checkPhone", phone);
-			if(phone2.equals(phone)) {
-				return -1;
-			}else {
-				return 1;
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			session.close();
-		}
-		return result;
+	 public int checkPhone(String phone) {
+       List<String> list=null;
+       int result=1;
+       SqlSession session = sqlSessionFactory.openSession();
+       try {
+          list= session.selectList("member.checkPhone", phone);
+          for(int i=0; i<=list.size()-1; i++) {
+             if(list.get(i).equals(phone)) { 
+                result=-1;
+             }else {
+                result=1;
+             }
+          }
+       }catch(Exception e) {
+          e.printStackTrace();
+       }finally {
+          session.close();
+       }
+       return result;
 	}
 	public void changePw(String changePw, String id) {
 		HashMap map=new HashMap();
