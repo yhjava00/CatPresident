@@ -35,10 +35,11 @@ public class MainService {
 		List<GoodsVO> goodsList1 = mainDAO.scoreDescList(); //별점 높은순 리스트
 		List<GoodsVO> goodsList2 = mainDAO.voteNumDescList(); //투표 인원 많은순 리스트
 		List<GoodsVO> goodsList3 = mainDAO.mainRankList();
-
+		List<ReviewVO> reviewList = mainDAO.showMainReview();
 		info.put("goodsList1", goodsList1);
 		info.put("goodsList2", goodsList2);
 		info.put("goodsList3", goodsList3);
+		info.put("reviewList", reviewList);
 		
 		return info;
 	}
@@ -113,7 +114,17 @@ public class MainService {
 	}
 	
 	public List<BasketVO> basket(String id) {
-	return mainDAO.selectbasket(id);
+		return mainDAO.selectbasket(id);
+	}
+	
+	public int insertbasket(Map param) {/////////////////////
+		String check = mainDAO.checkbasket(param);
+		if(check == null) {
+		}
+		else {
+			mainDAO.delbasket(Integer.parseInt(check));
+		}
+		return mainDAO.insertbasket(param);		
 	}
 
 	public String updatebasket(String id, String type, int idx){

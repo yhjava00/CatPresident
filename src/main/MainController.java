@@ -107,18 +107,21 @@ public class MainController extends HttpServlet {
 			nextPage ="basket.jsp";
 			List<BasketVO> list = mainService.basket(id);
 			request.setAttribute("basketList", list);
-
 			break;
 		}
 		
 		case "/updateQty":
 		{
+			
 			int idx = Integer.parseInt(request.getParameter("idx"));
 			String type = request.getParameter("type");
-			
+
 			mainService.updatebasket(id, type, idx);
 			
 			List<BasketVO> list = mainService.basket(id);
+			for(BasketVO vo : list) {
+				System.out.println(vo.getQuantity());
+			}
 			request.setAttribute("basketList", list);
 
 			nextPage = "basket.jsp";
@@ -135,10 +138,19 @@ public class MainController extends HttpServlet {
 			nextPage ="basket.jsp";
 			break;
 		}
+		
+		case "/insertBasket": ////////
+		{
+			Map<String, Object> param = new HashMap<String, Object>();
+			param.put("idx", Integer.parseInt(request.getParameter("idx")));
+			param.put("quantity", Integer.parseInt(request.getParameter("quantity")));
+			param.put("id", id);
+			int insertResult = mainService.insertbasket(param);
+			break;
+		}
 		default :
 			request.setAttribute("goodsListMap", mainService.main());
 		}
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/" + nextPage);
 		dispatcher.forward(request, response);
 	}

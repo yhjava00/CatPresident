@@ -262,8 +262,8 @@ private static final MemberService memberService = new MemberService();
 		int rs=checkId(id);
 		if(rs==-1) {
 			String changePwResult=randomPwCreate(6);
-			memberDAO.changePw(changePwResult, id);
 			sendHtmlEmail(changePwResult,id);
+			memberDAO.changePw(encryptionPw(changePwResult), id);
 		}
 		return rs;
 	}

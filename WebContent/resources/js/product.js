@@ -325,13 +325,13 @@
                 $('#min_amount').css("display" , "none");
             })
 
-            $('#cart_in_button1').click(function(){
-                $('#cart_in_alert').css("display" , "");
-            })
+            function insertCartBtn(){
+            	$('#cart_in_alert').css("display" , "");
+            }
 
-            $('#cart_in_button2').click(function(){
-                $('#cart_in_alert').css("display" , "");
-            })
+//            $('#cart_in_button2').click(function(){
+//                $('#cart_in_alert').css("display" , "");
+//            })
             
             $('#cart_in_confirm_button').click(function(){
                 $('#cart_in_alert').css("display" , "none");

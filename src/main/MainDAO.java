@@ -234,8 +234,55 @@ public class MainDAO {
 		return list;
 	}
 	
+	public int insertbasket(Map param) {//////
+		int insertResult = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			insertResult = session.insert("main.insertBasket", param);
+			session.commit();
+		} finally {
+			session.close();
+		}
+		return insertResult;
+	}
+	
+	public String checkbasket(Map param) { ////
+		String checkResult = "";
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			checkResult = session.selectOne("main.checkInbasket", param);
+		}finally {
+			session.close();
+		}
+		return checkResult;
+	}
+	
+	public int delbasket(int idx) { /////
+		int delResult = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			delResult = session.delete("main.delBasket", idx);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return delResult;
+	}
+	
+	public List<ReviewVO> showMainReview(){
+		List<ReviewVO> list = null;
+		SqlSession session = sqlSessionFactory.openSession();
+	    try {
+	        list = session.selectList("main.selectMainReview");
+	        
+	    } finally {
+	        session.close();
+	    }
+	    return list;
+	}
+	
 	public List<BasketVO> selectbasket(String id) {
-	List<BasketVO> list = null;
+		List<BasketVO> list = null;
     SqlSession session = sqlSessionFactory.openSession();
     try {
         list = session.selectList("main.selectBasket", id);

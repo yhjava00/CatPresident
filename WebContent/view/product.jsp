@@ -43,6 +43,25 @@
 			});
 	  	}
 		
+		function insertCart(){ /////////////
+			var id = '${loginUser}';
+			var idx = ${idx};
+			var quantity = $('#amount').attr("value");
+			$.ajax({
+				type: 'POST',  
+				url: 'insertBasket.main',
+				data: {"idx": idx, "quantity": quantity},	
+				success: function(result){
+					$('#cart_in_alert').css("display" , "");
+				} 
+			});
+	  	}
+		
+		function confirm(){
+			$('#cart_in_alert').css("display", "none");
+			outProduct('basket.main');
+		}
+		
 		 $('#NoLikeBtn').click(function(){
          	$('#NoLikeBtn').css("display" , "none");
             $('#LikeBtn').css("display" , "block");
@@ -53,7 +72,9 @@
          	$('#LikeBtn').css("display" , "none");
             $('#NoLikeBtn').css("display" , "block");
             like('like.main');
-         })  
+         })
+         
+        
 </script>
     <script src="${contextPath}/resources/js/footer.js"></script>
     <script src="${contextPath}/resources/js/product.js"></script>
@@ -327,7 +348,17 @@
                                             <div class="jss308"><strong><span id = "price"><fmt:formatNumber value="${list.price}" pattern="###,###,###,###"/></span></strong>원</div>
                                         </div>
                                     </div>
-                                    <div class="jss310"><button id = "cart_in_button1" class="MuiButtonBase-root jss320 jss321 jss311" tabindex="0" type="button" data-testid="cart"><span class="MuiButton-label">장바구니 담기</span><span class="MuiTouchRipple-root"></span></button><button class="jss320 jss311 jss10008" tabindex="0" type="button"><span class="MuiButton-label">바로 구매</span><span class="MuiTouchRipple-root"></span></button></div>
+                                    <div class="jss310">
+                                    	<c:choose>
+                                    		<c:when test="${loginUser == null}">
+                                    			<button id = "cart_in_button1" class="MuiButtonBase-root jss320 jss321 jss311" tabindex="0" type="button" data-testid="cart" onclick = "alert('로그인이 필요합니다.')"><span class="MuiButton-label">장바구니 담기</span><span class="MuiTouchRipple-root"></span></button>
+                                    		</c:when>
+                                    		<c:otherwise>
+                                    			<button id = "cart_in_button1" class="MuiButtonBase-root jss320 jss321 jss311" tabindex="0" type="button" data-testid="cart" onclick="javascript:insertCart()"><span class="MuiButton-label">장바구니 담기</span><span class="MuiTouchRipple-root"></span></button>
+                                    		</c:otherwise>
+                                    	</c:choose>
+                                    	<button class="jss320 jss311 jss10008" tabindex="0" type="button"><span class="MuiButton-label">바로 구매</span><span class="MuiTouchRipple-root"></span></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -444,27 +475,21 @@
                                     <img class="jss185 jss878" src="${contextPath}/resources/profile/${reviewList.member_id}/${reviewList.memberProfile}" alt="${reviewList.member_id}" sizes="auto"></picture>
                             </span>                         
                             <div class="jss886">
-                                <div class="jss887"><span class="MuiRating-root jss888 MuiRating-readOnly" role="img" aria-label="5 Stars"><span class="MuiRating-decimal"><span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;"><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
+                                <div class="jss887"><span class="MuiRating-root jss888 MuiRating-readOnly jss20012" role="img" aria-label="5 Stars">
+                                					<c:forEach var = "num" begin = "1" end = "5">
+													<c:choose>
+														<c:when test="${reviewList.star >= num }"><c:set var = "score" value = "100"></c:set></c:when>
+														<c:when test="${num - reviewList.star > 0.5 && num - reviewList.star < 1}"><c:set var = "score" value = "100"></c:set></c:when>
+														<c:when test="${num - reviewList.star <= 0.5 && num - reviewList.star > 0}"><c:set var = "score" value = "50"></c:set></c:when>
+														<c:when test="${num - reviewList.star >= 1}"><c:set var = "score" value = "0"></c:set></c:when>
+													</c:choose>  
+                                					<span class="MuiRating-decimal"><span style="width: ${score}%; overflow: hidden; z-index: 1; position: absolute;"><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
                                                         <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
                                                     </svg></span></span><span><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
                                                         <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span></span><span class="MuiRating-decimal"><span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;"><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                                        <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span><span><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                                        <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span></span><span class="MuiRating-decimal"><span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;"><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                                        <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span><span><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                                        <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span></span><span class="MuiRating-decimal"><span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;"><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                                        <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span><span><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                                        <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span></span><span class="MuiRating-decimal"><span style="width: 0%; overflow: hidden; z-index: 1; position: absolute;"><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                                        <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span><span><span class="MuiRating-icon jss681 MuiRating-iconFilled jss683"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 48 48" aria-hidden="true" role="img">
-                                                        <path fill="#c4c4c6" fill-rule="evenodd" d="M35.236 44c-.325 0-.65-.092-.94-.275L24 37.214l-10.297 6.511c-.624.396-1.415.362-2.008-.09-.592-.45-.868-1.227-.702-1.973l2.732-12.27-9.098-8.257c-.552-.5-.764-1.3-.538-2.03.226-.727.846-1.242 1.575-1.308l11.98-1.065 4.681-11.57C22.611 4.457 23.27 4 24 4c.73 0 1.39.457 1.675 1.162l4.682 11.57 11.979 1.065c.729.066 1.35.58 1.575 1.309.226.728.014 1.528-.538 2.029l-9.098 8.257 2.732 12.27c.166.746-.11 1.523-.702 1.974-.317.242-.693.363-1.07.363"></path>
-                                                    </svg></span></span></span></span>구매인증됨<div class="jss896 jss885"></div>${reviewList.writedate}</div><span>${reviewList.memberName} </span>
+                                                    </svg></span></span></span>
+                                                    </c:forEach>
+                                                    </span>구매인증됨<div class="jss896 jss885"></div>${reviewList.writedate}</div><span>${reviewList.memberName} </span>
                             </div>
                         </div>
                         <div class="jss528">
@@ -603,7 +628,7 @@
                     <div class="MuiDialogContent-root jss588">
                         <p class="MuiTypography-root MuiTypography-h3">장바구니에 상품이 담겼습니다.</p>
                     </div>
-                    <div class="MuiDialogActions-root jss589 jss326 MuiDialogActions-spacing"><button class="MuiButtonBase-root MuiButton-root MuiButton-contained jss473 jss20002 undefined MuiButton-containedPrimary MuiButton-fullWidth" tabindex="0" type="button"><span class="MuiButton-label">장바구니 보기</span></button><button id = "cart_in_confirm_button" class="MuiButtonBase-root MuiButton-root MuiButton-contained jss473 jss475 MuiButton-colorInherit MuiButton-fullWidth" tabindex="0" type="button"><span class="MuiButton-label">확인</span></button></div>
+                    <div class="MuiDialogActions-root jss589 jss326 MuiDialogActions-spacing"><button class="MuiButtonBase-root MuiButton-root MuiButton-contained jss473 jss20002 undefined MuiButton-containedPrimary MuiButton-fullWidth" tabindex="0" type="button" onclick="confirm()"><span class="MuiButton-label">장바구니 보기</span></button><button id = "cart_in_confirm_button" class="MuiButtonBase-root MuiButton-root MuiButton-contained jss473 jss475 MuiButton-colorInherit MuiButton-fullWidth" tabindex="0" type="button"><span class="MuiButton-label">확인</span></button></div>
                 </div>
             </div>
             <div tabindex="0" data-test="sentinelEnd"></div>
@@ -682,7 +707,16 @@
                                             </g>
                                         </svg></div>
                                 </div>
-                         </span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root jss311 jss320 jss321" tabindex="0" type="button" id = "cart_in_button2"><span class="MuiButton-label">장바구니 담기</span><span class="MuiTouchRipple-root"></span></button><button class="MuiButtonBase-root jss320 jss321 jss10008" tabindex="0" type="button"><span class="MuiButton-label">바로 구매</span><span class="MuiTouchRipple-root"></span></button></div>
+                         </span><span class="MuiTouchRipple-root"></span></button>
+                         <c:choose>
+                         	<c:when test="${loginUser == null}">
+                         		<button class="MuiButtonBase-root jss311 jss320 jss321" tabindex="0" type="button" id = "cart_in_button2" onclick = "alert('로그인이 필요합니다.')"><span class="MuiButton-label">장바구니 담기</span><span class="MuiTouchRipple-root"></span></button>
+                         	</c:when>
+                         	<c:otherwise>
+                         		<button class="MuiButtonBase-root jss311 jss320 jss321" tabindex="0" type="button" id = "cart_in_button2" onclick="javascript:insertCart()"><span class="MuiButton-label">장바구니 담기</span><span class="MuiTouchRipple-root"></span></button>
+                         	</c:otherwise>
+                         </c:choose>
+                         <button class="MuiButtonBase-root jss320 jss321 jss10008" tabindex="0" type="button"><span class="MuiButton-label">바로 구매</span><span class="MuiTouchRipple-root"></span></button></div>
                 </div>
             </div>
             

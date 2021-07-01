@@ -24,6 +24,18 @@
  	<select id="quantityCheck" parameterType="map" resultType="basketVO">
  		select quantity from basket where member_id =#{id} and idx=#{idx}
  	</select>
+ 	
+ 	<insert id="insertBasket" parameterType="map">
+ 		insert into basket(idx, member_id, goods_idx, quantity) values(basket_seq.nextval, #{id}, #{idx}, #{quantity}) 	
+ 	</insert>
+ 	<select id="checkInbasket" parameterType="map" resultType="String">
+ 		select idx from basket where member_id = #{id} and goods_idx = #{idx}
+ 	</select>
+ 	
+ 	<delete id="delBasket" parameterType="int">
+ 		delete basket where idx =#{idx}
+ 	</delete>
+ 	
  	<!-- 장바구니 -->
  	<select id="selectGoods" parameterType="int" resultType="goodsVO">
  		select * from goods where idx = #{idx}
@@ -97,6 +109,16 @@
     <select id="selectAllGoodsCount" resultType="int">
        select count(*) from goods   
     </select>
+    
+    <select id="selectMainReview" resultType="reviewVO">
+    	select r2.*, m.profile memberProfile, m.name memberName 
+    	from (select rownum rnum, r1.* 
+    			from review r1 
+    			where star >= 4 order by idx desc) r2 
+    	join member m on m.id = r2.member_id 
+    	where rnum between 1 and 4
+    </select>
+    
     
  	<select id="selectChattingList" parameterType="String" resultType="chattingVO">
  		<![CDATA[
