@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
- 
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,7 +10,6 @@
         <link rel="stylesheet" href="resources/css/basket.css">
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script>
-
 	        function updateQty(idx, qty, type) {
 	        	if(type=='minus' && qty == 1){
 	        		return;
@@ -28,7 +25,6 @@
 					$('#htmlContent').html(data)
 				})
 			}
-	        
  			function deleteBasket(idx){
         		$.ajax({
 					url: 'deleteBasket.main',
@@ -41,6 +37,7 @@
 					$('#htmlContent').html(data)
 				})
 	        }
+
        	</script>
 	</head>
 	<body>
@@ -187,12 +184,13 @@
 					<div class="a3082">
 						<strong> 합계 : <fmt:formatNumber value="${total+3000}"/> 원 </strong>
 					</div>
-					<button class="a3084" tabindex="0" type="button" onClick="location.href='order.jsp'">>
+					<button class="a3084" tabindex="0" type="button" onClick="changeContent('selectOrderList.main')">>
 						<span class="a3085">구매하기</span> <span class="a3086"> </span>
 					</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	<jsp:include page="./common/footer.jsp"></jsp:include>
 	</body>
 </html>

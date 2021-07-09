@@ -164,4 +164,26 @@ public String deleteBasket(String id, int idx){
 	}
 	return "success";
 }
+public String insertOrder(Map<String, Object> orderList){
+	int state = 0;
+	state = mainDAO.insertOrder(orderList);
+	if(state ==0) {
+		return "error";
+	}
+	return "success";
+}
+
+public int clearBasket(String id) {
+	 return mainDAO.clearBasket(id);
+}
+
+public String updateMemberInfo(Map<String, Object> memberInfoList) {
+	int state = 0;
+	state = mainDAO.updateMemberInfo(memberInfoList);
+	if(state == 0 ) {
+		return "error";
+	}
+	return "success";
+}
+
 }

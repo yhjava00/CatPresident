@@ -9,13 +9,34 @@ public class OrderVO {
 	private String addr2;
 	private String addr3;
 	private String orderDate;
+	private String req;
 	private String status;
+	private String ordername;
+	private String orderphone;
 	
 	private int goodsIdx;
 	private String goodsImg;
 	private String goodsName;
 	private int goodsPrice;
 	
+	public String getOrdername() {
+		return ordername;
+	}
+	public void setOrdername(String ordername) {
+		this.ordername = ordername;
+	}
+	public String getOrderphone() {
+		return orderphone;
+	}
+	public void setOrderphone(String orderphone) {
+		this.orderphone = orderphone;
+	}
+	public String getReq() {
+		return req;
+	}
+	public void setReq(String req) {
+		this.req = req;
+	}
 	public int getGoodsIdx() {
 		return goodsIdx;
 	}

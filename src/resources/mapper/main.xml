@@ -118,8 +118,18 @@
     	join member m on m.id = r2.member_id 
     	where rnum between 1 and 4
     </select>
-    
-    
+    <insert id="insertOrder" parameterType="map">
+ 		insert into orders values(ORDER_SEQ.nextval, #{id}, #{idx}, #{qty}, #{addr1}, #{addr2}, #{addr3}, sysdate, #{status}, #{name}, #{phone}, #{req})
+ 	</insert>
+ 
+ 	<delete id="clearBasket" parameterType="String">
+ 		delete from basket where member_id = #{id}
+ 	</delete>  
+ 	
+ 	<update id="updateMemberInfo" parameterType="map">
+ 		update member set addr1 = #{addr1}, addr2= #{addr2}, addr3= #{addr3} where id = #{id}
+ 	</update>
+ 	
  	<select id="selectChattingList" parameterType="String" resultType="chattingVO">
  		<![CDATA[
  			select rownum, a.* from (select * from chat where sender = #{id} or recipient = #{id} order by sendDate) a where rownum <100

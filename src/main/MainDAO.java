@@ -342,5 +342,40 @@ public List<BasketVO> quantityCheck(Map<String, Object> info) {
 	}
 	return list;
 }
-	
+
+public int insertOrder(Map<String, Object> orderList){
+	int state = 0;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		state = session.insert("main.insertOrder", orderList);
+		session.commit();
+		} finally {
+		session.close();
+	}
+	return state;
+}
+
+public int clearBasket(String id) {
+	int state = 0;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		state = session.delete("main.clearBasket", id);
+		session.commit();
+	} finally {
+		session.close();
+	}
+	return state;
+	}
+
+public int updateMemberInfo(Map<String, Object> memberInfoList) {
+	int state = 0;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		state = session.update("main.updateMemberInfo", memberInfoList);
+		session.commit();
+	} finally {
+		session.close();
+	}
+	return state;
+}
 }
