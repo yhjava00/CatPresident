@@ -185,5 +185,13 @@ public String updateMemberInfo(Map<String, Object> memberInfoList) {
 	}
 	return "success";
 }
-
+public int ReviewCnt() {
+	return mainDAO.ReviewCnt();
+}
+public List<ReviewVO>showReview(){
+	return MainDAO.showReview();
+}
+public static List<ReviewVO> paging(Map page) {
+	return MainDAO.paging(page);
+}
 }

@@ -136,4 +136,18 @@
  		]]>
  	</select>
  	
+ 	<select id="paging" parameterType="map"  resultType="reviewVo">
+ 		<![CDATA[
+ 		select r3.*from(select rownum rnum, r2.* from(select * from review order by star asc) r2) r3 where rnum>= #{startRowNum} and rnum<= #{endRowNum}
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="ReviewCnt" resultType="int">
+ 		select count(*) from review
+ 	</select>
+ 	
+ 	<select id="showReview" resultType="reviewVO">
+ 		select idx,star, member_id, title, content, writedate from review order by writedate
+ 	</select>
+ 	
 </mapper>

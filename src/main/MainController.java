@@ -17,6 +17,7 @@ import member.MemberService;
 import vo.BasketVO;
 import vo.ChattingVO;
 import vo.MemberVO;
+import vo.ReviewVO;
 
 @WebServlet("*.main")
 public class MainController extends HttpServlet {
@@ -105,6 +106,39 @@ public class MainController extends HttpServlet {
 			request.setAttribute("chatList", chatList);
 			break;
 		case "/reviews":
+			int reviewCnt = mainService.ReviewCnt();
+			
+			int startPage = 1;
+			int currPage = 1;
+			int pageSize = 30;
+			int realEndPage = reviewCnt / pageSize;
+			
+			if(reviewCnt % pageSize != 0) {
+				realEndPage++;
+			}
+			
+			if(request.getParameter("page") != null)
+				currPage = Integer.parseInt(request.getParameter("page"));
+			
+			Map<String, Object>page = new HashMap<>();
+			page.put("startRowNum", currPage * pageSize - (pageSize - 1));
+			page.put("endRowNum", currPage * pageSize);
+			List<ReviewVO>relist = MainService.paging(page);
+
+			if(currPage > 4) {
+				startPage = currPage - 4;
+			}
+			
+			int endPage = startPage + 8;
+			if(endPage > realEndPage) {
+				endPage = realEndPage;
+			}
+			request.setAttribute("currPage", currPage);
+			request.setAttribute("relist", relist);
+			request.setAttribute("startPage", startPage);
+			request.setAttribute("endPage", endPage);
+			request.setAttribute("realEndPage", realEndPage-3);
+			request.setAttribute("reviewCnt", reviewCnt);
 			nextPage = "reviews.jsp";
 			break;
 		case "/basket":
@@ -124,9 +158,6 @@ public class MainController extends HttpServlet {
 			mainService.updatebasket(id, type, idx);
 			
 			List<BasketVO> list = mainService.basket(id);
-			for(BasketVO vo : list) {
-				System.out.println(vo.getQuantity());
-			}
 			request.setAttribute("basketList", list);
 
 			nextPage = "basket.jsp";
@@ -155,10 +186,7 @@ public class MainController extends HttpServlet {
 		}
 		case "/selectOrderList":
 		{	
-			System.out.println(id);
 			MemberVO member = memberService.getMember(id);
-			System.out.println(member.getAddr1());
-			System.out.println(member.getName());
 			request.setAttribute("addr1", member.getAddr1());
 			request.setAttribute("addr2", member.getAddr2());
 			request.setAttribute("addr3", member.getAddr3());

@@ -27,7 +27,25 @@
 					$('#htmlContent').html(data)
 				})
 			}
-
+			function changeReviewPage(page) {
+				$(window).unbind()
+				setHeaderEvent()
+				$('html').scrollTop(0)
+				$.ajax({
+					url: "reviews.main",
+					data: {"page": page},
+					async : true,
+					type : 'post',
+					dataType : 'html',
+					cache: false
+				}).done(function (data) {
+					if(page == 0){
+						alert("선택할수 없는 페이지입니다.");
+						location.back();
+					}
+					$('#htmlContent').html(data)
+				})
+			}
 			function inProduct(idx) {
 				$('html').scrollTop(0)
 				$(window).unbind()

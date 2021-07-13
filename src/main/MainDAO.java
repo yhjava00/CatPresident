@@ -2,6 +2,8 @@ package main;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -377,5 +379,37 @@ public int updateMemberInfo(Map<String, Object> memberInfoList) {
 		session.close();
 	}
 	return state;
+}
+
+public int ReviewCnt() {
+	int reviewCnt = 0;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		reviewCnt = session.selectOne("main.ReviewCnt");
+	} finally {
+		session.close();
+	}
+	return reviewCnt;
+}
+public static List<ReviewVO> paging(Map page) {
+	List<ReviewVO>list = null;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		list = session.selectList("main.paging", page);		
+	} finally {
+		session.close();
+	}
+	return list;
+}
+
+public static List<ReviewVO> showReview(){
+	List<ReviewVO>reviewList = null;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		reviewList = session.selectList("main.showReview");
+	} finally {
+		session.close();
+	}
+	return reviewList;
 }
 }

@@ -8,14 +8,24 @@ public class ReviewVO {
 	String title;
 	String content;
 	String writedate;
-	
 	String memberName;
-
 	String memberProfile;
+	
+	int result_score;
+	
+	int rnum;
 	
 	public ReviewVO() {
 	}
 	
+	public ReviewVO(int goods_idx, String member_id, int star, String title, String content, int result_score) {
+		this.goods_idx = goods_idx;
+		this.member_id = member_id;
+		this.star = star;
+		this.title = title;
+		this.content = content;
+		this.result_score = result_score;
+	}
 	public ReviewVO(int goods_idx, String member_id, int star, String title, String content) {
 		this.goods_idx = goods_idx;
 		this.member_id = member_id;
@@ -24,6 +34,14 @@ public class ReviewVO {
 		this.content = content;
 	}
 	
+	public int getResult_score() {
+		return result_score;
+	}
+
+	public void setResult_score(int result_score) {
+		this.result_score = result_score;
+	}
+
 	public String getMemberName() {
 		return memberName;
 	}
@@ -80,4 +98,13 @@ public class ReviewVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+
 }
