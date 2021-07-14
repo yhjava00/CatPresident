@@ -309,7 +309,7 @@
 							<div class="b3060" data-swiper-slide-index="16"
 								style="width: 324.75px; margin-right: 20px;">
 								<a class="b3061" tabindex="0" aria-disabled="false"
-									onclick="changeContent('reviews.main')">
+									onclick="changeReviewPage(1)">
 									<div class="b3062">
 										<span class="b3063"> 
 										<!-- 별점 시작 -->

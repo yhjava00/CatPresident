@@ -412,4 +412,27 @@ public static List<ReviewVO> showReview(){
 	}
 	return reviewList;
 }
+public List<GoodsVO> selectDirectGoods(int idx) {
+	List<GoodsVO> list = null;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		list = session.selectList("main.selectOrder", idx);
+	} finally {
+		session.close();
+	}
+	return list;
+}
+
+public int directInsertOrder(Map<String, Object> directOrderMap){
+	int state = 0;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		state = session.insert("main.directInsertOrder", directOrderMap);
+		session.commit();
+		} finally {
+		session.close();
+	}
+	return state;
+}
+
 }

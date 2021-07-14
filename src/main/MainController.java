@@ -16,6 +16,7 @@ import member.MemberDAO;
 import member.MemberService;
 import vo.BasketVO;
 import vo.ChattingVO;
+import vo.GoodsVO;
 import vo.MemberVO;
 import vo.ReviewVO;
 
@@ -133,6 +134,7 @@ public class MainController extends HttpServlet {
 			if(endPage > realEndPage) {
 				endPage = realEndPage;
 			}
+			
 			request.setAttribute("currPage", currPage);
 			request.setAttribute("relist", relist);
 			request.setAttribute("startPage", startPage);
@@ -210,7 +212,7 @@ public class MainController extends HttpServlet {
 			Map<String, Object> orderMap = new HashMap<String, Object>();
 			List<BasketVO> list2 =mainService.basket(id); 
 			for(BasketVO li : list2) {
-				orderMap.put("idx",li.getIdx());
+				orderMap.put("idx",li.getGoods_idx());
 				orderMap.put("qty",li.getQuantity());
 				orderMap.put("id",userid);
 				orderMap.put("name",name);
@@ -227,7 +229,60 @@ public class MainController extends HttpServlet {
 			mainService.clearBasket(id);
 			mainService.updateMemberInfo(orderMap);
 			nextPage="order_result.jsp";
+			break;
 		}
+		case "/selectDirectOrder":
+		{
+			MemberVO member = memberService.getMember(id);
+			request.setAttribute("addr1", member.getAddr1());
+			request.setAttribute("addr2", member.getAddr2());
+			request.setAttribute("addr3", member.getAddr3());
+
+			int qty = Integer.parseInt(request.getParameter("qty"));
+			int idx = Integer.parseInt(request.getParameter("idx"));
+			List<GoodsVO> list = mainService.selectGoods(idx);
+			for(GoodsVO li: list) {
+				request.setAttribute("price", li.getPrice());
+				request.setAttribute("total", qty*li.getPrice());
+			}
+			request.setAttribute("goodsList", list);
+			request.setAttribute("qty", qty);
+			request.setAttribute("idx", idx);
+			nextPage="directOrder.jsp";
+			break;
+		}
+		case "/directInsertOrder":
+		{
+			String userid = id; 
+			String name = request.getParameter("name");
+			String phone = request.getParameter("phone");
+			String addr1 = request.getParameter("addr1");
+			String addr2 = request.getParameter("addr2");
+			String addr3 = request.getParameter("addr3");
+			String req = request.getParameter("req"); 
+			String total = request.getParameter("total");
+			String qty = request.getParameter("qty");
+			String idx = request.getParameter("idx");			
+			String status = "배송준비";
+			Map<String, Object> directOrderMap = new HashMap<String, Object>();
+			directOrderMap.put("id",userid);
+			directOrderMap.put("idx",idx);
+			directOrderMap.put("qty",qty);
+			directOrderMap.put("addr1",addr1);
+			directOrderMap.put("addr2",addr2);
+			directOrderMap.put("addr3",addr3);
+			directOrderMap.put("status", status);
+			directOrderMap.put("name",name);
+			directOrderMap.put("phone",phone);
+			directOrderMap.put("req",req);
+			directOrderMap.put("total",total);
+			mainService.directInsertOrder(directOrderMap);
+			request.setAttribute("directOrderList", directOrderMap);
+			
+			nextPage="directOrder_result.jsp";
+			break;
+		}
+		
 		default :
 			request.setAttribute("goodsListMap", mainService.main());
 		}

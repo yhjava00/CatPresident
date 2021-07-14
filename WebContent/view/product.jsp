@@ -73,8 +73,47 @@
             $('#NoLikeBtn').css("display" , "block");
             like('like.main');
          })
-         
-        
+
+		function directOrder() {
+			var amount = $("#amount").val();
+			var idx = ${idx};
+			var price = $("#price").text();
+			$('html').scrollTop(0);
+			$(window).unbind()
+			$.ajax({
+				url: 'header.main',
+				async : true,
+				type : 'post',
+				dataType : 'html',
+				cache: false
+			}).done(function (data) {
+				$('#product_box').children().remove()
+				$('#outermost_box').html(data)
+				var item = ''
+				item += '<div>'
+				item += '<div class="a2038"></div>'
+				item += '<div id="htmlContent" style="position: relative; top: 168px;">'
+				item += '</div>'
+				item += '</div>'
+				$('#outermost_box').append(item)
+				changeDirectOrder(amount, idx)
+			})
+		}
+		 function changeDirectOrder(amount, idx, price) {
+				$(window).unbind()
+				setHeaderEvent()
+				$('html').scrollTop(0)
+				$.ajax({
+					url: 'selectDirectOrder.main',
+					async : true,
+					data : {'qty':amount, 'idx':idx, 'price':price},
+					type : 'post',
+					dataType : 'html',
+					cache: false
+				}).done(function (data) {
+					$('#htmlContent').html(data)
+				})
+			}
 </script>
     <script src="${contextPath}/resources/js/footer.js"></script>
     <script src="${contextPath}/resources/js/product.js"></script>
@@ -270,7 +309,7 @@
                                         
                                         <dl class="jss281">
                                             <dt class="jss282" style="font-size: 14px;">판매가</dt>
-                                            <dd class="jss283"><span><span><fmt:formatNumber value="${list.price}" pattern="###,###,###,###"/>원</span></span></dd>
+                                            <dd class="jss283" id="price"> ${list.price} 원</dd>
                                         </dl>
                                     </div>
                                     
@@ -345,7 +384,7 @@
                                         <div>
                                             <div class="jss307">총 상품금액</div>
                                             <span id = "hiddenPrice" style="display:none">${list.price}</span>                                            
-                                            <div class="jss308"><strong><span id = "price"><fmt:formatNumber value="${list.price}" pattern="###,###,###,###"/></span></strong>원</div>
+                                            <div class="jss308"><strong><span><fmt:formatNumber value="${list.price}" pattern="###,###,###,###"/></span></strong>원</div>
                                         </div>
                                     </div>
                                     <div class="jss310">
@@ -357,7 +396,7 @@
                                     			<button id = "cart_in_button1" class="MuiButtonBase-root jss320 jss321 jss311" tabindex="0" type="button" data-testid="cart" onclick="javascript:insertCart()"><span class="MuiButton-label">장바구니 담기</span><span class="MuiTouchRipple-root"></span></button>
                                     		</c:otherwise>
                                     	</c:choose>
-                                    	<button class="jss320 jss311 jss10008" tabindex="0" type="button"><span class="MuiButton-label">바로 구매</span><span class="MuiTouchRipple-root"></span></button>
+                                    	<button class="jss320 jss311 jss10008" tabindex="0" type="button" onclick="directOrder()"><span class="MuiButton-label">바로 구매</span><span class="MuiTouchRipple-root"></span></button>
                                     </div>
                                 </div>
                             </div>
@@ -716,7 +755,7 @@
                          		<button class="MuiButtonBase-root jss311 jss320 jss321" tabindex="0" type="button" id = "cart_in_button2" onclick="javascript:insertCart()"><span class="MuiButton-label">장바구니 담기</span><span class="MuiTouchRipple-root"></span></button>
                          	</c:otherwise>
                          </c:choose>
-                         <button class="MuiButtonBase-root jss320 jss321 jss10008" tabindex="0" type="button"><span class="MuiButton-label">바로 구매</span><span class="MuiTouchRipple-root"></span></button></div>
+                         <button class="MuiButtonBase-root jss320 jss321 jss10008" tabindex="0" type="button" onclick="directOrder()"><span class="MuiButton-label">바로 구매</span><span class="MuiTouchRipple-root"></span></button></div>
                 </div>
             </div>
             

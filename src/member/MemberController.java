@@ -28,7 +28,7 @@ public class MemberController extends HttpServlet {
 	
 	private MemberService memberService;
 	
-	private static final String PROFILE_PATH = "C:\\lyh_java\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\CatPresident\\resources\\profile\\";
+	private static final String PROFILE_PATH = "C:\\java_study\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\CatPresident\\resources\\profile\\";
 	
 	@Override
 	public void init() throws ServletException {

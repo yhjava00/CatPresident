@@ -81,7 +81,7 @@ private static final MemberService memberService = new MemberService();
 	}
 	
 	public void directoryCreate(String id) {
-		String path = "C:\\lyh_java\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\CatPresident\\resources\\profile\\"; // 폴더 경로
+		String path = "C:\\java_study\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\CatPresident\\resources\\profile\\"; // 폴더 경로
 		File Folder = new File(path+id);
 		// 해당 디렉토리가 없을경우 디렉토리를 생성.
 		if (Folder.exists()) {

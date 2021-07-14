@@ -194,4 +194,17 @@ public List<ReviewVO>showReview(){
 public static List<ReviewVO> paging(Map page) {
 	return MainDAO.paging(page);
 }
+public List<GoodsVO> selectGoods(int idx) {
+	return mainDAO.selectDirectGoods(idx);
+}
+
+public String directInsertOrder(Map<String, Object> directOrderMap){
+	int state = 0;
+	state = mainDAO.directInsertOrder(directOrderMap);
+	if(state ==0) {
+		return "error";
+	}
+	return "success";
+}
+
 }
