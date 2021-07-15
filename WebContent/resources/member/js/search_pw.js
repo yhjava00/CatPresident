@@ -13,7 +13,7 @@ function search_pw_rs() {
 			//0 서버오류
 			if (searchPw == -1) {
 				alert('새로운 비밀번호를 보냈습니다!');
-				changeContent('lginForm.member')
+				changeContent('loginForm.member')
 			} else {
 				if (idJ.test(id)) {
 					// 0 : 아이디 길이 / 문자열 검사

@@ -232,7 +232,7 @@ public class MainController extends HttpServlet {
 			break;
 		}
 		case "/selectDirectOrder":
-		{
+		{	
 			MemberVO member = memberService.getMember(id);
 			request.setAttribute("addr1", member.getAddr1());
 			request.setAttribute("addr2", member.getAddr2());
@@ -278,7 +278,7 @@ public class MainController extends HttpServlet {
 			directOrderMap.put("total",total);
 			mainService.directInsertOrder(directOrderMap);
 			request.setAttribute("directOrderList", directOrderMap);
-			
+			mainService.updateMemberInfo(directOrderMap);
 			nextPage="directOrder_result.jsp";
 			break;
 		}
