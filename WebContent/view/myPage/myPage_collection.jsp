@@ -234,6 +234,7 @@
 			var page = 1
 		
 			$(document).ready(function() {
+				
 				$(window).scroll(function(){
 
 					if(canMore&&$(window).scrollTop() > ($('body').height()-1000)) {
@@ -242,14 +243,15 @@
 					}
 
 				})
+				
 				setBtnEvent()
 			})
 			
 			function readMore() {
 	    		
 	    		var type = '${collection}'
-	    		
-				page++
+	    		page++
+				
 				$.ajax({
 					url: 'moreCollection.myPage',
 			        data: {'page':page, 'type':type},
@@ -260,7 +262,6 @@
 				}).done(function (data) {
 					
 			        $('.jss1012').append(data)
-			        	
 		        	setBtnEvent()
 		        	
 				})
@@ -410,10 +411,6 @@
 		                            <div class="jss1022">
 		                                <button onclick="delCollection('${goods.idx}')" class="jss1023 buttonG" tabindex="0" type="button">
 		                                    <span class="MuiButton-label">삭제</span>
-		                                    <span class="MuiTouchRipple-root"></span>
-		                                </button>
-		                                <button class="jss1024 buttonP" tabindex="0" type="button" id="cartBtn">
-		                                    <span class="MuiButton-label">장바구니 담기</span>
 		                                    <span class="MuiTouchRipple-root"></span>
 		                                </button>
 		                            </div>

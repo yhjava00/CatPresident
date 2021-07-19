@@ -504,7 +504,7 @@ font-weight: 400;
     background-color: #fff;
     height: 580px;
     display: none;
-
+	z-index: 2;
 }
 
 .a2046 {

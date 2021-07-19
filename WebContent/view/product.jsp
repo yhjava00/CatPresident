@@ -309,7 +309,7 @@
                                         
                                         <dl class="jss281">
                                             <dt class="jss282" style="font-size: 14px;">판매가</dt>
-                                            <dd class="jss283" id="price"> ${list.price} 원</dd>
+                                            <dd class="jss283"> ${list.price} 원</dd>
                                         </dl>
                                     </div>
                                     
@@ -384,7 +384,7 @@
                                         <div>
                                             <div class="jss307">총 상품금액</div>
                                             <span id = "hiddenPrice" style="display:none">${list.price}</span>                                            
-                                            <div class="jss308"><strong><span><fmt:formatNumber value="${list.price}" pattern="###,###,###,###"/></span></strong>원</div>
+                                            <div class="jss308"><strong><span  id="price1"><fmt:formatNumber value="${list.price}" pattern="###,###,###,###"/></span></strong>원</div>
                                         </div>
                                     </div>
                                     <div class="jss310">
@@ -689,7 +689,7 @@
                         </div>
                         <div class="jss330">
                             <div class="jss331">총 상품금액</div>
-                            <div class="jss332"><span id="price1"><strong><fmt:formatNumber value="${price}" pattern="###,###,###,###"/></strong></span>원</div>
+                            <div class="jss332"><span id="price"><strong><fmt:formatNumber value="${price}" pattern="###,###,###,###"/></strong></span>원</div>
                         </div>
                     </div>
                     <div class="jss334"></div>

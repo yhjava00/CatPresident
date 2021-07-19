@@ -67,10 +67,6 @@
 		                                    <span class="MuiButton-label">삭제</span>
 		                                    <span class="MuiTouchRipple-root"></span>
 		                                </button>
-		                                <button class="jss1024 buttonP" tabindex="0" type="button" id="cartBtn">
-		                                    <span class="MuiButton-label">장바구니 담기</span>
-		                                    <span class="MuiTouchRipple-root"></span>
-		                                </button>
 		                            </div>
 		                        </div>
 		                    </div>

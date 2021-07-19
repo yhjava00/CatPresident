@@ -301,6 +301,7 @@
         	}
 			
         	$(document).ready(function() {
+        		
 	        	$('#label-id-0').change(function() {
 	        		
 	        		if( $('#label-id-0').val() == '' ) {
@@ -308,9 +309,10 @@
 	        		}
 	        		readURL(this)
 	        	})
+	        	
         	})
         	
-        	function send_profile(){
+        	function send_profile() {
             	
             	if($('#label-id-0')[0].files[0] === undefined) {
             		alert('프로필을 지정하세요.')
@@ -331,7 +333,7 @@
                         	alert('프로필 업로드에 실패하였습니다.')
                         }else {
                         	alert('프로필 업로드에 성공하셨습니다.')
-                        	var path = '/CatPresident/resources/profile/lee@gmail.com/' + data
+                        	var path = '/CatPresident/resources/profile/${member.id}/' + data
             				$('#myPageProfile').attr('src', path)
                         }
                     },
@@ -340,6 +342,7 @@
                     }
                 })
             }
+        	
 	    </script>
 		<title>Insert title here</title>
 	</head>
@@ -397,6 +400,7 @@
 	        <h3 class="a1134">나의 고양이</h3>
 	        <div class="a1144">
 	            <div class="a1146">
+	            
 	                <label class="a1147" for="label-id-0">
 	                    <input id="label-id-0" type="file" style="display: none;">
 	                    <div class="a1148">
@@ -410,6 +414,7 @@
 	                        </span>
 	                    </div>
 	                </label>
+	                
 	            </div>
 	            <button onclick="send_profile()" class="a1145">
 	                <span>등록하기</span>

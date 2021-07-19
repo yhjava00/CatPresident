@@ -27,7 +27,8 @@
 									srcset="https://img.catpre.com/web/catpre/event/main_banner/sno_top1_202104091546571.jpg">
 								<img class="jss182 jss169 IE_HACK_mainBnrImg"
 									src="https://img.catpre.com/web/catpre/event/main_banner/sno_top1_202104091546571.jpg"
-									alt="[이벤트] 반려양품 쿠션베드 기획전" sizes="auto" style="height: 400px">
+									alt="[이벤트] 반려양품 쿠션베드 기획전" sizes="auto" style="height: 400px; ">
+									<!-- width: 133%; -->
 								</picture>
 							</div>
 						</div>
