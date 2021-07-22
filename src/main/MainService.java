@@ -167,6 +167,8 @@ public String deleteBasket(String id, int idx){
 public String insertOrder(Map<String, Object> orderList){
 	int state = 0;
 	state = mainDAO.insertOrder(orderList);
+	mainDAO.insertAvailableReviews(orderList);
+	mainDAO.updateGoodsQuantity(orderList);
 	if(state ==0) {
 		return "error";
 	}
@@ -201,6 +203,8 @@ public List<GoodsVO> selectGoods(int idx) {
 public String directInsertOrder(Map<String, Object> directOrderMap){
 	int state = 0;
 	state = mainDAO.directInsertOrder(directOrderMap);
+	mainDAO.insertAvailableReviews(directOrderMap);
+	mainDAO.updateGoodsQuantity(directOrderMap);
 	if(state ==0) {
 		return "error";
 	}

@@ -357,6 +357,30 @@ public int insertOrder(Map<String, Object> orderList){
 	return state;
 }
 
+public int insertAvailableReviews(Map<String, Object> info){
+	int state = 0;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		state = session.insert("main.insertAvailableReviews", info);
+		session.commit();
+	} finally {
+		session.close();
+	}
+	return state;
+}
+
+public int updateGoodsQuantity(Map<String, Object> info) {
+	int state = 0;
+	SqlSession session = sqlSessionFactory.openSession();
+	try {
+		state = session.update("main.updateGoodsQuantity", info);
+		session.commit();
+	} finally {
+		session.close();
+	}
+	return state;
+}
+
 public int clearBasket(String id) {
 	int state = 0;
 	SqlSession session = sqlSessionFactory.openSession();

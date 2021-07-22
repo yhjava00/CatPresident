@@ -122,6 +122,14 @@
  		insert into orders values(ORDER_SEQ.nextval, #{id}, #{idx}, #{qty}, #{addr1}, #{addr2}, #{addr3}, sysdate, #{status}, #{name}, #{phone}, #{req})
  	</insert>
  
+ 	<insert id="insertAvailableReviews" parameterType="map">
+ 		insert into goodscollection(idx, member_id, goods_idx,type ,regdate) values(goodsCollection_seq.nextval, '${id}', #{idx}, 'review', sysdate)
+ 	</insert>
+ 	
+ 	<update id="updateGoodsQuantity" parameterType="map">
+ 		update goods set quantity = quantity+1 where idx = #{idx}
+ 	</update>
+ 	
  	<delete id="clearBasket" parameterType="String">
  		delete from basket where member_id = #{id}
  	</delete>  
